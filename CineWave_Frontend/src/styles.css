@@ -1,1 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Aboreto&family=Nanum+Gothic:wght@400;700;900&display=swap");
+:root {
+  --primary-color: rgb(68, 191, 194);
+  --secondary-color: rgb(55, 161, 164);
+  --gun-metal: rgb(69, 85, 90);
+  --black-rock: rgb(46, 50, 62);
+  --bombay: rgb(173, 178, 183);
+  --oslo-grey: rgb(129, 135, 140);
+  --athens-grey: rgb(238, 238, 243);
+  --whitish-grey: rgb(247, 247, 247);
+  --duration: 0.25s;
+}
+::selection {
+  color: #fff;
+  background-color: var(--secondary-color);
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background-color: var(--oslo-grey);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--secondary-color);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background-color: var(--whitish-grey);
+  color: var(--gun-metal);
+  font-family: "Nanum Gothic", sans-serif;
+  /* font-family: 'Aboreto', cursive; */
+}
+a {
+  text-decoration: none;
+  color: var(--gun-metal);
+}
+ul {
+  list-style-type: none;
+}
+span,
+a {
+  display: inline-block;
+}
+button,
+input {
+  outline: none;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,14 @@
+footer {
+  padding: 10px;
+  text-align: center;
+  background-color: var(--black-rock);
+  color: var(--athens-grey);
+}
+footer p:nth-child(2) {
+  margin-block: 10px;
+}
+footer span {
+  color: var(--primary-color);
+  font-family: "Aboreto", cursive;
+  font-weight: bold;
+}

@@ -1,0 +1,124 @@
+header {
+  background-color: var(--black-rock);
+}
+header .bar-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding: 15px 15px 0;
+}
+header .bar-buttons-container .search {
+  position: relative;
+  flex: 1;
+}
+header .bar-buttons-container .search::before {
+  content: "\e8b6";
+  position: absolute;
+  top: 4px;
+  left: 2px;
+  font-family: "Material Icons";
+  color: var(--primary-color);
+  -webkit-transition: var(--duration) ease-in-out;
+  -moz-transition: var(--duration) ease-in-out;
+  -ms-transition: var(--duration) ease-in-out;
+  -o-transition: var(--duration) ease-in-out;
+  transition: var(--duration) ease-in-out;
+}
+header .bar-buttons-container .search:focus-within::before {
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+header .bar-buttons-container .search input {
+  width: 50%;
+  padding: 5px;
+  padding-left: 30px;
+  background-color: transparent;
+  caret-color: var(--secondary-color);
+  color: var(--athens-grey);
+  border: none;
+  border-bottom: 1px solid var(--primary-color);
+  -webkit-transition: var(--duration) ease-in-out;
+  -moz-transition: var(--duration) ease-in-out;
+  -ms-transition: var(--duration) ease-in-out;
+  -o-transition: var(--duration) ease-in-out;
+  transition: var(--duration) ease-in-out;
+}
+header .bar-buttons-container .search:focus-within input {
+  width: 85%;
+}
+header .bar-buttons-container .search input::placeholder {
+  color: var(--secondary-color);
+}
+header .bar-buttons-container .buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+header .bar-buttons-container .buttons a {
+  padding: 8px 20px;
+  text-transform: uppercase;
+  color: var(--black-rock);
+  font-size: 12px;
+  font-weight: 900;
+  border: 2px solid var(--primary-color);
+  background-color: var(--primary-color);
+  -webkit-transition: var(--duration) ease-in-out;
+  -moz-transition: var(--duration) ease-in-out;
+  -ms-transition: var(--duration) ease-in-out;
+  -o-transition: var(--duration) ease-in-out;
+  transition: var(--duration) ease-in-out;
+}
+header .bar-buttons-container .buttons a:first-of-type {
+  color: var(--bombay);
+  background-color: transparent;
+}
+header .bar-buttons-container .buttons a:hover {
+  letter-spacing: 1px;
+}
+header nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  padding: 15px;
+  border-top: 1px solid var(--gun-metal);
+}
+header nav .logo {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  color: var(--athens-grey);
+  border: 3px solid var(--primary-color);
+  font-family: "Aboreto", cursive;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  border-radius: 6px;
+}
+header nav ul {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 50px;
+}
+header nav ul li {
+  min-width: 150px;
+}
+header nav ul li a {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  color: var(--bombay);
+}
+header nav ul li a:hover span {
+  color: var(--primary-color);
+}
+header nav ul li a span:last-of-type {
+  display: block;
+  margin-top: 10px;
+}
