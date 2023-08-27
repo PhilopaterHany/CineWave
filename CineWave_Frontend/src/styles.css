@@ -1,15 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css2?family=Aboreto&family=Nanum+Gothic:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;900&display=swap");
 :root {
-  --primary-color: rgb(68, 191, 194);
-  --secondary-color: rgb(55, 161, 164);
-  --gun-metal: rgb(69, 85, 90);
-  --black-rock: rgb(46, 50, 62);
-  --bombay: rgb(173, 178, 183);
-  --oslo-grey: rgb(129, 135, 140);
-  --athens-grey: rgb(238, 238, 243);
-  --whitish-grey: rgb(247, 247, 247);
+  --live-indicator-shadow: hsla(0, 79%, 63%, 0.5);
+  --rich-black-fogra-30: hsl(219, 32%, 10%);
+  --rich-black-fogra-29: hsl(222, 25%, 10%);
+  --live-indicator: hsl(0, 79%, 63%);
+  --oxford-blue-50: hsla(218, 39%, 14%, 0.8);
+  --oxford-blue: hsl(218, 39%, 14%);
+  --light-azure: hsl(214, 84%, 56%);
+  --off-white: hsl(0, 0%, 88%);
+  --yellow: hsl(45, 100%, 54%);
+  --white: hsl(0, 0%, 100%);
+  --azure: hsl(211, 100%, 50%);
   --duration: 0.25s;
+  --space: 120px;
+}
+@media (max-width: 1200px) {
+  :root {
+    --space: 80px;
+  }
+}
+@media (max-width: 1024px) {
+  :root {
+    --space: 60px;
+  }
+}
+@media (max-width: 768px) {
+  :root {
+    --space: 40px;
+  }
+}
+@media (max-width: 575px) {
+  :root {
+    --space: 20px;
+  }
 }
 ::selection {
   color: #fff;
@@ -17,15 +41,15 @@
 }
 ::-webkit-scrollbar {
   width: 10px;
+  background-color: transparent;
+  border-left: 1px solid var(--oxford-blue);
 }
 ::-webkit-scrollbar-track {
   background-color: var(--oslo-grey);
 }
 ::-webkit-scrollbar-thumb {
-  background-color: var(--primary-color);
-}
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--secondary-color);
+  background: var(--light-azure);
+  border: 3px solid var(--rich-black-fogra-29);
 }
 * {
   margin: 0;
@@ -36,26 +60,54 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  background-color: var(--whitish-grey);
-  color: var(--gun-metal);
-  font-family: "Nanum Gothic", sans-serif;
-  /* font-family: 'Aboreto', cursive; */
+  font-family: "Nanum Gothic", sans-serif !important;
+  color: var(--off-white);
+  background-color: var(--rich-black-fogra-29);
 }
 a {
+  display: inline-block;
+  color: var(--off-white);
   text-decoration: none;
-  color: var(--gun-metal);
 }
 ul {
   list-style-type: none;
 }
-span,
-a {
+span {
   display: inline-block;
 }
 button,
 input {
   outline: none;
+  border: none;
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+button {
+  color: var(--off-white);
+  cursor: pointer;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--white);
+}
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  object-fit: cover;
+}
+.container {
+  max-width: 1440px;
+  margin: auto;
+}
+.navbar-container,
+.banner,
+.movies,
+.live,
+.category,
+footer {
+  padding-inline: var(--space);
+}

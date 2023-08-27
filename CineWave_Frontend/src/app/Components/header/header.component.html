@@ -1,36 +1,41 @@
 <header>
-  <div class="bar-buttons-container">
-    <div class="search">
-      <input
-        type="search"
-        name="main-search"
-        id="search-input"
-        placeholder="Search for a movie or a TV show"
-      />
+  <div class="navbar-container">
+    <button class="burger-menu" (click)="this.utilities.toggleNav()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <a href="#" class="logo"></a>
+    <nav>
+      <ul>
+        <li>
+          <a href="#">Home</a>
+        </li>
+        <li>
+          <a href="#">Category</a>
+        </li>
+        <li>
+          <a href="#">Live</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="navbar-actions">
+      <form action="#">
+        <input
+          type="search"
+          name="main-search"
+          id="search-input"
+          placeholder="I'm looking for...."
+        />
+        <button class="navbar-form-btn"><mat-icon>search</mat-icon></button>
+        <button class="navbar-form-close" (click)="this.utilities.closeForm()">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </form>
+      <button class="navbar-search-btn" (click)="this.utilities.openForm()">
+        <mat-icon>search</mat-icon>
+      </button>
+      <a href="#" class="signin">Sign in <mat-icon>login</mat-icon></a>
     </div>
-    <div class="buttons"><a href="#">Login</a><a href="#">Register</a></div>
   </div>
-  <nav>
-    <h1 class="logo">CineWave</h1>
-    <ul>
-      <li>
-        <a href="#">
-          <mat-icon>movie</mat-icon>
-          <span>Movies</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <mat-icon>tv</mat-icon>
-          <span>TV Shows</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <mat-icon>manage_accounts</mat-icon>
-          <span>My Account</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
 </header>

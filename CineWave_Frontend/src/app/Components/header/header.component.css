@@ -1,124 +1,268 @@
 header {
-  background-color: var(--black-rock);
-}
-header .bar-buttons-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 50px;
-  padding: 15px 15px 0;
-}
-header .bar-buttons-container .search {
-  position: relative;
-  flex: 1;
-}
-header .bar-buttons-container .search::before {
-  content: "\e8b6";
-  position: absolute;
-  top: 4px;
-  left: 2px;
-  font-family: "Material Icons";
-  color: var(--primary-color);
+  background-color: var(--rich-black-fogra-29);
+  color: var(--athens-grey);
   -webkit-transition: var(--duration) ease-in-out;
   -moz-transition: var(--duration) ease-in-out;
   -ms-transition: var(--duration) ease-in-out;
   -o-transition: var(--duration) ease-in-out;
   transition: var(--duration) ease-in-out;
 }
-header .bar-buttons-container .search:focus-within::before {
-  -webkit-transform: rotate(360deg);
-  -moz-transform: rotate(360deg);
-  -ms-transform: rotate(360deg);
-  -o-transform: rotate(360deg);
-  transform: rotate(360deg);
+header .navbar-container {
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-header .bar-buttons-container .search input {
-  width: 50%;
-  padding: 5px;
-  padding-left: 30px;
+header .navbar-container .logo {
+  width: 140px;
+  height: 140px;
+  margin-top: 9px;
+  mask: url(../../../assets/images/logo-no-slogan.svg) no-repeat center;
+  background-color: var(--light-azure); /*& To control svg color */
+  user-select: none;
+  -webkit-user-drag: none;
+}
+header .navbar-container .burger-menu {
+  width: 25px;
+  height: 25px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: transparent;
-  caret-color: var(--secondary-color);
-  color: var(--athens-grey);
+  outline: none;
   border: none;
-  border-bottom: 1px solid var(--primary-color);
+  cursor: pointer;
+}
+header .navbar-container .burger-menu span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: #fff;
+  transition: var(--duration) ease-in-out;
+  -webkit-transition: var(--duration) ease-in-out;
+  -moz-transition: var(--duration) ease-in-out;
+  -ms-transition: var(--duration) ease-in-out;
+  -o-transition: var(--duration) ease-in-out;
+}
+header .navbar-container .burger-menu.active {
+  margin-left: 10px;
+}
+header .navbar-container .burger-menu.active span:first-child {
+  width: 100%;
+  background-color: var(--azure);
+  -webkit-transform: rotate(45deg) translateY(16px);
+  -moz-transform: rotate(45deg) translateY(16px);
+  -ms-transform: rotate(45deg) translateY(16px);
+  -o-transform: rotate(45deg) translateY(16px);
+  transform: rotate(45deg) translateY(16px);
+}
+header .navbar-container .burger-menu.active span:nth-child(2) {
+  width: 0;
+}
+header .navbar-container .burger-menu.active span:last-child {
+  width: 100%;
+  background-color: var(--azure);
+  transform: rotate(-45deg) translateY(-16px);
+  -webkit-transform: rotate(-45deg) translateY(-16px);
+  -moz-transform: rotate(-45deg) translateY(-16px);
+  -ms-transform: rotate(-45deg) translateY(-16px);
+  -o-transform: rotate(-45deg) translateY(-16px);
+}
+header .navbar-container .burger-menu span:nth-child(2) {
+  width: 75%;
+}
+header .navbar-container .burger-menu span:last-child {
+  width: 50%;
+}
+header .navbar-container .burger-menu:hover span {
+  width: 100%;
+}
+header .navbar-container nav {
+  display: flex;
+  background-color: var(--rich-black-fogra-29);
   -webkit-transition: var(--duration) ease-in-out;
   -moz-transition: var(--duration) ease-in-out;
   -ms-transition: var(--duration) ease-in-out;
   -o-transition: var(--duration) ease-in-out;
   transition: var(--duration) ease-in-out;
 }
-header .bar-buttons-container .search:focus-within input {
-  width: 85%;
-}
-header .bar-buttons-container .search input::placeholder {
-  color: var(--secondary-color);
-}
-header .bar-buttons-container .buttons {
+header .navbar-container nav ul {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
+  gap: 35px;
 }
-header .bar-buttons-container .buttons a {
-  padding: 8px 20px;
-  text-transform: uppercase;
-  color: var(--black-rock);
-  font-size: 12px;
-  font-weight: 900;
-  border: 2px solid var(--primary-color);
-  background-color: var(--primary-color);
-  -webkit-transition: var(--duration) ease-in-out;
-  -moz-transition: var(--duration) ease-in-out;
-  -ms-transition: var(--duration) ease-in-out;
-  -o-transition: var(--duration) ease-in-out;
-  transition: var(--duration) ease-in-out;
-}
-header .bar-buttons-container .buttons a:first-of-type {
-  color: var(--bombay);
-  background-color: transparent;
-}
-header .bar-buttons-container .buttons a:hover {
-  letter-spacing: 1px;
-}
-header nav {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-  padding: 15px;
-  border-top: 1px solid var(--gun-metal);
-}
-header nav .logo {
-  display: flex;
-  align-items: center;
-  padding: 5px 10px;
+header .navbar-container nav ul li a {
+  display: block;
+  position: relative;
   color: var(--athens-grey);
-  border: 3px solid var(--primary-color);
-  font-family: "Aboreto", cursive;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  -ms-border-radius: 6px;
-  -o-border-radius: 6px;
-  border-radius: 6px;
+  -webkit-transition: var(--duration) ease-in-out;
+  -moz-transition: var(--duration) ease-in-out;
+  -ms-transition: var(--duration) ease-in-out;
+  -o-transition: var(--duration) ease-in-out;
+  transition: var(--duration) ease-in-out;
 }
-header nav ul {
+header .navbar-container nav ul li:last-of-type a::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 2px);
+  right: -15px;
+  width: 6px;
+  height: 6px;
+  z-index: 200;
+  background-color: var(--live-indicator);
+  box-shadow: 0 0 0 2px var(--live-indicator-shadow);
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-transition: var(--duration) ease-in-out;
+  -moz-transition: var(--duration) ease-in-out;
+  -ms-transition: var(--duration) ease-in-out;
+  -o-transition: var(--duration) ease-in-out;
+  transition: var(--duration) ease-in-out;
+}
+header .navbar-container .navbar-actions {
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
   gap: 50px;
 }
-header nav ul li {
-  min-width: 150px;
+header .navbar-container .navbar-actions form {
+  position: relative;
 }
-header nav ul li a {
-  display: block;
-  padding: 10px;
-  text-align: center;
-  color: var(--bombay);
+header .navbar-container .navbar-actions form input {
+  width: 100%;
+  background-color: var(--oxford-blue);
+  padding: 12px 20px;
+  color: var(--off-white);
+  font-size: 14px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  border-radius: 15px;
 }
-header nav ul li a:hover span {
-  color: var(--primary-color);
+header .navbar-container .navbar-actions form .navbar-form-btn {
+  position: absolute;
+  top: calc(50% - 10px);
+  right: 10px;
+  background-color: var(--oxford-blue);
 }
-header nav ul li a span:last-of-type {
-  display: block;
-  margin-top: 10px;
+header .navbar-container .navbar-actions form .navbar-form-close,
+header .navbar-container .navbar-actions .navbar-search-btn {
+  display: none;
+  background-color: transparent;
+}
+header .navbar-container .navbar-actions form .navbar-form-btn mat-icon,
+header .navbar-container .navbar-actions .navbar-search-btn mat-icon {
+  font-size: 20px;
+  color: var(--light-azure);
+}
+header .navbar-container .navbar-actions form .navbar-form-btn:hover mat-icon,
+header .navbar-container .navbar-actions form input::placeholder {
+  color: var(--off-white);
+}
+header .navbar-container .navbar-actions .signin {
+  display: flex;
+  -webkit-transition: var(--duration) ease-in-out;
+  -moz-transition: var(--duration) ease-in-out;
+  -ms-transition: var(--duration) ease-in-out;
+  -o-transition: var(--duration) ease-in-out;
+  transition: var(--duration) ease-in-out;
+}
+header .navbar-container .navbar-actions .signin:hover {
+  color: var(--light-azure);
+}
+header .navbar-container .navbar-actions .signin mat-icon {
+  margin-left: 5px;
+  color: var(--light-azure);
+  font-size: 22px;
+}
+@media (max-width: 1200px) {
+  header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    overflow: hidden;
+  }
+  header.active {
+    top: 250px;
+  }
+  header .navbar-container .burger-menu {
+    display: flex;
+  }
+  header .navbar-container nav {
+    position: fixed;
+    top: -250px;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+  }
+  header .navbar-container nav.active {
+    top: 0;
+  }
+  header .navbar-container nav ul {
+    width: 100%;
+    height: 250px;
+    padding-left: var(--space);
+    justify-content: center;
+    flex-direction: column;
+    gap: 0;
+    border-bottom: 1px solid var(--oxford-blue);
+  }
+  header .navbar-container nav ul li {
+    flex: 1;
+  }
+  header .navbar-container nav ul li a {
+    display: flex !important;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  header .navbar-container nav ul li a::after {
+    left: 35px;
+  }
+  header .navbar-container nav ul li:hover a {
+    padding-left: 10px;
+    background-color: var(--oxford-blue-50);
+  }
+  header .navbar-container nav ul li:hover a::after {
+    margin-left: 10px;
+  }
+  header .navbar-container .navbar-actions form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top: 100%;
+    left: var(--space);
+    right: var(--space);
+    height: 100%;
+    z-index: 100;
+    background: var(--rich-black-fogra-29);
+  }
+  header .navbar-container .navbar-actions form.active {
+    top: 0;
+  }
+  header .navbar-container .navbar-actions form .navbar-form-close,
+  header .navbar-container .navbar-actions .navbar-search-btn {
+    display: block;
+  }
+  header .navbar-container .navbar-actions form .navbar-form-btn {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+  }
+  header .navbar-container .navbar-actions form .navbar-form-close {
+    padding-top: 8px;
+  }
+  header .navbar-container .navbar-actions form .navbar-form-close mat-icon {
+    color: var(--live-indicator);
+    font-size: 20px;
+  }
+  header .navbar-container .navbar-actions .navbar-search-btn mat-icon {
+    font-size: 26px;
+  }
 }

@@ -1,14 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Cookie&display=swap");
+
 footer {
-  padding: 10px;
-  text-align: center;
-  background-color: var(--black-rock);
-  color: var(--athens-grey);
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+  /* background-image: url(../../../assets/images/footer-bg.jpg); */
 }
-footer p:nth-child(2) {
+footer .text p:nth-child(2) {
   margin-block: 10px;
 }
-footer span {
-  color: var(--primary-color);
-  font-family: "Aboreto", cursive;
+footer .text p span {
+  color: var(--azure);
+  font-family: "Cookie", cursive;
+  font-size: 24px;
   font-weight: bold;
+  letter-spacing: 1px;
+}
+footer .logo {
+  width: 300px;
+  min-height: 100px;
+  margin-bottom: 5px;
+  mask: url(../../../assets/images/logo.svg) no-repeat center;
+  background-color: var(--light-azure); /*& To control svg color */
+  user-select: none;
+  -webkit-user-drag: none;
+}
+@media (max-width: 768px) {
+  footer {
+    margin-top: 300px;
+    align-items: center;
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 50px;
+  }
+  footer .logo {
+    width: 75%;
+  }
 }

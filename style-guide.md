@@ -11,20 +11,19 @@ The designs were created to the following widths:
 
 ### Primary
 
--   Moderate Cyan: rgb(68, 191, 194)
-
-### Secondary
-
--   Keppel: rgb(55, 161, 164)
-
-### Neutral
-
--   Gun Metal: rgb(69, 85, 90)
--   Black Rock: rgb(46, 50, 62)
--   Bombay: rgb(173, 178, 183)
--   Oslo Grey: rgb(129, 135, 140)
--   Athens Grey: rgb(238, 238, 243)
--   Whitish Grey: rgb(247, 247, 247)
+```css
+--live-indicator-shadow: hsla(0, 79%, 63%, 0.5);
+--rich-black-fogra-30: hsl(219, 32%, 10%);
+--rich-black-fogra-29: hsl(222, 25%, 10%);
+--live-indicator: hsl(0, 79%, 63%);
+--oxford-blue-50: hsla(218, 39%, 14%, 0.8);
+--oxford-blue: hsl(218, 39%, 14%);
+--light-azure: hsl(214, 84%, 56%);
+--off-white: hsl(0, 0%, 88%);
+--yellow: hsl(45, 100%, 54%);
+--white: hsl(0, 0%, 100%);
+--azure: hsl(211, 100%, 50%);
+```
 
 ## Typography
 
@@ -35,5 +34,5 @@ The designs were created to the following widths:
 
 ---
 
--   Family: [Aboreto](https://fonts.google.com/specimen/Aboreto)
+-   Family: [Cookie](https://fonts.google.com/specimen/Cookie)
 -   Weights: 400
