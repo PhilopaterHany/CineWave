@@ -1,27 +1,26 @@
 package com.cinewave.components;
 
 import java.util.*;
+
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "Users")
 public class User {
-
+    @Id
+    private String _id;
     private String name;
     private String password;
-    private String _id;
 
     private List<String> favourites = new ArrayList<>();
     private List<String> watched = new ArrayList<>();
 
+    public User(){
+    }
     public User(String name, String password, String id) {
         this.name = name;
         this.password = password;
         this._id = id;
-//        if(favourites == null)
-//            this.favourites = new ArrayList<>();
-//        else
-//            this.favourites = favourites;
-//        this.watched = watched;
     }
 
     public String getName() {
@@ -56,5 +55,16 @@ public class User {
             return false;
         watched.add(name);
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", _id='" + _id + '\'' +
+                ", favourites=" + favourites +
+                ", watched=" + watched +
+                '}';
     }
 }
