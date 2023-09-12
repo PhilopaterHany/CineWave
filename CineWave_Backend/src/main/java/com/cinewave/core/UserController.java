@@ -31,21 +31,17 @@ public class UserController {
 				userRepository.save(user);
 				System.out.println("User Created Successfully.");
 				return new ResponseEntity<>(user, HttpStatus.OK);
-//				return new ResponseEntity<>("User added Successfully.", HttpStatus.OK);
 			} catch (DataIntegrityViolationException e){
 				System.out.println("User Creation Failed, MongoDB validation error: " + e.getMessage());
 				return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-//				return new ResponseEntity<>("User is not added due to a MongoDB validation error.", HttpStatus.BAD_REQUEST);
 			}
 			catch (Exception e){
 				System.out.println(e.getMessage());
 				return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-//				return new ResponseEntity<>("User is not added due to a MongoDB error", HttpStatus.BAD_REQUEST);
 			}
 		} else {
 			System.out.println("User Creation Failed, Id is already taken.");
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-//			return new ResponseEntity<>("User is not added.", HttpStatus.BAD_REQUEST);
 		}
 	}
 
