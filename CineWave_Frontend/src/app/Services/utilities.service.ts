@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HeaderComponent } from '../Components/header/header.component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UtilitiesService {
-  constructor(private header: HeaderComponent) {}
+  constructor() {}
 
   toggleNav() {
     const pageHeader = document.querySelector('header') as HTMLElement;
