@@ -35,7 +35,7 @@ public class MovieController {
     @GetMapping(value = {"searchMovie/{title}"})
     public ResponseEntity<List<Object>> searchMovie(@PathVariable String title){
         JSONObject results = new JSONObject(searchMovieByTitle(title, API_KEY));
-        if(results.get("Response") == "False"){
+        if(results.get("Response").toString().compareToIgnoreCase("false") == 0){
             System.out.println("Movie searching for was not found ..");
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
