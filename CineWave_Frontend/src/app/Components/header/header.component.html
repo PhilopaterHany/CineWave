@@ -11,33 +11,13 @@
     <nav>
       <ul>
         <li>
-          <a href="#">Home</a>
+          <a href="#">Favorites</a>
         </li>
         <li>
-          <a href="#">Category</a>
-        </li>
-        <li>
-          <a href="#">Live</a>
+          <a href="#">Watched</a>
         </li>
       </ul>
     </nav>
-    <div class="navbar-actions">
-      <form action="#">
-        <input
-          type="search"
-          name="main-search"
-          id="search-input"
-          placeholder="I'm looking for...."
-        />
-        <button class="navbar-form-open"><mat-icon>search</mat-icon></button>
-        <button class="navbar-form-close" (click)="this.utilities.closeForm()">
-          <mat-icon>cancel</mat-icon>
-        </button>
-      </form>
-      <button class="navbar-search-open" (click)="this.utilities.openForm()">
-        <mat-icon>search</mat-icon>
-      </button>
-      <a href="#" class="signin">Sign in <mat-icon>login</mat-icon></a>
-    </div>
+    <a href="#" class="signin">Sign in <mat-icon>login</mat-icon></a>
   </div>
 </header>

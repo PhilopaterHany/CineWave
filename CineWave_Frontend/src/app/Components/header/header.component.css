@@ -14,13 +14,13 @@ header .container {
 }
 header .container .logo img {
   width: 200px;
-  margin-top: 13px;
+  margin-top: 10px;
   user-select: none;
   -webkit-user-drag: none;
 }
 header .container .burger-menu {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   display: none;
   flex-direction: column;
   justify-content: space-between;
@@ -46,11 +46,11 @@ header .container .burger-menu.active {
 header .container .burger-menu.active span:first-child {
   width: 100%;
   background-color: var(--azure);
-  -webkit-transform: rotate(45deg) translateY(16px);
-  -moz-transform: rotate(45deg) translateY(16px);
-  -ms-transform: rotate(45deg) translateY(16px);
-  -o-transform: rotate(45deg) translateY(16px);
-  transform: rotate(45deg) translateY(16px);
+  transform: rotate(45deg) translateY(13px);
+  -webkit-transform: rotate(45deg) translateY(13px);
+  -moz-transform: rotate(45deg) translateY(13px);
+  -ms-transform: rotate(45deg) translateY(13px);
+  -o-transform: rotate(45deg) translateY(13px);
 }
 header .container .burger-menu.active span:nth-child(2) {
   width: 0;
@@ -58,11 +58,11 @@ header .container .burger-menu.active span:nth-child(2) {
 header .container .burger-menu.active span:last-child {
   width: 100%;
   background-color: var(--azure);
-  transform: rotate(-45deg) translateY(-16px);
-  -webkit-transform: rotate(-45deg) translateY(-16px);
-  -moz-transform: rotate(-45deg) translateY(-16px);
-  -ms-transform: rotate(-45deg) translateY(-16px);
-  -o-transform: rotate(-45deg) translateY(-16px);
+  -webkit-transform: rotate(-45deg) translateY(-13px);
+  -moz-transform: rotate(-45deg) translateY(-13px);
+  -ms-transform: rotate(-45deg) translateY(-13px);
+  -o-transform: rotate(-45deg) translateY(-13px);
+  transform: rotate(-45deg) translateY(-13px);
 }
 header .container .burger-menu span:nth-child(2) {
   width: 75%;
@@ -88,7 +88,6 @@ header .container nav ul {
 }
 header .container nav ul li a {
   display: block;
-  position: relative;
   color: var(--athens-grey);
   -webkit-transition: var(--duration) ease-in-out;
   -moz-transition: var(--duration) ease-in-out;
@@ -96,84 +95,20 @@ header .container nav ul li a {
   -o-transition: var(--duration) ease-in-out;
   transition: var(--duration) ease-in-out;
 }
-header .container nav ul li:last-of-type a::after {
-  content: "";
-  position: absolute;
-  top: calc(50% - 2px);
-  right: -15px;
-  width: 6px;
-  height: 6px;
-  z-index: 200;
-  background-color: var(--live-indicator);
-  box-shadow: 0 0 0 2px var(--live-indicator-shadow);
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-  border-radius: 50%;
-  -webkit-transition: var(--duration) ease-in-out;
-  -moz-transition: var(--duration) ease-in-out;
-  -ms-transition: var(--duration) ease-in-out;
-  -o-transition: var(--duration) ease-in-out;
-  transition: var(--duration) ease-in-out;
-}
-header .container .navbar-actions {
+header .container .signin {
   display: flex;
-  align-items: center;
-  gap: 50px;
-}
-header .container .navbar-actions form {
   position: relative;
+  top: 2px;
   -webkit-transition: var(--duration) ease-in-out;
   -moz-transition: var(--duration) ease-in-out;
   -ms-transition: var(--duration) ease-in-out;
   -o-transition: var(--duration) ease-in-out;
   transition: var(--duration) ease-in-out;
 }
-header .container .navbar-actions form input {
-  width: 100%;
-  background-color: var(--oxford-blue);
-  padding: 12px 20px;
-  color: var(--off-white);
-  font-size: 14px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
-  border-radius: 15px;
-}
-header .container .navbar-actions form .navbar-form-open {
-  position: absolute;
-  top: calc(50% - 10px);
-  right: 10px;
-  background-color: var(--oxford-blue);
-}
-header .container .navbar-actions form .navbar-form-close,
-header .container .navbar-actions .navbar-search-open {
-  display: none;
-  background-color: transparent;
-}
-header .container .navbar-actions form .navbar-form-open mat-icon,
-header .container .navbar-actions .navbar-search-open mat-icon {
-  font-size: 20px;
+header .container .signin:hover {
   color: var(--light-azure);
 }
-header .container .navbar-actions form .navbar-form-open:hover mat-icon,
-header .container .navbar-actions form input::placeholder {
-  color: var(--off-white);
-}
-header .container .navbar-actions .signin {
-  display: flex;
-  -webkit-transition: var(--duration) ease-in-out;
-  -moz-transition: var(--duration) ease-in-out;
-  -ms-transition: var(--duration) ease-in-out;
-  -o-transition: var(--duration) ease-in-out;
-  transition: var(--duration) ease-in-out;
-}
-header .container .navbar-actions .signin:hover {
-  color: var(--light-azure);
-}
-header .container .navbar-actions .signin mat-icon {
+header .container .signin mat-icon {
   margin-left: 5px;
   color: var(--light-azure);
   font-size: 22px;
@@ -221,9 +156,6 @@ header .container .navbar-actions .signin mat-icon {
     width: 100%;
     height: 100%;
   }
-  header .container nav ul li a::after {
-    left: 35px;
-  }
   header .container nav ul li:hover a {
     padding-left: 10px;
     background-color: var(--oxford-blue-alpha);
@@ -231,47 +163,9 @@ header .container .navbar-actions .signin mat-icon {
   header .container nav ul li:hover a::after {
     margin-left: 10px;
   }
-  header .container .navbar-actions form {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    position: absolute;
-    top: 100%;
-    left: var(--space);
-    right: var(--space);
-    height: 100%;
-    z-index: 100;
-    background: var(--blue-black);
-  }
-  header .container .navbar-actions form.active {
-    top: 0;
-  }
-  header .container .navbar-actions form .navbar-form-close,
-  header .container .navbar-actions .navbar-search-open {
-    display: block;
-  }
-  header .container .navbar-actions form .navbar-form-open {
-    position: absolute;
-    top: 40px;
-    right: 40px;
-  }
-  header .container .navbar-actions form .navbar-form-close {
-    padding-top: 8px;
-  }
-  header .container .navbar-actions form .navbar-form-close mat-icon {
-    color: var(--live-indicator);
-    font-size: 20px;
-  }
-  header .container .navbar-actions .navbar-search-open mat-icon {
-    font-size: 26px;
-  }
 }
 @media (max-width: 767px) {
   header .container .logo img {
-    width: 120px;
-  }
-  header .container .navbar-actions {
-    gap: 20px;
+    width: 130px;
   }
 }

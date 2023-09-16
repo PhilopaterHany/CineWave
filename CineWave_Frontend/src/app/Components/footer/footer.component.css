@@ -1,8 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Cookie&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
 footer {
-  margin-top: 50px;
-  /* background-image: url(../../../assets/images/footer-bg.jpg); */
+  margin-top: 60px;
 }
 footer .container {
   display: flex;
@@ -13,13 +12,12 @@ footer .text p:nth-child(2) {
 }
 footer .text p span {
   color: var(--azure);
-  font-family: "Cookie", cursive;
-  font-size: 24px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 20px;
   font-weight: bold;
   letter-spacing: 1px;
 }
 footer .logo img {
-  object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;
 }
@@ -29,5 +27,12 @@ footer .logo img {
     flex-direction: column-reverse;
     text-align: center;
     gap: 50px;
+  }
+  footer .container > * {
+    width: 100%;
+  }
+  footer .logo img {
+    margin: auto;
+    width: 60%;
   }
 }
