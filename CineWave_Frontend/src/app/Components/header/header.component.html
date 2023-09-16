@@ -1,11 +1,13 @@
 <header>
-  <div class="navbar-container">
+  <div class="container">
     <button class="burger-menu" (click)="this.utilities.toggleNav()">
       <span></span>
       <span></span>
       <span></span>
     </button>
-    <a href="#" class="logo"></a>
+    <a href="#" class="logo">
+      <img src="../../../assets/images/logo-no-slogan.svg" alt="CineWave" />
+    </a>
     <nav>
       <ul>
         <li>
@@ -27,12 +29,12 @@
           id="search-input"
           placeholder="I'm looking for...."
         />
-        <button class="navbar-form-btn"><mat-icon>search</mat-icon></button>
+        <button class="navbar-form-open"><mat-icon>search</mat-icon></button>
         <button class="navbar-form-close" (click)="this.utilities.closeForm()">
           <mat-icon>cancel</mat-icon>
         </button>
       </form>
-      <button class="navbar-search-btn" (click)="this.utilities.openForm()">
+      <button class="navbar-search-open" (click)="this.utilities.openForm()">
         <mat-icon>search</mat-icon>
       </button>
       <a href="#" class="signin">Sign in <mat-icon>login</mat-icon></a>

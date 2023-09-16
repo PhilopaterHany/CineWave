@@ -1,3 +1,154 @@
 <main>
-  <section class=".movies"></section>
+  <section class="banner">
+    <div class="container">
+      <img
+        src="https://codewithsadee.github.io/cineflix/assets/images/John-Wick-3.jpg"
+        alt="Banner"
+      />
+      <div class="banner-content">
+        <div class="info">
+          <p>
+            <mat-icon>theaters</mat-icon>
+            <span id="banner-genre">Action/Thriller</span>
+          </p>
+          <p>
+            <mat-icon>calendar_month</mat-icon>
+            <span id="banner-year">2019</span>
+          </p>
+          <p>
+            <mat-icon>schedule</mat-icon>
+            <span id="banner-duration">2h 11m</span>
+          </p>
+          <p class="quality">4K</p>
+        </div>
+        <h2 class="title">John Wick: Chapter 3 - Parabellum</h2>
+      </div>
+    </div>
+  </section>
+  <section class="filter-bar">
+    <div class="container">
+      <div class="filter-dropdowns">
+        <select name="genre" class="genre">
+          <option value="all genres">All genres</option>
+          <option value="action">Action</option>
+          <option value="adventure">Adventure</option>
+          <option value="comedy">Comedy</option>
+          <option value="horror">Horror</option>
+          <option value="biography">Biography</option>
+        </select>
+        <select name="year" class="year">
+          <option value="all years">All the years</option>
+          <option value="2020-{{ currentYear }}">
+            2020 - {{ currentYear }}
+          </option>
+          <option value="2010-2019">2010 - 2019</option>
+          <option value="2000-2009">2000 - 2009</option>
+          <option value="before 2000">Before 2000</option>
+        </select>
+      </div>
+      <div class="filter-radios">
+        <input type="radio" name="grade" id="featured" checked="" />
+        <label for="featured">Featured</label>
+        <input type="radio" name="grade" id="popular" />
+        <label for="popular">Popular</label>
+        <input type="radio" name="grade" id="newest" />
+        <label for="newest">Newest</label>
+        <div class="checked-radio-bg"></div>
+      </div>
+    </div>
+  </section>
+  <section class="movies">
+    <div class="container">
+      <div class="movie">
+        <figure class="head">
+          <img
+            src="https://codewithsadee.github.io/cineflix/assets/images/movies/dune.jpg"
+            alt=""
+          />
+          <div class="overlay">
+            <button id="favorite">
+              <mat-icon>favorite</mat-icon>
+            </button>
+          </div>
+        </figure>
+        <div class="body">
+          <div class="title">
+            <h3>Dune</h3>
+            <span>2022</span>
+          </div>
+          <div class="meta">
+            <span class="quality">PG-10</span>
+            <span class="duration">
+              <mat-icon>schedule</mat-icon>
+              122 min
+            </span>
+            <span class="rating">
+              <mat-icon>star</mat-icon>
+              8.4
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="movie fav">
+        <figure class="head">
+          <img
+            src="https://codewithsadee.github.io/cineflix/assets/images/movies/dune.jpg"
+            alt=""
+          />
+          <div class="overlay">
+            <button id="favorite">
+              <mat-icon>favorite</mat-icon>
+            </button>
+          </div>
+        </figure>
+        <div class="body">
+          <div class="title">
+            <h3>Dune</h3>
+            <span>2022</span>
+          </div>
+          <div class="meta">
+            <span class="quality">R</span>
+            <span class="duration">
+              <mat-icon>schedule</mat-icon>
+              122 min
+            </span>
+            <span class="rating">
+              <mat-icon>star</mat-icon>
+              8.4
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="movie">
+        <figure class="head">
+          <img
+            src="https://codewithsadee.github.io/cineflix/assets/images/movies/dune.jpg"
+            alt=""
+          />
+          <div class="overlay">
+            <button id="favorite">
+              <mat-icon>favorite</mat-icon>
+            </button>
+          </div>
+        </figure>
+        <div class="body">
+          <div class="title">
+            <h3>Dune</h3>
+            <span>2022</span>
+          </div>
+          <div class="meta">
+            <span class="quality">PG-13</span>
+            <span class="duration">
+              <mat-icon>schedule</mat-icon>
+              122 min
+            </span>
+            <span class="rating">
+              <mat-icon>star</mat-icon>
+              8.4
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>

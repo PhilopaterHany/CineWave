@@ -1,5 +1,268 @@
+main .banner {
+  margin-bottom: 60px;
+}
+main .banner .container:hover img {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(1.1);
+}
+main .banner .container {
+  height: 400px;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  border-radius: 20px;
+}
+main .banner .container img {
+  object-position: top;
+  -webkit-transition: var(--duration) ease-in-out;
+  -moz-transition: var(--duration) ease-in-out;
+  -ms-transition: var(--duration) ease-in-out;
+  -o-transition: var(--duration) ease-in-out;
+  transition: var(--duration) ease-in-out;
+}
+main .banner .banner-content {
+  position: absolute;
+  bottom: 40px;
+  left: 60px;
+  right: 60px;
+}
+main .banner .banner-content .info,
+main .banner .banner-content .info p {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+main .banner .banner-content .info p {
+  justify-content: center;
+  gap: 5px;
+}
+main .banner .banner-content .info p.quality {
+  padding: 2px 5px;
+  background-color: var(--azure);
+  font-weight: bold;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+main .banner .banner-content .info p mat-icon {
+  color: var(--azure);
+}
+main .banner .banner-content .info p span {
+  font-weight: bold;
+  font-size: 18px;
+}
+main .banner .banner-content .title {
+  margin-top: 20px;
+  line-height: 1.25;
+  font-size: 2.75rem;
+  font-weight: bold;
+}
+main .filter-bar {
+  margin-bottom: 30px;
+}
+main .filter-bar .container {
+  padding-block: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--oxford-blue);
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  border-radius: 20px;
+}
+main .filter-bar .filter-dropdowns select {
+  margin-right: 15px;
+  font-size: 14px;
+  color: var(--white);
+  cursor: pointer;
+  margin-inline: 7px;
+}
+main .filter-bar .filter-dropdowns select option {
+  background-color: var(--oxford-blue);
+}
+main .filter-bar .filter-radios {
+  position: relative;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  background-color: var(--blue-black);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+}
+main .filter-bar .filter-radios input {
+  appearance: none;
+  display: none;
+}
+main .filter-bar .filter-radios label {
+  width: 55px;
+  text-align: center;
+  cursor: pointer;
+}
+main .filter-bar .filter-radios input:checked + label {
+  color: var(--yellow);
+  -webkit-transition: var(--duration) ease-in-out;
+  -moz-transition: var(--duration) ease-in-out;
+  -ms-transition: var(--duration) ease-in-out;
+  -o-transition: var(--duration) ease-in-out;
+  transition: var(--duration) ease-in-out;
+  transition-delay: var(--duration);
+}
+main .filter-bar .filter-radios .checked-radio-bg {
+  position: absolute;
+  left: 7px;
+  width: 65px;
+  height: 30px;
+  background-color: rgba(22, 32, 50, 0.6);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-transition: var(--duration) ease-in-out;
+  -moz-transition: var(--duration) ease-in-out;
+  -ms-transition: var(--duration) ease-in-out;
+  -o-transition: var(--duration) ease-in-out;
+  transition: var(--duration) ease-in-out;
+}
+main
+  .filter-bar
+  .filter-radios
+  input:nth-of-type(2):checked
+  ~ .checked-radio-bg {
+  left: 75px;
+}
+main .filter-bar .filter-radios input:last-of-type:checked ~ .checked-radio-bg {
+  left: 144px;
+}
+main .movies .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+main .movies .container .movie {
+  overflow: hidden;
+  -webkit-border-radius: 10px 10px 0 0;
+  -moz-border-radius: 10px 10px 0 0;
+  -ms-border-radius: 10px 10px 0 0;
+  -o-border-radius: 10px 10px 0 0;
+  border-radius: 10px 10px 0 0;
+}
+main .movies .container .movie .head {
+  margin-bottom: 10px;
+  position: relative;
+  aspect-ratio: 2.5 / 3;
+  overflow: hidden;
+}
+main .movies .container .movie:hover .head img {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(1.1);
+}
+main .movies .container .movie .head img {
+  max-width: 100%;
+  -webkit-transition: var(--duration) ease-in-out;
+  -moz-transition: var(--duration) ease-in-out;
+  -ms-transition: var(--duration) ease-in-out;
+  -o-transition: var(--duration) ease-in-out;
+  transition: var(--duration) ease-in-out;
+}
+main .movies .container .movie .head .overlay {
+  position: absolute;
+  top: 0;
+  left: -1000px;
+  width: 100%;
+  height: 100%;
+  background-color: var(--oxford-blue-alpha);
+  -webkit-transition: var(--duration) ease-in-out;
+  -moz-transition: var(--duration) ease-in-out;
+  -ms-transition: var(--duration) ease-in-out;
+  -o-transition: var(--duration) ease-in-out;
+  transition: var(--duration) ease-in-out;
+}
+main .movies .container .movie:hover .head .overlay {
+  left: 0;
+}
+main .movies .container .movie .head .overlay button {
+  background-color: var(--oxford-blue);
+  width: 50px;
+  height: 50px;
+  position: relative;
+  top: 10px;
+  left: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+main .movies .container .movie.fav .head .overlay button mat-icon {
+  color: #b00020;
+}
+main .movies .container .movie .body .title,
+main .movies .container .movie .body .meta,
+main .movies .container .movie .body .meta span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+main .movies .container .movie .body .title h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+main .movies .container .movie .body .meta {
+  gap: 10px;
+  margin-top: 10px;
+}
+main .movies .container .movie .body .meta span {
+  justify-content: center;
+}
+main .movies .container .movie .body .meta .quality {
+  padding: 2px 10px;
+  font-weight: bold;
+  border: 2px solid var(--white);
+  color: var(--yellow);
+}
+main .movies .container .movie .body .meta .duration {
+  margin-left: auto !important;
+}
+main .movies .container .movie .body .meta span mat-icon {
+  position: relative;
+  top: 4px;
+  left: 5px;
+  font-size: 16px;
+  color: var(--yellow);
+}
+@media (max-width: 767px) {
+  main .banner {
+    display: none;
+  }
+  main .filter-bar .container {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
 @media (max-width: 1200px) {
-  main {
+  main,
+  main .banner {
     margin-top: 100px;
   }
 }

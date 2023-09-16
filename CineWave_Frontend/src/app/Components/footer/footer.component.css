@@ -1,10 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Cookie&display=swap");
 
 footer {
+  margin-top: 50px;
+  /* background-image: url(../../../assets/images/footer-bg.jpg); */
+}
+footer .container {
   display: flex;
   justify-content: space-between;
-  height: 100px;
-  /* background-image: url(../../../assets/images/footer-bg.jpg); */
 }
 footer .text p:nth-child(2) {
   margin-block: 10px;
@@ -16,24 +18,16 @@ footer .text p span {
   font-weight: bold;
   letter-spacing: 1px;
 }
-footer .logo {
-  width: 300px;
-  min-height: 100px;
-  margin-bottom: 5px;
-  mask: url(../../../assets/images/logo.svg) no-repeat center;
-  background-color: var(--light-azure); /*& To control svg color */
+footer .logo img {
+  object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;
 }
-@media (max-width: 768px) {
-  footer {
-    margin-top: 300px;
+@media (max-width: 767px) {
+  footer .container {
     align-items: center;
     flex-direction: column-reverse;
     text-align: center;
     gap: 50px;
-  }
-  footer .logo {
-    width: 75%;
   }
 }

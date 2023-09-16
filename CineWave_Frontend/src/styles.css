@@ -1,17 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;900&display=swap");
 :root {
-  --live-indicator-shadow: hsla(0, 79%, 63%, 0.5);
-  --rich-black-fogra-30: hsl(219, 32%, 10%);
-  --rich-black-fogra-29: hsl(222, 25%, 10%);
-  --live-indicator: hsl(0, 79%, 63%);
-  --oxford-blue-50: hsla(218, 39%, 14%, 0.8);
-  --oxford-blue: hsl(218, 39%, 14%);
-  --light-azure: hsl(214, 84%, 56%);
-  --off-white: hsl(0, 0%, 88%);
-  --yellow: hsl(45, 100%, 54%);
-  --white: hsl(0, 0%, 100%);
   --azure: hsl(211, 100%, 50%);
+  --light-azure: hsl(214, 84%, 56%);
+  --oxford-blue: hsl(218, 39%, 14%);
+  --oxford-blue-alpha: hsla(218, 39%, 14%, 0.6);
+  --blue-black: hsl(222, 25%, 10%);
+  /* --rich-black-fogra-30: hsl(219, 32%, 10%); */
+  --yellow: hsl(45, 100%, 54%);
+  --live-indicator: hsl(0, 79%, 63%);
+  --live-indicator-alpha: hsla(0, 79%, 63%, 0.5);
+  --off-white: hsl(0, 0%, 88%);
+  --white: hsl(0, 0%, 100%);
   --duration: 0.25s;
   --space: 120px;
 }
@@ -37,19 +37,16 @@
 }
 ::selection {
   color: #fff;
-  background-color: var(--secondary-color);
+  background-color: var(--azure);
 }
 ::-webkit-scrollbar {
   width: 10px;
-  background-color: transparent;
-  border-left: 1px solid var(--oxford-blue);
 }
 ::-webkit-scrollbar-track {
-  background-color: var(--oslo-grey);
+  background-color: var(--off-white);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--light-azure);
-  border: 3px solid var(--rich-black-fogra-29);
 }
 * {
   margin: 0;
@@ -62,7 +59,7 @@ html {
 body {
   font-family: "Nanum Gothic", sans-serif !important;
   color: var(--off-white);
-  background-color: var(--rich-black-fogra-29);
+  background-color: var(--blue-black);
 }
 a {
   display: inline-block;
@@ -76,9 +73,11 @@ span {
   display: inline-block;
 }
 button,
+select,
 input {
   outline: none;
   border: none;
+  background: none;
 }
 button {
   color: var(--off-white);
@@ -100,14 +99,22 @@ img {
   object-fit: cover;
 }
 .container {
-  max-width: 1440px;
-  margin: auto;
+  position: relative;
+  margin-inline: auto;
+  padding-inline: 15px;
 }
-.navbar-container,
-.banner,
-.movies,
-.live,
-.category,
-footer {
-  padding-inline: var(--space);
+@media (min-width: 768px) {
+  .container {
+    width: 738px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 962px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
 }

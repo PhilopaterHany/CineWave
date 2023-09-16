@@ -1,28 +1,24 @@
 header {
-  background-color: var(--rich-black-fogra-29);
-  color: var(--athens-grey);
+  background-color: var(--blue-black);
   -webkit-transition: var(--duration) ease-in-out;
   -moz-transition: var(--duration) ease-in-out;
   -ms-transition: var(--duration) ease-in-out;
   -o-transition: var(--duration) ease-in-out;
   transition: var(--duration) ease-in-out;
 }
-header .navbar-container {
+header .container {
   height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-header .navbar-container .logo {
-  width: 140px;
-  height: 140px;
-  margin-top: 9px;
-  mask: url(../../../assets/images/logo-no-slogan.svg) no-repeat center;
-  background-color: var(--light-azure); /*& To control svg color */
+header .container .logo img {
+  width: 200px;
+  margin-top: 13px;
   user-select: none;
   -webkit-user-drag: none;
 }
-header .navbar-container .burger-menu {
+header .container .burger-menu {
   width: 25px;
   height: 25px;
   display: none;
@@ -33,7 +29,7 @@ header .navbar-container .burger-menu {
   border: none;
   cursor: pointer;
 }
-header .navbar-container .burger-menu span {
+header .container .burger-menu span {
   display: block;
   height: 2px;
   width: 100%;
@@ -44,10 +40,10 @@ header .navbar-container .burger-menu span {
   -ms-transition: var(--duration) ease-in-out;
   -o-transition: var(--duration) ease-in-out;
 }
-header .navbar-container .burger-menu.active {
+header .container .burger-menu.active {
   margin-left: 10px;
 }
-header .navbar-container .burger-menu.active span:first-child {
+header .container .burger-menu.active span:first-child {
   width: 100%;
   background-color: var(--azure);
   -webkit-transform: rotate(45deg) translateY(16px);
@@ -56,10 +52,10 @@ header .navbar-container .burger-menu.active span:first-child {
   -o-transform: rotate(45deg) translateY(16px);
   transform: rotate(45deg) translateY(16px);
 }
-header .navbar-container .burger-menu.active span:nth-child(2) {
+header .container .burger-menu.active span:nth-child(2) {
   width: 0;
 }
-header .navbar-container .burger-menu.active span:last-child {
+header .container .burger-menu.active span:last-child {
   width: 100%;
   background-color: var(--azure);
   transform: rotate(-45deg) translateY(-16px);
@@ -68,29 +64,29 @@ header .navbar-container .burger-menu.active span:last-child {
   -ms-transform: rotate(-45deg) translateY(-16px);
   -o-transform: rotate(-45deg) translateY(-16px);
 }
-header .navbar-container .burger-menu span:nth-child(2) {
+header .container .burger-menu span:nth-child(2) {
   width: 75%;
 }
-header .navbar-container .burger-menu span:last-child {
+header .container .burger-menu span:last-child {
   width: 50%;
 }
-header .navbar-container .burger-menu:hover span {
+header .container .burger-menu:hover span {
   width: 100%;
 }
-header .navbar-container nav {
+header .container nav {
   display: flex;
-  background-color: var(--rich-black-fogra-29);
+  background-color: var(--blue-black);
   -webkit-transition: var(--duration) ease-in-out;
   -moz-transition: var(--duration) ease-in-out;
   -ms-transition: var(--duration) ease-in-out;
   -o-transition: var(--duration) ease-in-out;
   transition: var(--duration) ease-in-out;
 }
-header .navbar-container nav ul {
+header .container nav ul {
   display: flex;
   gap: 35px;
 }
-header .navbar-container nav ul li a {
+header .container nav ul li a {
   display: block;
   position: relative;
   color: var(--athens-grey);
@@ -100,7 +96,7 @@ header .navbar-container nav ul li a {
   -o-transition: var(--duration) ease-in-out;
   transition: var(--duration) ease-in-out;
 }
-header .navbar-container nav ul li:last-of-type a::after {
+header .container nav ul li:last-of-type a::after {
   content: "";
   position: absolute;
   top: calc(50% - 2px);
@@ -121,15 +117,20 @@ header .navbar-container nav ul li:last-of-type a::after {
   -o-transition: var(--duration) ease-in-out;
   transition: var(--duration) ease-in-out;
 }
-header .navbar-container .navbar-actions {
+header .container .navbar-actions {
   display: flex;
   align-items: center;
   gap: 50px;
 }
-header .navbar-container .navbar-actions form {
+header .container .navbar-actions form {
   position: relative;
+  -webkit-transition: var(--duration) ease-in-out;
+  -moz-transition: var(--duration) ease-in-out;
+  -ms-transition: var(--duration) ease-in-out;
+  -o-transition: var(--duration) ease-in-out;
+  transition: var(--duration) ease-in-out;
 }
-header .navbar-container .navbar-actions form input {
+header .container .navbar-actions form input {
   width: 100%;
   background-color: var(--oxford-blue);
   padding: 12px 20px;
@@ -141,27 +142,27 @@ header .navbar-container .navbar-actions form input {
   -o-border-radius: 15px;
   border-radius: 15px;
 }
-header .navbar-container .navbar-actions form .navbar-form-btn {
+header .container .navbar-actions form .navbar-form-open {
   position: absolute;
   top: calc(50% - 10px);
   right: 10px;
   background-color: var(--oxford-blue);
 }
-header .navbar-container .navbar-actions form .navbar-form-close,
-header .navbar-container .navbar-actions .navbar-search-btn {
+header .container .navbar-actions form .navbar-form-close,
+header .container .navbar-actions .navbar-search-open {
   display: none;
   background-color: transparent;
 }
-header .navbar-container .navbar-actions form .navbar-form-btn mat-icon,
-header .navbar-container .navbar-actions .navbar-search-btn mat-icon {
+header .container .navbar-actions form .navbar-form-open mat-icon,
+header .container .navbar-actions .navbar-search-open mat-icon {
   font-size: 20px;
   color: var(--light-azure);
 }
-header .navbar-container .navbar-actions form .navbar-form-btn:hover mat-icon,
-header .navbar-container .navbar-actions form input::placeholder {
+header .container .navbar-actions form .navbar-form-open:hover mat-icon,
+header .container .navbar-actions form input::placeholder {
   color: var(--off-white);
 }
-header .navbar-container .navbar-actions .signin {
+header .container .navbar-actions .signin {
   display: flex;
   -webkit-transition: var(--duration) ease-in-out;
   -moz-transition: var(--duration) ease-in-out;
@@ -169,15 +170,15 @@ header .navbar-container .navbar-actions .signin {
   -o-transition: var(--duration) ease-in-out;
   transition: var(--duration) ease-in-out;
 }
-header .navbar-container .navbar-actions .signin:hover {
+header .container .navbar-actions .signin:hover {
   color: var(--light-azure);
 }
-header .navbar-container .navbar-actions .signin mat-icon {
+header .container .navbar-actions .signin mat-icon {
   margin-left: 5px;
   color: var(--light-azure);
   font-size: 22px;
 }
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   header {
     width: 100%;
     position: fixed;
@@ -189,20 +190,20 @@ header .navbar-container .navbar-actions .signin mat-icon {
   header.active {
     top: 250px;
   }
-  header .navbar-container .burger-menu {
+  header .container .burger-menu {
     display: flex;
   }
-  header .navbar-container nav {
+  header .container nav {
     position: fixed;
     top: -250px;
     left: 0;
     width: 100%;
     z-index: 100;
   }
-  header .navbar-container nav.active {
+  header .container nav.active {
     top: 0;
   }
-  header .navbar-container nav ul {
+  header .container nav ul {
     width: 100%;
     height: 250px;
     padding-left: var(--space);
@@ -211,26 +212,26 @@ header .navbar-container .navbar-actions .signin mat-icon {
     gap: 0;
     border-bottom: 1px solid var(--oxford-blue);
   }
-  header .navbar-container nav ul li {
+  header .container nav ul li {
     flex: 1;
   }
-  header .navbar-container nav ul li a {
+  header .container nav ul li a {
     display: flex !important;
     align-items: center;
     width: 100%;
     height: 100%;
   }
-  header .navbar-container nav ul li a::after {
+  header .container nav ul li a::after {
     left: 35px;
   }
-  header .navbar-container nav ul li:hover a {
+  header .container nav ul li:hover a {
     padding-left: 10px;
-    background-color: var(--oxford-blue-50);
+    background-color: var(--oxford-blue-alpha);
   }
-  header .navbar-container nav ul li:hover a::after {
+  header .container nav ul li:hover a::after {
     margin-left: 10px;
   }
-  header .navbar-container .navbar-actions form {
+  header .container .navbar-actions form {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -241,28 +242,36 @@ header .navbar-container .navbar-actions .signin mat-icon {
     right: var(--space);
     height: 100%;
     z-index: 100;
-    background: var(--rich-black-fogra-29);
+    background: var(--blue-black);
   }
-  header .navbar-container .navbar-actions form.active {
+  header .container .navbar-actions form.active {
     top: 0;
   }
-  header .navbar-container .navbar-actions form .navbar-form-close,
-  header .navbar-container .navbar-actions .navbar-search-btn {
+  header .container .navbar-actions form .navbar-form-close,
+  header .container .navbar-actions .navbar-search-open {
     display: block;
   }
-  header .navbar-container .navbar-actions form .navbar-form-btn {
+  header .container .navbar-actions form .navbar-form-open {
     position: absolute;
     top: 40px;
     right: 40px;
   }
-  header .navbar-container .navbar-actions form .navbar-form-close {
+  header .container .navbar-actions form .navbar-form-close {
     padding-top: 8px;
   }
-  header .navbar-container .navbar-actions form .navbar-form-close mat-icon {
+  header .container .navbar-actions form .navbar-form-close mat-icon {
     color: var(--live-indicator);
     font-size: 20px;
   }
-  header .navbar-container .navbar-actions .navbar-search-btn mat-icon {
+  header .container .navbar-actions .navbar-search-open mat-icon {
     font-size: 26px;
+  }
+}
+@media (max-width: 767px) {
+  header .container .logo img {
+    width: 120px;
+  }
+  header .container .navbar-actions {
+    gap: 20px;
   }
 }
