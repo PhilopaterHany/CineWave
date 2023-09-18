@@ -58,8 +58,8 @@ public class UserController {
 	}
 
 
-	@PutMapping(value = {"addMovie/{addToFav}/{movieName}"})
-	public ResponseEntity<String> addMovie(@PathVariable boolean addToFav, @PathVariable String movieName, @RequestBody User user) {
+	@PutMapping(value = {"addMovie/{addToFav}/{movieIMDB}"})
+	public ResponseEntity<String> addMovie(@PathVariable boolean addToFav, @PathVariable String movieIMDB, @RequestBody User user) {
 		Optional<User> tempUser = userRepository.findById(user.get_id());
 		if(tempUser.isEmpty()){
 			System.out.println("User does not exist on the system database.");
@@ -67,7 +67,7 @@ public class UserController {
 		}
 		user = tempUser.get();
 		if(addToFav) {
-			if(user.addFavourites(movieName)) {	// if the movie is already there, it will return false.
+			if(user.addFavourites(movieIMDB)) {	// if the movie is already there, it will return false.
 				userRepository.save(user);
 				System.out.println("Movie has been added to favourites list successfully.");
 				return new ResponseEntity<>("Movie is added To Favourites", HttpStatus.OK);
@@ -78,7 +78,7 @@ public class UserController {
 			}
 		}
 		else {
-			if(user.addWatched(movieName)) {
+			if(user.addWatched(movieIMDB)) {
 				userRepository.save(user);
 				System.out.println("Movie has been added to watched list successfully.");
 				return new ResponseEntity<>("Movie is added To Watched", HttpStatus.OK);

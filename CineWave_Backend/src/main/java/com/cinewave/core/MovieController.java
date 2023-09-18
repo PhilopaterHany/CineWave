@@ -29,7 +29,13 @@ public class MovieController {
     public ResponseEntity<Map<String, Object>> fetchMovie(@PathVariable String imdbID){
         // Using the imdbID fetch the movie metadata and return the JSON Object
         // In case of false imdbID, return a representative ResponseEntity of this case.
-        return null;
+        JSONObject results = new JSONObject(searchMovieByImdbID(imdbID, API_KEY));
+        if(results.get("Response").toString().compareToIgnoreCase("false") == 0){
+            System.out.println("Movie was not found ..");
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        System.out.println("Movie was found Successfully ..");
+        return new ResponseEntity<>(results.toMap(), HttpStatus.OK);
     }
 
     @GetMapping(value = {"searchMovie/{title}"})
