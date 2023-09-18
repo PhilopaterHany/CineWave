@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {UtilitiesService} from "../../Services/utilities.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,12 @@ import {UtilitiesService} from "../../Services/utilities.service";
 })
 export class HeaderComponent {
     protected utilities: UtilitiesService;
-    constructor() {
+    constructor(private router: Router) {
       this.utilities = new UtilitiesService();
+    }
+
+    clickSignIn(){
+      console.log("Clicked");
+      this.router.navigateByUrl('/registration');
     }
 }

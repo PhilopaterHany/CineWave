@@ -8,6 +8,8 @@ import { HeaderComponent } from './Components/header/header.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
+import { RegistrationPageComponent } from './Components/registration-page/registration-page.component';
+import { MoviePageComponent } from './Components/movie-page/movie-page.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { MatIconModule } from '@angular/material/icon';
     MainPageComponent,
     HeaderComponent,
     FooterComponent,
+    RegistrationPageComponent,
+    MoviePageComponent,
   ],
   imports: [
     BrowserModule,
