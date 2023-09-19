@@ -11,12 +11,10 @@ export class MainPageComponent {
   constructor(private router: Router) {
   }
 
-  // Example to demonstrate how to use: <button (click)="openMovie()">View Movie</button>
   openMovie(){
-    // should be replaced with the real movie obj
-    let fakeObject = {"title": "film", "rate": 8};
+    let fakeObject = { title: 'film', rate: 8 }; // should be replaced with the real movie obj
     this.router.navigate(['/movie'], {
-      queryParams: {movieObj: JSON.stringify(fakeObject)}
+      queryParams: { movieObj: JSON.stringify(fakeObject) },
     });
   }
 }

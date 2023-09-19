@@ -99,6 +99,7 @@ header .container .signin {
   display: flex;
   position: relative;
   top: 2px;
+  cursor: pointer;
   -webkit-transition: var(--duration) ease-in-out;
   -moz-transition: var(--duration) ease-in-out;
   -ms-transition: var(--duration) ease-in-out;
