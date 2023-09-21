@@ -13,7 +13,6 @@ export class MoviePageComponent {
     this.route.queryParams.subscribe((params) => {
       this.movieMetadata = JSON.parse(params['movieObj']);
     });
-    console.log(this.movieMetadata);
   }
 
 }

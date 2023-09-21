@@ -55,9 +55,10 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  font-family: "Nanum Gothic", sans-serif !important;
-  color: var(--off-white);
   background-color: var(--blue-black);
+  color: var(--off-white);
+  font-size: 16px;
+  font-family: "Nanum Gothic", sans-serif !important;
 }
 a {
   color: var(--off-white);

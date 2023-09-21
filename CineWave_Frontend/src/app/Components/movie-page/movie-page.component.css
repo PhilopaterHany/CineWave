@@ -1,0 +1,206 @@
+.main-details .container {
+    margin-block: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.main-details .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    height: 445px;
+}
+.main-details .info .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.main-details .info .title div h1 {
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.main-details .info .title div ul {
+    display: flex;
+    gap: 25px;
+    list-style: disc;
+}
+.main-details .info .title div ul li:first-of-type {
+    list-style: none;
+}
+.main-details .info .rating-box {
+    margin-left: auto;
+}
+.main-details .info .rating-box,
+.main-details .info .rating-box div .icon,
+.main-details .info .title .btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: fit-content;
+}
+.main-details .info .rating-box h4 {
+    margin: 0;
+}
+.main-details .info .rating-box div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.main-details .info .rating-box div .icon mat-icon {
+    min-width: 30px;
+    min-height: 30px;
+    font-size: 30px;
+    color: var(--yellow);
+}
+.main-details .info .rating-box div p > span {
+    display: block;
+}
+.main-details .info .rating-box div p #movie-votes {
+    text-align: right;
+}
+.main-details .info .rating-box > div p {
+    margin: 0;
+    color: #ccc;
+    font-size: 13px;
+}
+.main-details .info > p {
+    margin: 0;
+}
+.main-details .info #movie-genre span {
+    margin-right: 15px;
+    padding: 5px 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 2px solid var(--white);
+    color: var(--yellow);
+    user-select: none;
+}
+.main-details .info #movie-genre span:first-of-type {
+    margin-left: 2px;
+}
+.main-details .info .awards-holder {
+    margin-block: 25px;
+}
+.main-details .info .awards-holder span:not(#movie-awards) {
+    position: relative;
+    padding: 10px;
+    color: #000;
+    background-color: var(--yellow);
+}
+.main-details .info .awards-holder span:not(#movie-awards)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -12px;
+    background-color: inherit;
+    height: 100%;
+    width: 20px;
+    transform: skewX(-20deg);
+    -webkit-transform: skewX(-20deg);
+    -moz-transform: skewX(-20deg);
+    -ms-transform: skewX(-20deg);
+    -o-transform: skewX(-20deg);
+}
+.main-details .info .awards-holder #movie-awards {
+    padding: 9px 10px 9px 25px;
+    border: 1px solid var(--yellow)
+}
+.main-details .info #movie-plot {
+    font-size: 17px;
+}
+.meta-details .span-title {
+    font-weight: bold;
+    color: var(--yellow);
+}
+.meta-details .container > p {
+    margin: 0;
+    padding-block: 20px;
+    font-size: 18px;
+    border-bottom: 1px solid #444;
+}
+.meta-details .container > p:first-of-type {
+    padding-top: 0;
+}
+.main-details .info .title .btns {
+    flex-direction: row;
+    gap: 10px;
+}
+.main-details .info .title .btns button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    padding-block: 15px;
+    background-color: var(--oxford-blue);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+}
+main.fav button.favorite mat-icon {
+    color: #b00020 !important;
+}
+main.watched button.watched mat-icon {
+    color: var(--yellow) !important;
+}
+@media (max-width: 1200px) {
+    main {
+        margin-top: 100px;
+    }
+}
+@media (max-width: 991px) {
+    .main-details .container {
+        flex-direction: column-reverse;
+        gap: 0;
+    }
+    .main-details .image {
+        width: 100%;
+    }
+    .main-details .info .rating-box {
+        margin-block: 15px;
+    }
+    .main-details .info {
+        margin-bottom: 25px;
+    }
+    .meta-details .container > p {
+        font-size: 14px;
+    }
+}
+@media (max-width: 480px) {
+    .main-details .info .title {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .main-details .info .title > div:first-of-type {
+        width: 100%;
+    }
+    .main-details .info .title .btns {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    .main-details .info .title .btns button {
+        width: 45px;
+        padding: 10px;
+    }
+    .main-details .info #movie-genre span {
+        margin: 10px 0 !important;
+        display: block;
+        width: fit-content;
+    }
+    .main-details .info #movie-plot {
+        font-size: 16px;
+    }
+    .meta-details .span-title {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .meta-details span:not(.span-title) {
+        padding-left: 10px;
+    }
+}

@@ -11,7 +11,7 @@ export class MainPageComponent {
   constructor(private router: Router) {
   }
 
-  openMovie(){
+  openMovie() {
     let fakeObject = { title: 'film', rate: 8 }; // should be replaced with the real movie obj
     this.router.navigate(['/movie'], {
       queryParams: { movieObj: JSON.stringify(fakeObject) },

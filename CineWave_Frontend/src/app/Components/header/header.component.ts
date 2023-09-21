@@ -13,8 +13,7 @@ export class HeaderComponent {
       this.utilities = new UtilitiesService();
     }
 
-    clickSignIn(){
-      console.log("Clicked");
+    clickSignIn() {
       this.router.navigateByUrl('/registration');
     }
 }
