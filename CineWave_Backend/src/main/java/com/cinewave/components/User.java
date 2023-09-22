@@ -8,8 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "Users")
 public class User {
     @Id
-    private String _id;
-    private String name;
+    private String email;
+    private String username;
     private String password;
 
     private List<String> favourites = new ArrayList<>();
@@ -17,22 +17,22 @@ public class User {
 
     public User(){
     }
-    public User(String name, String password, String id) {
-        this.name = name;
+    public User(String username, String password, String email) {
+        this.username = username;
         this.password = password;
-        this._id = id;
+        this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public String get_id() {
-        return _id;
+    public String getEmail() {
+        return email;
     }
 
     public List<String> getFavourites() {
@@ -60,9 +60,9 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "name='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", _id='" + _id + '\'' +
+                ", _id='" + email + '\'' +
                 ", favourites=" + favourites +
                 ", watched=" + watched +
                 '}';
