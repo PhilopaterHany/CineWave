@@ -88,12 +88,16 @@ header .container nav ul {
 }
 header .container nav ul li a {
   display: block;
+  cursor: pointer;
   color: var(--athens-grey);
   -webkit-transition: var(--duration) ease-in-out;
   -moz-transition: var(--duration) ease-in-out;
   -ms-transition: var(--duration) ease-in-out;
   -o-transition: var(--duration) ease-in-out;
   transition: var(--duration) ease-in-out;
+}
+header .container nav ul li a:hover {
+  color: var(--yellow);
 }
 header .container .signin {
   display: flex;

@@ -1,0 +1,25 @@
+.movies .container:first-of-type {
+    display: block;
+    margin-bottom: 30px;
+}
+.movies .container:first-of-type input {
+    width: 100%;
+    padding: 10px;
+    color: var(--white);
+    border: 1px solid var(--yellow);
+}
+.movies .container:first-of-type input::placeholder {
+    color: var(--white);
+}
+.error-msg {
+    color: #b00020;
+    font-weight: bold;
+    font-size: 30px;
+    grid-column: 1/-1;
+    text-align: center;
+}
+@media (max-width: 1200px) {    
+    section {
+        margin-top: 100px;
+    }
+}
