@@ -4,14 +4,23 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class UtilitiesService {
+
+  /*
+  This service provides the following:
+  1- Utilities function that may be used by multiple components.
+  2- Objects Passing Technique, to allow components communication.
+  */
+
+  // The user (currently logged in) object.
+  private currentUser: object | undefined;
+
   constructor() {}
 
-  toggleNav() {
-    const pageHeader = document.querySelector('header') as HTMLElement;
-    const burgerMenu = document.querySelector('header .container .burger-menu') as HTMLElement;
-    const navList = document.querySelector('header .container nav') as HTMLElement;
-    pageHeader.classList.toggle('active');
-    burgerMenu.classList.toggle('active');
-    navList.classList.toggle('active');
+  setCurrentUser(currentUser: object){
+    this.currentUser = currentUser;
+  }
+
+  getCurrentUser(){
+    return this.currentUser;
   }
 }

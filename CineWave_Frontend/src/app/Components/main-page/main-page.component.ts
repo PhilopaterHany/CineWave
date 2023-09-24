@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
 import {MovieDataService} from "../../Services/movie-data.service";
+import { UtilitiesService } from 'src/app/Services/utilities.service';
 
 @Component({
   selector: 'app-main-page',
@@ -9,7 +10,7 @@ import {MovieDataService} from "../../Services/movie-data.service";
 })
 export class MainPageComponent {
   currentYear: any = new Date().getFullYear();
-  constructor(private router: Router, private movieDataService: MovieDataService) {
+  constructor(private router: Router, private movieDataService: MovieDataService, private utilitiesService: UtilitiesService) {
   }
 
   openMovie() {

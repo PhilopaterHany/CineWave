@@ -10,6 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { RegistrationPageComponent } from './Components/registration-page/registration-page.component';
 import { MoviePageComponent } from './Components/movie-page/movie-page.component';
+import { FavoriteMoviesPageComponent } from './Components/favorite-movies-page/favorite-movies-page.component';
+import { WatchedMoviesPageComponent } from './Components/watched-movies-page/watched-movies-page.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { MoviePageComponent } from './Components/movie-page/movie-page.component
     FooterComponent,
     RegistrationPageComponent,
     MoviePageComponent,
+    FavoriteMoviesPageComponent,
+    WatchedMoviesPageComponent,
   ],
   imports: [
     BrowserModule,

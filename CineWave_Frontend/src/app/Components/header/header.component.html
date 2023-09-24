@@ -1,6 +1,6 @@
 <header>
   <div class="container">
-    <button class="burger-menu" (click)="this.utilities.toggleNav()">
+    <button class="burger-menu" (click)="toggleNav()">
       <span></span>
       <span></span>
       <span></span>
@@ -11,10 +11,10 @@
     <nav>
       <ul>
         <li>
-          <a href="#">Favorites</a>
+          <a (click)="navToFavorites()">Favorites</a>
         </li>
         <li>
-          <a href="#">Watched</a>
+          <a (click)="navToWatched()">Watched</a>
         </li>
       </ul>
     </nav>
