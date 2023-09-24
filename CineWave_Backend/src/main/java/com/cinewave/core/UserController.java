@@ -26,7 +26,7 @@ public class UserController {
 	private UserRepository userRepository;
 	@PostMapping(value = {"addUser"})
 	public ResponseEntity<User> addUser(@RequestBody User user) {
-		if(validateNewUserId(user.get_id())) {
+		if(validateNewUserEmail(user.getEmail())) {
 			try {
 				userRepository.save(user);
 				System.out.println("User Created Successfully.");
@@ -47,8 +47,8 @@ public class UserController {
 
 	@PostMapping(value = {"deleteUser"})
 	public ResponseEntity<String> deleteUser(@RequestBody User user) {
-		if(!validateNewUserId(user.get_id())) {
-			userRepository.deleteById(user.get_id());
+		if(!validateNewUserEmail(user.getEmail())) {
+			userRepository.deleteById(user.getEmail());
 			System.out.println("User Has Been Deleted Successfully.");
 			return new ResponseEntity<>("User deleted Successfully.", HttpStatus.OK);
 		} else {
@@ -60,7 +60,7 @@ public class UserController {
 
 	@PutMapping(value = {"addMovie/{addToFav}/{movieIMDB}"})
 	public ResponseEntity<String> addMovie(@PathVariable boolean addToFav, @PathVariable String movieIMDB, @RequestBody User user) {
-		Optional<User> tempUser = userRepository.findById(user.get_id());
+		Optional<User> tempUser = userRepository.findById(user.getEmail());
 		if(tempUser.isEmpty()){
 			System.out.println("User does not exist on the system database.");
 			return new ResponseEntity<>("User does not exist.", HttpStatus.BAD_REQUEST);
@@ -90,9 +90,9 @@ public class UserController {
 		}
 	}
 
-	public boolean validateNewUserId(String _id) {
+	public boolean validateNewUserEmail(String email) {
 		try {
-			userRepository.findById(_id).get();
+			userRepository.findById(email).get();
 			return false;
 		} catch(Exception E) {
 			return true;
