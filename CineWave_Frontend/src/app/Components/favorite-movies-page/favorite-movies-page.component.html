@@ -1,11 +1,12 @@
 <app-header></app-header>
 <section class="movies">
     <div class="container">
-        <input type="text" [(ngModel)]="searchText" placeholder="Search">
+        <mat-icon>search</mat-icon>
+        <input type="text" [(ngModel)]="searchText" placeholder="Search in your favorite movies">
     </div>
     <div class="container">
         <div *ngFor="let obj of objectsArray" [ngStyle]="{'display': isHidden(obj) ? 'none' : 'block'}">
-            <div class="movie" *ngIf="containsSearchText(obj.Title)">
+            <div class="movie fav" *ngIf="containsSearchText(obj.Title)">
                 <figure class="head">
                     <img src="{{ obj.Poster }}" alt="{{ obj.Title }}">
                     <div class="overlay">

@@ -1,0 +1,68 @@
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 30px;
+}
+form div {
+    position: relative;
+    width: 65%;
+}
+form div mat-icon {
+    position: absolute;
+    color: var(--yellow);
+    top: 13px;
+    left: 5px;
+    font-size: 20px;
+}
+form div input {
+    width: 100%;
+    padding: 15px;
+    padding-left: 35px;
+    border-bottom: 2px solid var(--azure);
+    background-color: var(--oxford-blue-alpha);
+}
+form div input::-ms-reveal {
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+}
+form button {
+    width: 25%;
+    margin-top: 10px;
+    padding: 10px;
+    border: 2px solid var(--azure);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    -webkit-transition: var(--duration) ease-in-out;
+    -moz-transition: var(--duration) ease-in-out;
+    -ms-transition: var(--duration) ease-in-out;
+    -o-transition: var(--duration) ease-in-out;
+    transition: var(--duration) ease-in-out;
+}
+form button:hover {
+    color: var(--yellow);
+    letter-spacing: 4px;
+}
+::ng-deep .mdc-tab.mat-mdc-tab.mat-mdc-focus-indicator.ng-star-inserted > span.mdc-tab__content > span {
+    color: var(--white) !important;
+}
+::ng-deep .mdc-tab.mat-mdc-tab.mat-mdc-focus-indicator.ng-star-inserted:hover,
+::ng-deep .mdc-tab.mat-mdc-tab.mat-mdc-focus-indicator.mdc-tab--active.ng-star-inserted.mdc-tab-indicator--active {
+    background-color: rgba(100, 100, 100, 0.1);
+}
+::ng-deep .mdc-tab.mat-mdc-tab.mat-mdc-focus-indicator.ng-star-inserted.mdc-tab--active.mdc-tab-indicator--active > span.mdc-tab__content > span {
+    color: var(--azure) !important;
+}
+@media (max-width: 1200px) {    
+    section {
+        margin-top: 100px;
+    }
+}
+@media (max-width: 767px) {
+    form > *,
+    form button {
+        width: 100%;
+    }
+}

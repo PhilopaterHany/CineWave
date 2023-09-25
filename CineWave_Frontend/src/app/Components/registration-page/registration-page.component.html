@@ -1,1 +1,42 @@
-<p>registration-page works!</p>
+<app-header></app-header>
+<section>
+    <div class="container">
+        <mat-tab-group>
+            <mat-tab label="Login">
+                <form (ngSubmit)="login()">
+                    <div>
+                        <mat-icon>person</mat-icon>
+                        <input type="text" placeholder="Enter Username">
+                    </div>
+                    <div>
+                        <mat-icon>lock</mat-icon>
+                        <input type="password" placeholder="Enter Password">
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+            </mat-tab>
+            <mat-tab label="Sign Up">
+                <form (ngSubmit)="signup()">
+                    <div>
+                        <mat-icon>mail</mat-icon>
+                        <input type="email" placeholder="Enter your e-mail address">
+                    </div>
+                    <div>
+                        <mat-icon>person</mat-icon>
+                        <input type="text" placeholder="Enter Username">
+                    </div>
+                    <div>
+                        <mat-icon>lock</mat-icon>
+                        <input type="password" placeholder="Enter your password">
+                    </div>
+                    <div>
+                        <mat-icon>lock_person</mat-icon>
+                        <input type="password" placeholder="Re-enter your password">
+                    </div>
+                    <button type="submit">Sign Up</button>
+                </form>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</section>
+<app-footer></app-footer>

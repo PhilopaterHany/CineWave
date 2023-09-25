@@ -2,21 +2,18 @@
     display: block;
     margin-bottom: 30px;
 }
+.movies .container:first-of-type mat-icon {
+    position: absolute;
+    top: 13px;
+    left: 5px;
+    font-size: 20px;
+    color: var(--yellow);
+}
 .movies .container:first-of-type input {
     width: 100%;
-    padding: 10px;
-    color: var(--white);
-    border: 1px solid var(--yellow);
-}
-.movies .container:first-of-type input::placeholder {
-    color: var(--white);
-}
-.error-msg {
-    color: #b00020;
-    font-weight: bold;
-    font-size: 30px;
-    grid-column: 1/-1;
-    text-align: center;
+    padding: 15px 15px 15px 35px;
+    border-bottom: 2px solid var(--azure);
+    background-color: var(--oxford-blue-alpha);
 }
 @media (max-width: 1200px) {    
     section {

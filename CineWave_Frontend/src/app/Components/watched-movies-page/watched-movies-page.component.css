@@ -1,0 +1,22 @@
+.movies .container:first-of-type {
+    display: block;
+    margin-bottom: 30px;
+}
+.movies .container:first-of-type mat-icon {
+    position: absolute;
+    top: 13px;
+    left: 5px;
+    font-size: 20px;
+    color: var(--yellow);
+}
+.movies .container:first-of-type input {
+    width: 100%;
+    padding: 15px 15px 15px 35px;
+    border-bottom: 2px solid var(--azure);
+    background-color: var(--oxford-blue-alpha);
+}
+@media (max-width: 1200px) {    
+    section {
+        margin-top: 100px;
+    }
+}
