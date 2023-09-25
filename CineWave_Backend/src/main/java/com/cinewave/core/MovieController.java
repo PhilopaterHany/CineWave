@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -46,8 +47,12 @@ public class MovieController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
         JSONArray jsonArray = new JSONArray(results.getJSONArray("Search"));         // array of the returned movies
-//        System.out.println(jsonArray.toString(3));
-        return new ResponseEntity<>(jsonArray.toList(), HttpStatus.OK);
+        ArrayList<Object> detailedResults = new ArrayList<>();
+        for(int i = 0 ; i < jsonArray.length() ; i++)
+            detailedResults.add((new JSONObject(searchMovieByImdbID(((JSONObject)jsonArray.get(i)).get("imdbID").toString(), API_KEY))).toMap());
+//        for(int i = 0 ; i < detailedResults.size() ; i++)
+//            System.out.println(detailedResults.get(i).toString(3));
+        return new ResponseEntity<>(detailedResults, HttpStatus.OK);
     }
 
 
