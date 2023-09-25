@@ -90,6 +90,22 @@ public class UserController {
 		}
 	}
 
+	@PostMapping(value = {"signIn"})
+	public ResponseEntity<User> signIn(@RequestBody User user) {
+		Optional<User> temp = userRepository.findById(user.getEmail());
+		if(temp.isEmpty()){
+			System.out.println("User does not exist on the system database.");
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+		User tempUser = temp.get();
+		if(!tempUser.getPassword().equals(user.getPassword())) {
+			System.out.println("The password is not correct");
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+		System.out.println("Signing in Successfully.");
+		return new ResponseEntity<>(tempUser, HttpStatus.OK);
+	}
+
 	public boolean validateNewUserEmail(String email) {
 		try {
 			userRepository.findById(email).get();
