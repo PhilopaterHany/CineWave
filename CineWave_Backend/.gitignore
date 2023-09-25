@@ -32,3 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 /src/main/java/com/cinewave/core/APIKEY.txt
+/src/main/resources/db-authentication.txt
