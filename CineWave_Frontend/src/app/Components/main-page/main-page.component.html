@@ -35,20 +35,66 @@
           id="search-input"
           placeholder="I'm looking for...."
         />
-        <button class="navbar-form-open">Search<mat-icon>search</mat-icon></button>
+        <button (click)="search()" class="navbar-form-open">Search<mat-icon>search</mat-icon></button>
       </form>
     </div>
   </section>
   <section class="movies">
     <div class="container">
-      <div class="movie watched" (click)="openMovie()">
+
+      <div *ngIf="this.loadingMoviesMetaData; else content">
+        <!-- Loading spinner or message -->
+        <div>Loading...</div>
+      </div>
+
+      <ng-template #content>
+      <div *ngFor="let movie of tmp_movies" class="movie watched" (click)="openMovie()">
+        <figure class="head">
+          <img [src]= 'movie?.Poster' [alt]="movie?.Title" />
+          <div class="overlay">
+            <button (click)="addMovieToFav()" id="favorite">
+              <mat-icon>favorite</mat-icon>
+            </button>
+            <button id="watched">
+              <mat-icon>bookmark</mat-icon>
+            </button>
+          </div>
+        </figure>
+        <div class="body">
+          <h3 class="title">{{ movie?.Title }}</h3>
+          <div class="props">
+            <p class="genres">
+              <mat-icon>theaters</mat-icon>
+              <span>{{ movie?.Genre }}</span>
+            </p>
+            <p class="year">
+              <mat-icon>calendar_month</mat-icon>
+              <span>{{ movie?.Year }}</span>
+            </p>
+          </div>
+          <div class="meta">
+            <span class="quality">{{ movie?.Rated }}</span>
+            <p class="duration">
+              <mat-icon>schedule</mat-icon>
+              <span>{{ movie?.Runtime }}</span>
+            </p>
+            <p class="rating">
+              <mat-icon>star</mat-icon>
+              <span>{{ movie?.imdbRating }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      </ng-template>
+
+      <!-- <div class="movie watched" (click)="openMovie()">
         <figure class="head">
           <img
             src="https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg"
             alt="Dune"
           />
           <div class="overlay">
-            <button id="favorite">
+            <button (click)="addMovieToFav()" id="favorite">
               <mat-icon>favorite</mat-icon>
             </button>
             <button id="watched">
@@ -240,7 +286,8 @@
             </p>
           </div>
         </div>
-      </div>
+      </div> -->
+      
     </div>
   </section>
 </main>

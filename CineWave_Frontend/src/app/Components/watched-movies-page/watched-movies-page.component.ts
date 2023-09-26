@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UtilitiesService } from 'src/app/Services/utilities.service';
+import { ServerCallerService } from 'src/app/Services/server-caller.service';
 
 @Component({
   selector: 'app-watched-movies-page',
@@ -7,7 +8,7 @@ import { UtilitiesService } from 'src/app/Services/utilities.service';
   styleUrls: ['./watched-movies-page.component.css'],
 })
 export class WatchedMoviesPageComponent {
-  constructor(private utilitiesService: UtilitiesService) {
+  constructor(private utilitiesService: UtilitiesService, private serverCaller: ServerCallerService) {
     console.log(this.utilitiesService.getCurrentUser());
   }
 

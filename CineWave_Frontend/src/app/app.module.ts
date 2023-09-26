@@ -14,6 +14,7 @@ import { RegistrationPageComponent } from './Components/registration-page/regist
 import { MoviePageComponent } from './Components/movie-page/movie-page.component';
 import { FavoriteMoviesPageComponent } from './Components/favorite-movies-page/favorite-movies-page.component';
 import { WatchedMoviesPageComponent } from './Components/watched-movies-page/watched-movies-page.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { WatchedMoviesPageComponent } from './Components/watched-movies-page/wat
     BrowserAnimationsModule,
     MatIconModule,
     MatTabsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
