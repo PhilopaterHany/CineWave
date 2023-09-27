@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { firstValueFrom, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 import { User } from '../Interfaces/user';
 
 @Injectable({
@@ -38,6 +38,13 @@ export class ServerCallerService {
   async addMovie(user: User, toFav: Number, movieImdbId: String){
     return await firstValueFrom(
       this.http.put<String>(this.url + `addMovie/${toFav}/${movieImdbId}`, user)   // returns string (should be changed.)
+    );
+  }
+
+  // To remove a movie from the user favorite / watched list.
+  async removeMovie(user: User, fromFav: Number, movieImdbId: String){
+    return await firstValueFrom(
+      this.http.put<String>(this.url + `removeMovie/${fromFav}/${movieImdbId}`, user)   // returns string (should be changed.)
     );
   }
 

@@ -90,6 +90,37 @@ public class UserController {
 		}
 	}
 
+	@PutMapping(value = {"removeMovie/{removeFromFav}/{movieIMDB}"})
+	public ResponseEntity<User> removeMovie(@PathVariable boolean removeFromFav, @PathVariable String movieIMDB, @RequestBody User user){
+		Optional<User> tempUser = userRepository.findById(user.getEmail());
+		if(tempUser.isEmpty()){
+			System.out.println("User does not exist on the system database.");
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+		user = tempUser.get();
+		if(removeFromFav) {
+			if(user.removeFavourites(movieIMDB)) {	// if the movie is already there, it will return false.
+				userRepository.save(user);
+				System.out.println("Movie has been removed from favourites list successfully.");
+				return new ResponseEntity<>(user, HttpStatus.OK);
+			}
+			else {
+				System.out.println("Movie was not found in the favourites list.");
+				return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
+			}
+		} else {
+			if(user.removeWatched(movieIMDB)) {
+				userRepository.save(user);
+				System.out.println("Movie has been removed from watched list successfully.");
+				return new ResponseEntity<>(user, HttpStatus.OK);
+			}
+			else {
+				System.out.println("Movie was not found in the watched list.");
+				return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
+			}
+		}
+	}
+
 	@PostMapping(value = {"signIn"})
 	public ResponseEntity<User> signIn(@RequestBody User user) {
 		Optional<User> temp = userRepository.findById(user.getEmail());

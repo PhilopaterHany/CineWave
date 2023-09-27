@@ -48,9 +48,9 @@
     </div>
     <div class="container">
       <ng-template #content>
-      <div *ngFor="let movie of tmp_movies" class="movie watched" (click)="openMovie()">
+      <div *ngFor="let movie of moviesDisplayed_Metadata" class="movie watched" (click)="openMovie()">
         <figure class="head">
-          <img [src]= 'movie?.Poster' [alt]="movie?.Title" />
+          <img [src]= 'Object.values(movie)[(Object.keys(movie)).indexOf("Poster")]' [alt]="Object.values(movie)[(Object.keys(movie)).indexOf('Title')]" />
           <div class="overlay">
             <button (click)="addMovieToFavs($event)" title="Add To Favorites">
               <mat-icon>favorite</mat-icon>
@@ -61,233 +61,31 @@
           </div>
         </figure>
         <div class="body">
-          <h3 class="title">{{ movie?.Title }}</h3>
+          <h3 class="title">{{ Object.values(movie)[(Object.keys(movie)).indexOf("Title")] }}</h3>
           <div class="props">
             <p class="genres">
               <mat-icon>theaters</mat-icon>
-              <span>{{ formatGenres(movie.Genre) }}</span>
+              <span>{{ formatGenres(Object.values(movie)[(Object.keys(movie)).indexOf("Genre")]) }}</span>
             </p>
             <p class="year">
               <mat-icon>calendar_month</mat-icon>
-              <span>{{ movie?.Year }}</span>
+              <span>{{ Object.values(movie)[(Object.keys(movie)).indexOf("Year")] }}</span>
             </p>
           </div>
           <div class="meta">
-            <span class="quality">{{ movie?.Rated }}</span>
+            <span class="quality">{{ Object.values(movie)[(Object.keys(movie)).indexOf("Rated")] }}</span>
             <p class="duration">
               <mat-icon>schedule</mat-icon>
-              <span>{{ movie?.Runtime }}</span>
+              <span>{{ Object.values(movie)[(Object.keys(movie)).indexOf("Runtime")] }}</span>
             </p>
             <p class="rating">
               <mat-icon>star</mat-icon>
-              <span>{{ movie?.imdbRating }}</span>
+              <span>{{ Object.values(movie)[(Object.keys(movie)).indexOf("imdbRating")] }}</span>
             </p>
           </div>
         </div>
       </div>
       </ng-template>
-
-      <!-- <div class="movie watched" (click)="openMovie()">
-        <figure class="head">
-          <img
-            src="https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg"
-            alt="Dune"
-          />
-          <div class="overlay">
-            <button (click)="addMovieToFav()" id="favorite">
-              <mat-icon>favorite</mat-icon>
-            </button>
-            <button id="watched">
-              <mat-icon>bookmark</mat-icon>
-            </button>
-          </div>
-        </figure>
-        <div class="body">
-          <h3 class="title">Dune</h3>
-          <div class="props">
-            <p class="genres">
-              <mat-icon>theaters</mat-icon>
-              <span>Action/Adventure</span>
-            </p>
-            <p class="year">
-              <mat-icon>calendar_month</mat-icon>
-              <span>2021</span>
-            </p>
-          </div>
-          <div class="meta">
-            <span class="quality">PG-13</span>
-            <p class="duration">
-              <mat-icon>schedule</mat-icon>
-              <span>135 min</span>
-            </p>
-            <p class="rating">
-              <mat-icon>star</mat-icon>
-              <span>8.0</span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="movie fav watched" (click)="openMovie()">
-        <figure class="head">
-          <img
-            src="https://m.media-amazon.com/images/M/MV5BNzA0Mzc0YTUtNzViMC00YTkwLThkN2YtM2M2ZTU1MjRiMTY1XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_SX300.jpg"
-            alt="A Haunting in Venice"
-          />
-          <div class="overlay">
-            <button id="favorite">
-              <mat-icon>favorite</mat-icon>
-            </button>
-            <button id="watched">
-              <mat-icon>bookmark</mat-icon>
-            </button>
-          </div>
-        </figure>
-        <div class="body">
-          <h3 class="title">A Haunting in Venice</h3>
-          <div class="props">
-            <p class="genres">
-              <mat-icon>theaters</mat-icon>
-              <span>Crime/Drama</span>
-            </p>
-            <p class="year">
-              <mat-icon>calendar_month</mat-icon>
-              <span>2023</span>
-            </p>
-          </div>
-          <div class="meta">
-            <p class="quality">PG-13</p>
-            <p class="duration">
-              <mat-icon>schedule</mat-icon>
-              <span>103 min</span>
-            </p>
-            <p class="rating">
-              <mat-icon>star</mat-icon>
-              <span>N/A</span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="movie fav" (click)="openMovie()">
-        <figure class="head">
-          <img
-            src="https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg"
-            alt="Interstellar"
-          />
-          <div class="overlay">
-            <button id="favorite">
-              <mat-icon>favorite</mat-icon>
-            </button>
-            <button id="watched">
-              <mat-icon>bookmark</mat-icon>
-            </button>
-          </div>
-        </figure>
-        <div class="body">
-          <h3 class="title">Interstellar</h3>
-          <div class="props">
-            <p class="genres">
-              <mat-icon>theaters</mat-icon>
-              <span>Adventure/Drama</span>
-            </p>
-            <p class="year">
-              <mat-icon>calendar_month</mat-icon>
-              <span>2014</span>
-            </p>
-          </div>
-          <div class="meta">
-            <span class="quality">PG-13</span>
-            <p class="duration">
-              <mat-icon>schedule</mat-icon>
-              <span>169 min</span>
-            </p>
-            <p class="rating">
-              <mat-icon>star</mat-icon>
-              <span>8.7</span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="movie fav watched" (click)="openMovie()">
-        <figure class="head">
-          <img
-            src="https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg"
-            alt="The Dark Knight"
-          />
-          <div class="overlay">
-            <button id="favorite">
-              <mat-icon>favorite</mat-icon>
-            </button>
-            <button id="watched">
-              <mat-icon>bookmark</mat-icon>
-            </button>
-          </div>
-        </figure>
-        <div class="body">
-          <h3 class="title">The Dark Knight</h3>
-          <div class="props">
-            <p class="genres">
-              <mat-icon>theaters</mat-icon>
-              <span>Action/Crime</span>
-            </p>
-            <p class="year">
-              <mat-icon>calendar_month</mat-icon>
-              <span>2008</span>
-            </p>
-          </div>
-          <div class="meta">
-            <span class="quality">PG-13</span>
-            <p class="duration">
-              <mat-icon>schedule</mat-icon>
-              <span>152 min</span>
-            </p>
-            <p class="rating">
-              <mat-icon>star</mat-icon>
-              <span>9</span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="movie" (click)="openMovie()">
-        <figure class="head">
-          <img
-            src="https://m.media-amazon.com/images/M/MV5BMWU0MGYwZWQtMzcwYS00NWVhLTlkZTAtYWVjOTYwZTBhZTBiXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg"
-            alt="Bad Boys For Life"
-          />
-          <div class="overlay">
-            <button id="favorite">
-              <mat-icon>favorite</mat-icon>
-            </button>
-            <button id="watched">
-              <mat-icon>bookmark</mat-icon>
-            </button>
-          </div>
-        </figure>
-        <div class="body">
-          <h3 class="title">Bad Boys For Life</h3>
-          <div class="props">
-            <p class="genres">
-              <mat-icon>theaters</mat-icon>
-              <span>Action/Comedy</span>
-            </p>
-            <p class="year">
-              <mat-icon>calendar_month</mat-icon>
-              <span>2020</span>
-            </p>
-          </div>
-          <div class="meta">
-            <span class="quality">R</span>
-            <p class="duration">
-              <mat-icon>schedule</mat-icon>
-              <span>124 min</span>
-            </p>
-            <p class="rating">
-              <mat-icon>star</mat-icon>
-              <span>6.5</span>
-            </p>
-          </div>
-        </div>
-      </div> -->
-      
     </div>
   </section>
 </main>
