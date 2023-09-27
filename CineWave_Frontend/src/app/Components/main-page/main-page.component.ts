@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
-import {MovieDataService} from "../../Services/movie-data.service";
+import { MovieDataService } from "../../Services/movie-data.service";
 import { UtilitiesService } from 'src/app/Services/utilities.service';
 import { HttpClient } from '@angular/common/http';
 import { ServerCallerService } from 'src/app/Services/server-caller.service';
@@ -61,36 +61,44 @@ export class MainPageComponent implements OnInit{
         "Writer": "Christopher Nolan"
     },
     {
-        "Metascore": "N/A",
-        "BoxOffice": "N/A",
+        "Metascore": "88",
+        "BoxOffice": "$302,215,760",
         "Website": "N/A",
-        "imdbRating": "7.8",
-        "imdbVotes": "2,160",
+        "imdbRating": "8.6",
+        "imdbVotes": "402,067",
         "Ratings": [
             {
-                "Value": "7.8/10",
+                "Value": "8.6/10",
                 "Source": "Internet Movie Database"
+            },
+            {
+                "Value": "93%",
+                "Source": "Rotten Tomatoes"
+            },
+            {
+                "Value": "88/100",
+                "Source": "Metacritic"
             }
         ],
-        "Runtime": "15 min",
-        "Language": "English",
-        "Rated": "Not Rated",
+        "Runtime": "180 min",
+        "Language": "English, German, Italian",
+        "Rated": "R",
         "Production": "N/A",
-        "Released": "07 Dec 2010",
-        "imdbID": "tt5295894",
-        "Plot": "This Inception prequel unfolds courtesy of a beautiful Motion Comic, and explains how Cobb, Arthur and Nash were enlisted by Cobol Engineering. Diehard fans of the film will be especially interested in this one.",
-        "Director": "Ian Kirby",
-        "Title": "Inception: The Cobol Job",
-        "Actors": "Leonardo DiCaprio, Joseph Gordon-Levitt, Lukas Haas",
+        "Released": "21 Jul 2023",
+        "imdbID": "tt15398776",
+        "Plot": "The story of American scientist, J. Robert Oppenheimer, and his role in the development of the atomic bomb.",
+        "Director": "Christopher Nolan",
+        "Title": "Oppenheimer",
+        "Actors": "Cillian Murphy, Emily Blunt, Matt Damon",
         "Response": "True",
         "Type": "movie",
-        "Awards": "N/A",
+        "Awards": "2 wins & 1 nomination",
         "DVD": "N/A",
-        "Year": "2010",
-        "Poster": "https://m.media-amazon.com/images/M/MV5BMjE0NGIwM2EtZjQxZi00ZTE5LWExN2MtNDBlMjY1ZmZkYjU3XkEyXkFqcGdeQXVyNjMwNzk3Mjk@._V1_SX300.jpg",
-        "Country": "USA",
-        "Genre": "Animation, Short, Sci-Fi",
-        "Writer": "Christopher Nolan (based on characters by)"
+        "Year": "2023",
+        "Poster": "https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_SX300.jpg",
+        "Country": "United Stats, United Kingdom",
+        "Genre": "Biography, Drama, History",
+        "Writer": "Christopher Nolan, Kai Bird, Martin Sherwin"
     }];
 
   async ngOnInit(): Promise<void> {
@@ -117,7 +125,13 @@ export class MainPageComponent implements OnInit{
     private http: HttpClient,
     private serverCaller: ServerCallerService
     ) {
-      this.default_moviesDisplayed_IDs = ["tt1160419", "tt0816692", "tt0468569", "tt1502397"];
+      this.default_moviesDisplayed_IDs = [
+        'tt1160419',
+        'tt0816692',
+        'tt0468569',
+        'tt1502397',
+        'tt15398776',
+      ];
     }
 
   async search(){
@@ -127,11 +141,28 @@ export class MainPageComponent implements OnInit{
     // console.log(await this.serverCaller.signUp(<User>{'email': 'g@mail.com', 'password': '123'}))
   }
 
-  addMovieToFav(){
+  addMovieToFavs(event: Event){
+    event.stopPropagation();
     console.log('Adding movie to favs.');
   }
 
+  addMovieToWatched(event: Event){
+    event.stopPropagation();
+    console.log('Adding movie to watched.');
+  }
+
   displayMovies(){
+  }
+
+  formatGenres(genres: string): string {
+    const genreArray = genres.split(', ');
+    if (genreArray.length === 1) {
+      return genreArray[0];
+    } else if (genreArray.length === 2) {
+      return genreArray.join('/');
+    } else {
+      return `${genreArray[0]}/${genreArray[1]}`;
+    }
   }
 
   openMovie() {

@@ -40,22 +40,22 @@
     </div>
   </section>
   <section class="movies">
-    <div class="container">
-
-      <div *ngIf="this.loadingMoviesMetaData; else content">
-        <!-- Loading spinner or message -->
-        <div>Loading...</div>
+    <div class="container spinner-holder" *ngIf="this.loadingMoviesMetaData; else content">
+      <div class="loading-spinner">
+        <span></span>
+        <p>Loading...</p>
       </div>
-
+    </div>
+    <div class="container">
       <ng-template #content>
       <div *ngFor="let movie of tmp_movies" class="movie watched" (click)="openMovie()">
         <figure class="head">
           <img [src]= 'movie?.Poster' [alt]="movie?.Title" />
           <div class="overlay">
-            <button (click)="addMovieToFav()" id="favorite">
+            <button (click)="addMovieToFavs($event)" title="Add To Favorites">
               <mat-icon>favorite</mat-icon>
             </button>
-            <button id="watched">
+            <button (click)="addMovieToWatched($event)" title="Add To Watched">
               <mat-icon>bookmark</mat-icon>
             </button>
           </div>
@@ -65,7 +65,7 @@
           <div class="props">
             <p class="genres">
               <mat-icon>theaters</mat-icon>
-              <span>{{ movie?.Genre }}</span>
+              <span>{{ formatGenres(movie.Genre) }}</span>
             </p>
             <p class="year">
               <mat-icon>calendar_month</mat-icon>

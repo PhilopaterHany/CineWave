@@ -154,14 +154,14 @@ input::placeholder {
   -o-border-radius: 5px;
   border-radius: 5px;
 }
-.movies .container .movie .head .overlay #watched {
+.movies .container .movie .head .overlay button:last-of-type {
   right: 10px;
   left: unset;
 }
-.movies .container .movie.fav .head .overlay #favorite mat-icon {
+.movies .container .movie.fav .head .overlay button:first-of-type mat-icon {
   color: #b00020;
 }
-.movies .container .movie.watched .head .overlay #watched mat-icon {
+.movies .container .movie.watched .head .overlay button:last-of-type mat-icon {
   color: var(--yellow);
 }
 .movies .container .movie .body {
