@@ -8,7 +8,7 @@ import { ServerCallerService } from 'src/app/Services/server-caller.service';
   styleUrls: ['./watched-movies-page.component.css'],
 })
 export class WatchedMoviesPageComponent {
-  constructor(private utilitiesService: UtilitiesService, private serverCaller: ServerCallerService) {
+  constructor(public utilitiesService: UtilitiesService, private serverCaller: ServerCallerService) {
     console.log(this.utilitiesService.getCurrentUser());
   }
 
@@ -81,16 +81,6 @@ export class WatchedMoviesPageComponent {
         'https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg',
     },
   ];
-  formatGenres(genres: string): string {
-    const genreArray = genres.split(', ');
-    if (genreArray.length === 1) {
-      return genreArray[0];
-    } else if (genreArray.length === 2) {
-      return genreArray.join('/');
-    } else {
-      return `${genreArray[0]}/${genreArray[1]}`;
-    }
-  }
   containsSearchText(name: string): boolean {
     return name.toLowerCase().includes(this.searchText.toLowerCase());
   }

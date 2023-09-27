@@ -11,9 +11,8 @@ import { User } from 'src/app/Interfaces/user';
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css'],
 })
-export class MainPageComponent implements OnInit{
+export class MainPageComponent implements OnInit {
 
-  currentYear: any = new Date().getFullYear();
   protected moviesDisplayed_IDs: Array<String> | undefined;
   protected moviesDisplayed_Metadata: Array<Object> = [];
   protected default_moviesDisplayed_IDs: Array<String> | undefined;
@@ -39,7 +38,7 @@ export class MainPageComponent implements OnInit{
   constructor(
     private router: Router,
     private movieDataService: MovieDataService,
-    private utilitiesService: UtilitiesService,
+    public utilitiesService: UtilitiesService,
     private http: HttpClient,
     private serverCaller: ServerCallerService
     ) {
@@ -59,28 +58,17 @@ export class MainPageComponent implements OnInit{
     // console.log(await this.serverCaller.signUp(<User>{'email': 'g@mail.com', 'password': '123'}))
   }
 
-  addMovieToFavs(event: Event){
+  addMovieToFavs(event: Event) {
     event.stopPropagation();
     console.log('Adding movie to favs.');
   }
 
-  addMovieToWatched(event: Event){
+  addMovieToWatched(event: Event) {
     event.stopPropagation();
     console.log('Adding movie to watched.');
   }
 
-  displayMovies(){
-  }
-
-  formatGenres(genres: string): string {
-    const genreArray = genres.split(', ');
-    if (genreArray.length === 1) {
-      return genreArray[0];
-    } else if (genreArray.length === 2) {
-      return genreArray.join('/');
-    } else {
-      return `${genreArray[0]}/${genreArray[1]}`;
-    }
+  displayMovies() {
   }
 
   openMovie() {

@@ -7,7 +7,7 @@ import { UtilitiesService } from 'src/app/Services/utilities.service';
   styleUrls: ['./favorite-movies-page.component.css'],
 })
 export class FavoriteMoviesPageComponent {
-  constructor(private utilitiesService: UtilitiesService) {
+  constructor(public utilitiesService: UtilitiesService) {
     // to use the currentUser object -> this.utilitiesService.getCurrentUser()
   }
 
@@ -80,16 +80,6 @@ export class FavoriteMoviesPageComponent {
         'https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg',
     },
   ];
-  formatGenres(genres: string): string {
-    const genreArray = genres.split(', ');
-    if (genreArray.length === 1) {
-      return genreArray[0];
-    } else if (genreArray.length === 2) {
-      return genreArray.join('/');
-    } else {
-      return `${genreArray[0]}/${genreArray[1]}`;
-    }
-  }
   containsSearchText(name: string): boolean {
     return name.toLowerCase().includes(this.searchText.toLowerCase());
   }

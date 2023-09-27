@@ -46,47 +46,47 @@
         <p>Loading...</p>
       </div>
     </div>
-    <div class="container">
-      <ng-template #content>
-      <div *ngFor="let movie of moviesDisplayed_Metadata" class="movie watched" (click)="openMovie()">
-        <figure class="head">
-          <img [src]= 'Object.values(movie)[(Object.keys(movie)).indexOf("Poster")]' [alt]="Object.values(movie)[(Object.keys(movie)).indexOf('Title')]" />
-          <div class="overlay">
-            <button (click)="addMovieToFavs($event)" title="Add To Favorites">
-              <mat-icon>favorite</mat-icon>
-            </button>
-            <button (click)="addMovieToWatched($event)" title="Add To Watched">
-              <mat-icon>bookmark</mat-icon>
-            </button>
-          </div>
-        </figure>
-        <div class="body">
-          <h3 class="title">{{ Object.values(movie)[(Object.keys(movie)).indexOf("Title")] }}</h3>
-          <div class="props">
-            <p class="genres">
-              <mat-icon>theaters</mat-icon>
-              <span>{{ formatGenres(Object.values(movie)[(Object.keys(movie)).indexOf("Genre")]) }}</span>
-            </p>
-            <p class="year">
-              <mat-icon>calendar_month</mat-icon>
-              <span>{{ Object.values(movie)[(Object.keys(movie)).indexOf("Year")] }}</span>
-            </p>
-          </div>
-          <div class="meta">
-            <span class="quality">{{ Object.values(movie)[(Object.keys(movie)).indexOf("Rated")] }}</span>
-            <p class="duration">
-              <mat-icon>schedule</mat-icon>
-              <span>{{ Object.values(movie)[(Object.keys(movie)).indexOf("Runtime")] }}</span>
-            </p>
-            <p class="rating">
-              <mat-icon>star</mat-icon>
-              <span>{{ Object.values(movie)[(Object.keys(movie)).indexOf("imdbRating")] }}</span>
-            </p>
+    <ng-template #content>
+        <div class="container">
+          <div *ngFor="let movie of moviesDisplayed_Metadata" class="movie watched" (click)="openMovie()">
+            <figure class="head">
+              <img [src]= 'Object.values(movie)[(Object.keys(movie)).indexOf("Poster")]' [alt]="Object.values(movie)[(Object.keys(movie)).indexOf('Title')]" />
+              <div class="overlay">
+                <button (click)="addMovieToFavs($event)" title="Add To Favorites">
+                  <mat-icon>favorite</mat-icon>
+                </button>
+                <button (click)="addMovieToWatched($event)" title="Add To Watched">
+                  <mat-icon>bookmark</mat-icon>
+                </button>
+              </div>
+            </figure>
+            <div class="body">
+              <h3 class="title">{{ Object.values(movie)[(Object.keys(movie)).indexOf("Title")] }}</h3>
+              <div class="props">
+                <p class="genres">
+                  <mat-icon>theaters</mat-icon>
+                  <span>{{ utilitiesService.formatGenres(Object.values(movie)[(Object.keys(movie)).indexOf("Genre")]) }}</span>
+                </p>
+                <p class="year">
+                  <mat-icon>calendar_month</mat-icon>
+                  <span>{{ Object.values(movie)[(Object.keys(movie)).indexOf("Year")] }}</span>
+                </p>
+              </div>
+              <div class="meta">
+                <span class="quality">{{ Object.values(movie)[(Object.keys(movie)).indexOf("Rated")] }}</span>
+                <p class="duration">
+                  <mat-icon>schedule</mat-icon>
+                  <span>{{ Object.values(movie)[(Object.keys(movie)).indexOf("Runtime")] }}</span>
+                </p>
+                <p class="rating">
+                  <mat-icon>star</mat-icon>
+                  <span>{{ Object.values(movie)[(Object.keys(movie)).indexOf("imdbRating")] }}</span>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
       </ng-template>
-    </div>
   </section>
 </main>
 <app-footer></app-footer>
