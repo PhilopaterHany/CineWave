@@ -23,7 +23,7 @@
                     <div class="props">
                         <p class="genres">
                             <mat-icon>theaters</mat-icon>
-                            <span>{{ formatGenres(obj.Genre) }}</span>
+                            <span>{{ utilitiesService.formatGenres(obj.Genre) }}</span>
                         </p>
                         <p class="year">
                             <mat-icon>calendar_month</mat-icon>
@@ -44,7 +44,7 @@
                 </div>
             </div>
         </div>
-        <p class="error-msg" *ngIf="noMatchesFound()">Sorry, no movies found match the written string.</p>
+        <p class="error-msg" *ngIf="noMatchesFound()">Sorry, no movies found.</p>
     </div>
 </section>
 <app-footer></app-footer>

@@ -13,20 +13,30 @@ form div {
 form div mat-icon {
     position: absolute;
     color: var(--yellow);
-    top: 13px;
-    left: 5px;
+    top: 15px;
+    left: 8px;
     font-size: 20px;
 }
 form div input {
     width: 100%;
     padding: 15px;
     padding-left: 35px;
-    border-bottom: 2px solid var(--azure);
+    border: 2px solid;
+    border-color: transparent transparent var(--azure) transparent;
     background-color: var(--oxford-blue-alpha);
+}
+form div input.error {
+    border-color: #b00020;
 }
 form div input::-ms-reveal {
     -webkit-filter: invert(100%);
     filter: invert(100%);
+}
+form div .input-error {
+    margin-top: 10px;
+    color: #b00020;
+    font-size: 17px;
+    font-weight: bold;
 }
 form button {
     width: 25%;

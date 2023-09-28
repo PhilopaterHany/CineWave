@@ -89,6 +89,7 @@
     padding: 10px;
     color: #000;
     background-color: var(--yellow);
+    user-select: none;
 }
 .main-details .info .awards-holder span:not(.movie-awards)::after {
     content: "";

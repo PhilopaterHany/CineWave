@@ -35,7 +35,11 @@ export class MoviePageComponent implements OnInit {
       const runtimeMinutes = parseInt(this.movieMetadata.Runtime);
       const hours = Math.floor(runtimeMinutes / 60);
       const minutes = runtimeMinutes % 60;
-      this.movieMetadata.FormattedRuntime = `${hours}h ${minutes}min`;
+      if (isNaN(runtimeMinutes)) {
+        this.movieMetadata.FormattedRuntime = 'Unknown';
+      } else {
+        this.movieMetadata.FormattedRuntime = `${hours}h ${minutes}min`;
+      }
     }
 
     if (this.movieMetadata && this.movieMetadata.imdbVotes) {

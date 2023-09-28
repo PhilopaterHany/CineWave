@@ -57,6 +57,20 @@ public class User {
         return true;
     }
 
+    public boolean removeFavourites(String name) {
+        if(!favourites.contains(name))
+            return false;
+        favourites.remove(name);
+        return true;
+    }
+
+    public boolean removeWatched(String name) {
+        if(!watched.contains(name))
+            return false;
+        watched.remove(name);
+        return true;
+    }
+
     @Override
     public String toString() {
         return "User{" +
