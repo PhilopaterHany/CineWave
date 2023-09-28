@@ -17,10 +17,12 @@ export class MainPageComponent implements OnInit {
   protected moviesDisplayed_Metadata: Array<Object> = [];
   protected default_moviesDisplayed_IDs: Array<String> | undefined;
   protected loadingMoviesMetaData: Boolean = false;
+  protected isSearching: Boolean = false;
   protected readonly Object = Object;
 
   async ngOnInit(): Promise<void> {
     this.loadingMoviesMetaData = true;
+
     if (this.default_moviesDisplayed_IDs) {
       const promises = this.default_moviesDisplayed_IDs.map(async (imdbID) => {
         this.moviesDisplayed_Metadata?.push(await this.serverCaller.fetchMovie(imdbID));
@@ -42,19 +44,27 @@ export class MainPageComponent implements OnInit {
     private serverCaller: ServerCallerService
     ) {
       this.default_moviesDisplayed_IDs = [
-        'tt1160419',
+        'tt5071412',
         'tt0816692',
         'tt0468569',
-        'tt1502397',
+        'tt0111161',
+        'tt3032476',
         'tt15398776',
+        'tt0903747',
+        'tt0944947',
       ];
     }
 
-  async search(){
+  async search() {
+    this.loadingMoviesMetaData = true;
+    this.isSearching = true;
     let title = (document.getElementById("search-input") as HTMLInputElement).value;
-    if(title == "")
-      return;
+    if(title == "") return;
     this.moviesDisplayed_Metadata = await this.serverCaller.searchMovie(title);
+    if (this.moviesDisplayed_Metadata) {
+      this.loadingMoviesMetaData = false;
+      this.isSearching = false;
+    }
   }
 
   addMovieToFavs(event: Event) {

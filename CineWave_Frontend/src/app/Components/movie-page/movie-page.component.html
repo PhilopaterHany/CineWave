@@ -11,7 +11,7 @@
                         <h1>{{ movieMetadata.Title }}</h1>
                         <ul>
                             <li>{{ movieMetadata.Year }}</li>
-                            <li>{{ movieMetadata.Rated }}</li>
+                            <li>{{ movieMetadata.Rated === "N/A" ? "Not Rated" : movieMetadata.Rated }}</li>
                             <li>{{ movieMetadata.FormattedRuntime }}</li>
                         </ul>
                     </div>
@@ -73,7 +73,7 @@
             </p>
             <p>
                 <span class="span-title">Box Office:&nbsp;</span>
-                <span>{{ movieMetadata.BoxOffice }}</span>
+                <span>{{ movieMetadata.BoxOffice === "N/A" ? "Unavailable" : movieMetadata.BoxOffice }}</span>
             </p>
         </div>
     </section>

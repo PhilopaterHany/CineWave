@@ -28,7 +28,7 @@
   </section>
   <section class="search-bar">
     <div class="container">
-      <form action="#">
+      <form (keyup.enter)="search()" action="#">
         <input
           type="search"
           name="main-search"
@@ -50,7 +50,9 @@
         <div class="container">
           <div *ngFor="let movie of moviesDisplayed_Metadata" class="movie watched" (click)="openMovie()">
             <figure class="head">
-              <img [src]= 'Object.values(movie)[(Object.keys(movie)).indexOf("Poster")]' [alt]="Object.values(movie)[(Object.keys(movie)).indexOf('Title')]" />
+              <div class="image-container">
+                <img [src]='Object.values(movie)[(Object.keys(movie)).indexOf("Poster")]' alt="Poster Not Available" loading="lazy" />
+              </div>
               <div class="overlay">
                 <button (click)="addMovieToFavs($event)" title="Add To Favorites">
                   <mat-icon>favorite</mat-icon>
@@ -73,7 +75,7 @@
                 </p>
               </div>
               <div class="meta">
-                <span class="quality">{{ Object.values(movie)[(Object.keys(movie)).indexOf("Rated")] }}</span>
+                <span class="quality">{{ Object.values(movie)[(Object.keys(movie)).indexOf("Rated")] === 'N/A' ? 'Not Rated' : Object.values(movie)[(Object.keys(movie)).indexOf("Rated")] }}</span>
                 <p class="duration">
                   <mat-icon>schedule</mat-icon>
                   <span>{{ Object.values(movie)[(Object.keys(movie)).indexOf("Runtime")] }}</span>
