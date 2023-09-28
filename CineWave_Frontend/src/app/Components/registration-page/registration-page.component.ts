@@ -47,13 +47,11 @@ export class RegistrationPageComponent {
 
     if(this.validateLoginData()){
       // the this.loginForm.value contain the form values, which are email and password
-      let user: User = await this.serverCaller.signIn(<User> this.loginForm.value)
-      console.log('Returned User: ', user);
+      let user: User | null = await this.serverCaller.signIn(<User> this.loginForm.value)
       if(user != null) {
         this.loginClicked = false;
         this.utilitiesService.setCurrentUser(user);
         this.navigateToHome();
-        console.log("Here");
       } else
         this.loginForm.reset();
     }
@@ -66,8 +64,7 @@ export class RegistrationPageComponent {
 
     if(this.validateSignUpData()) {
       // the this.signupForm.value contain the form values, which are email, username and password
-      let newUser: User = await this.serverCaller.signUp(<User>this.signupForm.value);
-      console.log(newUser);
+      let newUser: User | null = await this.serverCaller.signUp(<User>this.signupForm.value);
       if(newUser != null){
         this.signUpClicked = false;
         this.utilitiesService.setCurrentUser(newUser);
@@ -79,7 +76,7 @@ export class RegistrationPageComponent {
 
   validateSignUpData() {
     let good = true;
-    if(this.signupForm.get('password') != this.signupForm.get('re_password'))
+    if(this.signupForm.get('password')?.value != this.signupForm.get('re_password')?.value)
       this.signupForm.get('re_password')?.reset();
     Object.keys(this.signupForm.value).map((key) => {
       if(this.signupForm.get(key)?.invalid)

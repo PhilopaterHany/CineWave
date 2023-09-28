@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@ComponentScan(basePackages = {"com.cinewave.components", "com.cinewave.core"})
+@ComponentScan(basePackages = {"com.cinewave.components", "com.cinewave.core", "com.cinewave.movieapi"})
 @SpringBootApplication
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/server/")

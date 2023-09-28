@@ -14,26 +14,29 @@ import { User } from 'src/app/Interfaces/user';
 export class MainPageComponent implements OnInit {
 
   protected moviesDisplayed_IDs: Array<String> | undefined;
-  protected moviesDisplayed_Metadata: Array<Object> = [];
+  protected moviesDisplayed_Metadata: Array<Object> | null = [];
   protected default_moviesDisplayed_IDs: Array<String> | undefined;
   protected loadingMoviesMetaData: Boolean = false;
   protected isSearching: Boolean = false;
   protected readonly Object = Object;
 
-  async ngOnInit(): Promise<void> {
-    this.loadingMoviesMetaData = true;
-
+  async initDefaultMovies(){
     if (this.default_moviesDisplayed_IDs) {
       const promises = this.default_moviesDisplayed_IDs.map(async (imdbID) => {
-        this.moviesDisplayed_Metadata?.push(await this.serverCaller.fetchMovie(imdbID));
+        let movieData = await this.serverCaller.fetchMovie(imdbID);
+        if(movieData != null)
+          this.moviesDisplayed_Metadata?.push(movieData);
       });
 
       await Promise.all(promises);
     }
+  }
+
+  async ngOnInit(): Promise<void> {
+    this.loadingMoviesMetaData = true;
+    await this.initDefaultMovies();
     this.loadingMoviesMetaData = false;
-    // console.log(Object.keys(this.moviesDisplayed_Metadata[0]));
-    // console.log((this.moviesDisplayed_Metadata[0])["Title" as keyof object]);
-    // console.log((this.tmp_movies[0])["Title" as keyof object]);
+    console.log('Current User: ', this.utilitiesService.getCurrentUser());
   }
 
   constructor(
@@ -74,9 +77,6 @@ export class MainPageComponent implements OnInit {
   addMovieToWatched(event: Event) {
     event.stopPropagation();
     console.log('Adding movie to watched.');
-  }
-
-  displayMovies() {
   }
 
   openMovie(movieObj: Object) {

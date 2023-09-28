@@ -1,6 +1,5 @@
 package com.cinewave.components;
 
-import com.cinewave.components.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

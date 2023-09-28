@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { User } from '../Interfaces/user';
 
@@ -15,51 +15,107 @@ export class ServerCallerService {
 
   // User creation (Sign Up)
   async signUp(newUser: User) {
-    return await firstValueFrom(
-      this.http.post<User>(this.url + 'addUser', newUser)   // returns user.
-    );
+    try {
+      return await firstValueFrom(
+        this.http.post<User>(this.url + 'addUser', newUser)   // returns user.
+      );
+    } catch (error) {
+      if(error instanceof HttpErrorResponse)
+        console.error('Bad request');
+      else
+        console.error('Error');
+    }
+    return null;
   }
 
   // Remove registered user from the DB.
   async removeUser(user: User){
-    return await firstValueFrom(
-      this.http.post<String>(this.url + 'deleteUser', user)       // returns string
-    );
+    try {
+      return await firstValueFrom(
+        this.http.post<String>(this.url + 'deleteUser', user)       // returns string
+      );
+    } catch (error) {
+      if(error instanceof HttpErrorResponse)
+        console.error('Bad request');
+      else
+        console.error('Error');
+    }
+    return null;
   }
 
   // Sign In Request (either the full user data will return or not, in case of unsuccessful authentication )
   async signIn(user: User){
-    return await firstValueFrom(
-      this.http.post<User>(this.url + 'signIn', user)   // returns the user object.
-    );
+    try {
+      return await firstValueFrom(
+        this.http.post<User>(this.url + 'signIn', user)   // returns the user object.
+      );
+    } catch (error) {
+      if(error instanceof HttpErrorResponse)
+        console.error('Bad request');
+      else
+        console.error('Error');
+    }
+    return null;
   }
 
   // To add a movie to the user favorite / watched list.
   async addMovie(user: User, toFav: Number, movieImdbId: String){
-    return await firstValueFrom(
-      this.http.put<String>(this.url + `addMovie/${toFav}/${movieImdbId}`, user)   // returns string (should be changed.)
-    );
+    try {
+      return await firstValueFrom(
+        this.http.put<String>(this.url + `addMovie/${toFav}/${movieImdbId}`, user)   // returns string (should be changed.)
+      );
+    } catch (error) {
+      if(error instanceof HttpErrorResponse)
+        console.error('Bad request');
+      else
+        console.error('Error');
+    }
+    return null;
   }
 
   // To remove a movie from the user favorite / watched list.
   async removeMovie(user: User, fromFav: Number, movieImdbId: String){
-    return await firstValueFrom(
-      this.http.put<String>(this.url + `removeMovie/${fromFav}/${movieImdbId}`, user)   // returns string (should be changed.)
-    );
+    try {
+      return await firstValueFrom(
+        this.http.put<String>(this.url + `removeMovie/${fromFav}/${movieImdbId}`, user)   // returns string (should be changed.)
+      );
+    } catch (error) {
+      if(error instanceof HttpErrorResponse)
+        console.error('Bad request');
+      else
+        console.error('Error');
+    }
+    return null;
   }
 
   // To get the metadata of a movie
   async fetchMovie(movieImdbId: String){
-    return await firstValueFrom(
-      this.http.get<Object>(this.url + `fetchMovie/${movieImdbId}`)      // returns movie object
-    );
+    try {
+      return await firstValueFrom(
+        this.http.get<Object>(this.url + `fetchMovie/${movieImdbId}`)      // returns movie object
+      );
+    } catch (error) {
+      if(error instanceof HttpErrorResponse)
+        console.error('Bad request');
+      else
+        console.error('Error');
+    }
+    return null;
   }
 
   // To search for movie, given its title
   async searchMovie(movieTitle: String){
-    return await firstValueFrom(
-      this.http.get<Array<Object>>(this.url + `searchMovie/${movieTitle}`)      // returns array of movie objects
-    );
+    try {
+      return await firstValueFrom(
+        this.http.get<Array<Object>>(this.url + `searchMovie/${movieTitle}`)      // returns array of movie objects
+      );
+    } catch (error) {
+      if(error instanceof HttpErrorResponse)
+        console.error('Bad request');
+      else
+        console.error('Error');
+    }
+    return null;
   }
 
 }

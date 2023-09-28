@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import com.cinewave.components.*;
 import java.util.Optional;
 
-@ComponentScan(basePackages = {"com.cinewave.components", "com.cinewave.core"})
+@ComponentScan(basePackages = {"com.cinewave.components", "com.cinewave.core", "com.cinewave.movieapi"})
 @SpringBootApplication
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/server/")
