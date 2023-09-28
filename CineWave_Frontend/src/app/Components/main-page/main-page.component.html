@@ -48,7 +48,7 @@
     </div>
     <ng-template #content>
         <div class="container">
-          <div *ngFor="let movie of moviesDisplayed_Metadata" class="movie watched" (click)="openMovie()">
+          <div *ngFor="let movie of moviesDisplayed_Metadata" class="movie watched" (click)="openMovie(movie)">
             <figure class="head">
               <div class="image-container">
                 <img [src]='Object.values(movie)[(Object.keys(movie)).indexOf("Poster")]' alt="Poster Not Available" loading="lazy" />
