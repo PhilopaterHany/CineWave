@@ -3,35 +3,47 @@
     <div class="container">
         <mat-tab-group>
             <mat-tab label="Login">
-                <form (ngSubmit)="login()">
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
                     <div>
                         <mat-icon>person</mat-icon>
-                        <input type="text" placeholder="Enter Username">
+                        <input type="text" placeholder="Enter Email" formControlName="email">
+                        <div *ngIf="this.loginForm.get('email')?.invalid && (this.loginForm.get('email')?.dirty || this.loginForm.get('email')?.touched)"
+                             class="inputClassError">Error</div>
                     </div>
                     <div>
                         <mat-icon>lock</mat-icon>
-                        <input type="password" placeholder="Enter Password">
+                        <input type="password" placeholder="Enter Password" formControlName="password">
+                        <div *ngIf="this.loginForm.get('password')?.invalid && (this.loginForm.get('password')?.dirty || this.loginForm.get('password')?.touched)"
+                             class="inputClassError">Error</div>
                     </div>
                     <button type="submit">Login</button>
                 </form>
             </mat-tab>
             <mat-tab label="Sign Up">
-                <form (ngSubmit)="signup()">
+                <form [formGroup]="signupForm" (ngSubmit)="signup()">
                     <div>
                         <mat-icon>mail</mat-icon>
-                        <input type="email" placeholder="Enter your e-mail address">
+                        <input type="email" placeholder="Enter your e-mail address" formControlName="email">
+                        <div *ngIf="this.signupForm.get('email')?.invalid && (this.signupForm.get('email')?.dirty || this.signupForm.get('email')?.touched)"
+                           class="inputClassError">Error</div>
                     </div>
                     <div>
                         <mat-icon>person</mat-icon>
-                        <input type="text" placeholder="Enter Username">
+                        <input type="text" placeholder="Enter Username" formControlName="username">
+                        <div *ngIf="this.signupForm.get('username')?.invalid && (this.signupForm.get('username')?.dirty || this.signupForm.get('username')?.touched)"
+                           class="inputClassError">Error</div>
                     </div>
                     <div>
                         <mat-icon>lock</mat-icon>
-                        <input type="password" placeholder="Enter your password">
+                        <input type="password" placeholder="Enter your password" formControlName="password">
+                        <div *ngIf="this.signupForm.get('password')?.invalid && (this.signupForm.get('password')?.dirty || this.signupForm.get('password')?.touched)"
+                           class="inputClassError">Error</div>
                     </div>
                     <div>
                         <mat-icon>lock_person</mat-icon>
-                        <input type="password" placeholder="Re-enter your password">
+                        <input type="password" placeholder="Re-enter your password" formControlName="re_password">
+                        <div *ngIf="this.signupForm.get('re_password')?.invalid && (this.signupForm.get('re_password')?.dirty || this.signupForm.get('re_password')?.touched)"
+                           class="inputClassError">Error</div>
                     </div>
                     <button type="submit">Sign Up</button>
                 </form>

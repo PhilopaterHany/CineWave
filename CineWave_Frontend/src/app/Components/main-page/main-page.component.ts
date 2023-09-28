@@ -23,8 +23,7 @@ export class MainPageComponent implements OnInit {
     this.loadingMoviesMetaData = true;
     if (this.default_moviesDisplayed_IDs) {
       const promises = this.default_moviesDisplayed_IDs.map(async (imdbID) => {
-        const metadata = await this.serverCaller.fetchMovie(imdbID);
-        this.moviesDisplayed_Metadata?.push(metadata);
+        this.moviesDisplayed_Metadata?.push(await this.serverCaller.fetchMovie(imdbID));
       });
 
       await Promise.all(promises);
@@ -52,10 +51,10 @@ export class MainPageComponent implements OnInit {
     }
 
   async search(){
-    console.log(this.moviesDisplayed_Metadata.length);
-    // console.log(await this.serverCaller.fetchMovie('tt1375666'));
-    // console.log(await this.serverCaller.searchMovie('Inception'));
-    // console.log(await this.serverCaller.signUp(<User>{'email': 'g@mail.com', 'password': '123'}))
+    let title = (document.getElementById("search-input") as HTMLInputElement).value;
+    if(title == "")
+      return;
+    this.moviesDisplayed_Metadata = await this.serverCaller.searchMovie(title);
   }
 
   addMovieToFavs(event: Event) {
