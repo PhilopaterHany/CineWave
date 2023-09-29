@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {UtilitiesService} from "../../Services/utilities.service";
-import {Router} from "@angular/router";
+import { UtilitiesService } from "../../Services/utilities.service";
+import { Router } from "@angular/router";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-    constructor(private router: Router, private utilitiesService: UtilitiesService) {}
+    constructor(private router: Router, public utilitiesService: UtilitiesService) {}
 
     clickSignIn() {
       this.router.navigateByUrl('/registration');
@@ -23,6 +24,13 @@ export class HeaderComponent {
       navList.classList.toggle('active');
     }
 
+    userActions() {
+      const userActionsList = document.querySelector(
+        'header .container .user ul'
+      ) as HTMLElement;
+      userActionsList.classList.toggle('show');
+    }
+
     navToFavorites(){
       this.utilitiesService.setCurrentUser({'name': 'John Doe', 'age': 25});    // testing .. should be deteleted.
       this.router.navigate(['/favorites']);
@@ -31,5 +39,26 @@ export class HeaderComponent {
     navToWatched(){
       this.utilitiesService.setCurrentUser({'name': 'John Doe 2', 'age': 25});    // testing .. should be deteleted.
       this.router.navigate(['/watched']);
+    }
+
+    logOut() {
+      console.log("Logging Out...");
+    }
+
+    deleteAccount() {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire('Deleted!', 'Your account has been deleted.', 'success');
+          // Call the delete user function from backend here
+        }
+      });
     }
 }

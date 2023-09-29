@@ -41,56 +41,59 @@ export class RegistrationPageComponent {
   });
 
   async login() {
-    // Handle login logic
     this.loginClicked = true;
-    console.log('Logging in...');
 
-    if(this.validateLoginData()){
+    if (this.validateLoginData()) {
       // the this.loginForm.value contain the form values, which are email and password
-      let user: User | null = await this.serverCaller.signIn(<User> this.loginForm.value)
-      if(user != null) {
+      let user: User | null = await this.serverCaller.signIn(<User> this.loginForm.value);
+
+      if (user) {
         this.loginClicked = false;
         this.utilitiesService.setCurrentUser(user);
         this.navigateToHome();
-      } else
+      } else {
         this.loginForm.reset();
+      }
     }
   }
 
   async signup() {
-    // Handle signup logic
     this.signUpClicked = true;
-    console.log('Signing up...');
 
-    if(this.validateSignUpData()) {
+    if (this.validateSignUpData()) {
       // the this.signupForm.value contain the form values, which are email, username and password
       let newUser: User | null = await this.serverCaller.signUp(<User>this.signupForm.value);
-      if(newUser != null){
+
+      if (newUser) {
         this.signUpClicked = false;
         this.utilitiesService.setCurrentUser(newUser);
         this.navigateToHome();
-      } else
+      } else {
         this.signupForm.reset();
+      }
     }
   }
 
   validateSignUpData() {
     let good = true;
+
     if(this.signupForm.get('password')?.value != this.signupForm.get('re_password')?.value)
       this.signupForm.get('re_password')?.reset();
+
     Object.keys(this.signupForm.value).map((key) => {
-      if(this.signupForm.get(key)?.invalid)
-        good = false;
+      if (this.signupForm.get(key)?.invalid) good = false;
     })
+
     return good;
   }
 
   validateLoginData() {
     let good = true;
+
     Object.keys(this.loginForm.value).map((key) => {
-      if(this.loginForm.get(key)?.invalid)
-        good = false;
-    })
+      if (this.loginForm.get(key)?.invalid) good = false;
+    });
+
     return good;
   }
 

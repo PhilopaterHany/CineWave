@@ -2,11 +2,11 @@
 <section>
     <div class="container">
         <mat-tab-group>
-            <mat-tab label="Login">
+            <mat-tab label="Sign In">
                 <form [formGroup]="loginForm" (ngSubmit)="login()">
                     <div>
-                        <mat-icon>person</mat-icon>
-                        <input type="text" placeholder="Enter Email" formControlName="email">
+                        <mat-icon>mail</mat-icon>
+                        <input type="email" placeholder="Enter Email" formControlName="email">
                         <div *ngIf="this.loginForm.get('email')?.invalid && loginClicked" class="input-error">
                             Invalid Input
                         </div>
@@ -18,7 +18,7 @@
                             Invalid Input
                         </div>
                     </div>
-                    <button type="submit">Login</button>
+                    <button type="submit">Sign In</button>
                 </form>
             </mat-tab>
             <mat-tab label="Sign Up">

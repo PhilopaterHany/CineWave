@@ -38,7 +38,13 @@ export class MoviePageComponent implements OnInit {
       if (isNaN(runtimeMinutes)) {
         this.movieMetadata.FormattedRuntime = 'Unknown';
       } else {
-        this.movieMetadata.FormattedRuntime = `${hours}h ${minutes}min`;
+        if (hours === 0 && minutes !== 0) {
+          this.movieMetadata.FormattedRuntime = `${minutes}min`;
+        } else if (hours !== 0 && minutes === 0) {
+          this.movieMetadata.FormattedRuntime = `${hours}h`;
+        } else {
+          this.movieMetadata.FormattedRuntime = `${hours}h ${minutes}min`;
+        }
       }
     }
 
@@ -56,5 +62,13 @@ export class MoviePageComponent implements OnInit {
     if (this.movieMetadata && this.movieMetadata.Genre) {
       this.genreList = this.movieMetadata.Genre.split(', ');
     }
+  }
+
+  addMovieToFavs() {
+    document.querySelector("main")?.classList.toggle("fav");
+  }
+  
+  addMovieToWatched() {
+    document.querySelector("main")?.classList.toggle("watched");
   }
 }

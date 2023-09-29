@@ -21,9 +21,19 @@
         </li>
       </ul>
     </nav>
-    <a (click)="clickSignIn()" class="signin">
-      Sign in
+    <a class="signin" (click)="clickSignIn()" *ngIf="utilitiesService.getCurrentUser()">
+      Sign in/up
       <mat-icon>login</mat-icon>
     </a>
+    <div class="user" (click)="userActions()" *ngIf="!utilitiesService.getCurrentUser()">
+      <ul>
+        <li><a (click)="logOut()">Log Out <mat-icon>login</mat-icon></a></li>
+        <li><a (click)="deleteAccount()">Delete Account <mat-icon>delete</mat-icon></a></li>
+      </ul>
+      <p>
+        <span>user</span> <!-- user's username should be displayed here -->
+        <mat-icon>expand_more</mat-icon>
+      </p>
+    </div>
   </div>
 </header>

@@ -6,8 +6,7 @@
   --oxford-blue-alpha: hsla(218, 39%, 14%, 0.5);
   --blue-black: hsl(222, 25%, 10%);
   --yellow: hsl(45, 100%, 54%);
-  --live-indicator: hsl(0, 79%, 63%);
-  --live-indicator-alpha: hsla(0, 79%, 63%, 0.5);
+  --red: hsl(0, 93%, 43%);
   --off-white: hsl(0, 0%, 88%);
   --white: hsl(0, 0%, 100%);
   --duration: 0.25s;
@@ -169,7 +168,7 @@ input::placeholder {
   left: unset;
 }
 .movies .container .movie.fav .head .overlay button:first-of-type mat-icon {
-  color: #b00020;
+  color: var(--red);
 }
 .movies .container .movie.watched .head .overlay button:last-of-type mat-icon {
   color: var(--yellow);
@@ -230,7 +229,7 @@ input::placeholder {
   color: var(--yellow);
 }
 .error-msg {
-    color: #b00020;
+    color: var(--red);
     font-weight: bold;
     font-size: 30px;
     grid-column: 1/-1;

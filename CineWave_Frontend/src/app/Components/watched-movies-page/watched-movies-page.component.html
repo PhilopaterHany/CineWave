@@ -8,7 +8,9 @@
         <div *ngFor="let obj of objectsArray" [ngStyle]="{'display': isHidden(obj) ? 'none' : 'block'}">
             <div class="movie watched" *ngIf="containsSearchText(obj.Title)">
                 <figure class="head">
-                    <img src="{{ obj.Poster }}" alt="{{ obj.Title }}">
+                    <div class="image-container">
+                        <img src="{{ obj.Poster }}" alt="{{ obj.Title }}">
+                    </div>
                     <div class="overlay">
                         <button id="favorite">
                             <mat-icon>favorite</mat-icon>
@@ -31,7 +33,7 @@
                         </p>
                     </div>
                     <div class="meta">
-                        <span class="quality">{{ obj.Rated }}</span>
+                        <span class="quality">{{ obj.Rated === "N/A" ? "Not Rated" : obj.Rated }}</span>
                         <p class="duration">
                             <mat-icon>schedule</mat-icon>
                             <span>{{ obj.Runtime }}</span>

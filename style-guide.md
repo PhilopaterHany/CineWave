@@ -12,17 +12,15 @@ The designs were created to the following widths:
 ### Primary
 
 ```css
---live-indicator-shadow: hsla(0, 79%, 63%, 0.5);
---rich-black-fogra-30: hsl(219, 32%, 10%);
---rich-black-fogra-29: hsl(222, 25%, 10%);
---live-indicator: hsl(0, 79%, 63%);
---oxford-blue-50: hsla(218, 39%, 14%, 0.8);
---oxford-blue: hsl(218, 39%, 14%);
---light-azure: hsl(214, 84%, 56%);
---off-white: hsl(0, 0%, 88%);
---yellow: hsl(45, 100%, 54%);
---white: hsl(0, 0%, 100%);
---azure: hsl(211, 100%, 50%);
+  --azure: hsl(211, 100%, 50%);
+  --light-azure: hsl(214, 84%, 56%);
+  --oxford-blue: hsl(218, 39%, 14%);
+  --oxford-blue-alpha: hsla(218, 39%, 14%, 0.5);
+  --blue-black: hsl(222, 25%, 10%);
+  --yellow: hsl(45, 100%, 54%);
+  --red: hsl(0, 93%, 43%);
+  --off-white: hsl(0, 0%, 88%);
+  --white: hsl(0, 0%, 100%);
 ```
 
 ## Typography
@@ -34,5 +32,5 @@ The designs were created to the following widths:
 
 ---
 
--   Family: [Cookie](https://fonts.google.com/specimen/Cookie)
--   Weights: 400
+-   Family: [Dancing Script](https://fonts.google.com/specimen/Dancing+Script)
+-   Weights: 700

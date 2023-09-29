@@ -16,8 +16,8 @@
                         </ul>
                     </div>
                     <div class="btns">
-                        <button class="favorite" title="Favorite"><mat-icon>favorite</mat-icon></button>
-                        <button class="watched" title="Watched"><mat-icon>bookmark</mat-icon></button>
+                        <button class="favorite" title="Favorite" (click)="addMovieToFavs()"><mat-icon>favorite</mat-icon></button>
+                        <button class="watched" title="Watched" (click)="addMovieToWatched()"><mat-icon>bookmark</mat-icon></button>
                     </div>
                 </div>
                 <div class="rating-box">
@@ -51,11 +51,11 @@
                 <span class="span-title">Released:&nbsp;</span>
                 <span>{{ movieMetadata.Released }}</span>
             </p>
-            <p>
+            <p *ngIf="movieMetadata.Director !== 'N/A'">
                 <span class="span-title">Director(s):&nbsp;</span>
                 <span>{{ movieMetadata.Director }}</span>
             </p>
-            <p>
+            <p *ngIf="movieMetadata.Writer !== 'N/A'">
                 <span class="span-title">Writer(s):&nbsp;</span>
                 <span>{{ movieMetadata.Writer }}</span>
             </p>
@@ -71,9 +71,13 @@
                 <span class="span-title">Language(s):&nbsp;</span>
                 <span>{{ movieMetadata.Language }}</span>
             </p>
-            <p>
+            <p *ngIf="movieMetadata.hasOwnProperty('BoxOffice')">
                 <span class="span-title">Box Office:&nbsp;</span>
                 <span>{{ movieMetadata.BoxOffice === "N/A" ? "Unavailable" : movieMetadata.BoxOffice }}</span>
+            </p>
+            <p *ngIf="!movieMetadata.hasOwnProperty('BoxOffice')">
+                <span class="span-title">Season(s):&nbsp;</span>
+                <span>{{ movieMetadata.totalSeasons }}</span>
             </p>
         </div>
     </section>
