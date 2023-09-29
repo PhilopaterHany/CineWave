@@ -21,11 +21,11 @@
         </li>
       </ul>
     </nav>
-    <a class="signin" (click)="clickSignIn()" *ngIf="utilitiesService.getCurrentUser()">
+    <a class="signin" (click)="clickSignIn()" *ngIf="!utilitiesService.getCurrentUser()">
       Sign in/up
       <mat-icon>login</mat-icon>
     </a>
-    <div class="user" (click)="userActions()" *ngIf="!utilitiesService.getCurrentUser()">
+    <div class="user" (click)="userActions()" *ngIf="utilitiesService.getCurrentUser()">
       <ul>
         <li><a (click)="logOut()">Log Out <mat-icon>login</mat-icon></a></li>
         <li><a (click)="deleteAccount()">Delete Account <mat-icon>delete</mat-icon></a></li>
