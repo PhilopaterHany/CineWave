@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { UtilitiesService } from "../../Services/utilities.service";
 import { Router } from "@angular/router";
 import Swal from 'sweetalert2';
+import {User} from "../../Interfaces/user";
+import {ServerCallerService} from "../../Services/server-caller.service";
 
 @Component({
   selector: 'app-header',
@@ -9,7 +11,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-    constructor(private router: Router, public utilitiesService: UtilitiesService) {}
+    protected username: String | undefined;
+    constructor(private router: Router,
+                public utilitiesService: UtilitiesService,
+                private serverCaller: ServerCallerService) {
+      let tempUser = utilitiesService.getCurrentUser();
+      if(tempUser) this.username = Object.values(tempUser)[Object.keys(tempUser).indexOf("username")];
+    }
 
     clickSignIn() {
       this.router.navigateByUrl('/registration');
@@ -32,17 +40,17 @@ export class HeaderComponent {
     }
 
     navToFavorites(){
-      this.utilitiesService.setCurrentUser({'name': 'John Doe', 'age': 25});    // testing .. should be deteleted.
       this.router.navigate(['/favorites']);
     }
 
     navToWatched(){
-      this.utilitiesService.setCurrentUser({'name': 'John Doe 2', 'age': 25});    // testing .. should be deteleted.
       this.router.navigate(['/watched']);
     }
 
     logOut() {
+      this.utilitiesService.setCurrentUser(undefined);
       console.log("Logging Out...");
+      this.router.navigate(['/']);
     }
 
     deleteAccount() {
@@ -54,10 +62,16 @@ export class HeaderComponent {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!',
-      }).then((result) => {
+      }).then(async (result) => {
         if (result.isConfirmed) {
-          Swal.fire('Deleted!', 'Your account has been deleted.', 'success');
-          // Call the delete user function from backend here
+          const deletionResult = await this.serverCaller.removeUser(<User>this.utilitiesService.getCurrentUser());
+          if(deletionResult) {
+            this.utilitiesService.setCurrentUser(undefined);
+            await Swal.fire('Deleted!', Object.values(deletionResult)[0], 'success');
+            await this.router.navigate(['/']);
+          } else {
+            await Swal.fire('Error!', "User account wasn't found", 'question');
+          }
         }
       });
     }

@@ -1,5 +1,7 @@
 package com.cinewave.core;
 
+import org.json.JSONObject;
+import org.json.JSONString;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -11,6 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import com.cinewave.components.*;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 @ComponentScan(basePackages = {"com.cinewave.components", "com.cinewave.core", "com.cinewave.movieapi"})
@@ -46,14 +52,17 @@ public class UserController {
 	}
 
 	@PostMapping(value = {"deleteUser"})
-	public ResponseEntity<String> deleteUser(@RequestBody User user) {
+	public ResponseEntity<Map<String, String>> deleteUser(@RequestBody User user) {
+		Map<String, String> tempMap = new HashMap<>();
 		if(!validateNewUserEmail(user.getEmail())) {
 			userRepository.deleteById(user.getEmail());
 			System.out.println("User has been deleted successfully.");
-			return new ResponseEntity<>("User has been deleted successfully.", HttpStatus.OK);
+			tempMap.put("Deletion Response", "User account has been deleted successfully.");
+			return new ResponseEntity<>(tempMap, HttpStatus.OK);
 		} else {
 			System.out.println("User wasn't found, and so it was not deleted.");
-			return new ResponseEntity<>("User was not found, and so it was not deleted.", HttpStatus.BAD_REQUEST);
+			tempMap.put("Deletion Response", "User account wasn't found, and so it was not deleted.");
+			return new ResponseEntity<>(tempMap, HttpStatus.BAD_REQUEST);
 		}
 	}
 

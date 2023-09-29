@@ -15,7 +15,7 @@
     border-bottom: 2px solid var(--azure);
     background-color: var(--oxford-blue-alpha);
 }
-@media (max-width: 1200px) {    
+@media (max-width: 1200px) {
     section {
         margin-top: 100px;
     }

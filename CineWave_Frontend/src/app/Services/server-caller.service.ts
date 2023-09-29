@@ -32,11 +32,11 @@ export class ServerCallerService {
   async removeUser(user: User){
     try {
       return await firstValueFrom(
-        this.http.post<String>(this.url + 'deleteUser', user)       // returns string
+        this.http.post<Object>(this.url + 'deleteUser', user)       // returns string
       );
-    } catch (error) {
-      if(error instanceof HttpErrorResponse)
-        console.error('Bad request');
+    } catch (err) {
+      if(err instanceof HttpErrorResponse)
+        console.error('Bad request', err.error);
       else
         console.error('Error');
     }
@@ -62,10 +62,10 @@ export class ServerCallerService {
   async addMovie(user: User, toFav: Number, movieImdbId: String){
     try {
       return await firstValueFrom(
-        this.http.put<String>(this.url + `addMovie/${toFav}/${movieImdbId}`, user)   // returns string (should be changed.)
+        this.http.put<User>(this.url + `addMovie/${toFav}/${movieImdbId}`, user)   // returns string (should be changed.)
       );
-    } catch (error) {
-      if(error instanceof HttpErrorResponse)
+    } catch (err) {
+      if(err instanceof HttpErrorResponse)
         console.error('Bad request');
       else
         console.error('Error');

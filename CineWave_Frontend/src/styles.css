@@ -234,7 +234,51 @@ input::placeholder {
     font-size: 30px;
     grid-column: 1/-1;
     text-align: center;
+    margin-top: 10px;
 }
+
+.spinner-holder {
+  display: block !important;
+}
+.loading-spinner {
+  margin-inline: auto;
+  flex-direction: column;
+  display: inline-block;
+  gap: 15px;
+}
+.loading-spinner,
+.loading-spinner span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loading-spinner span::before {
+  content: "";
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border: 7px solid var(--azure);
+  border-left-color: transparent;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.loading-spinner p {
+  font-size: 22px;
+  margin-block: 10px;
+  text-align: center;
+}
+
 @media (max-width: 767px) {
   .container {
     padding-inline: 15px;

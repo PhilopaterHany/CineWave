@@ -1,85 +1,32 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { UtilitiesService } from 'src/app/Services/utilities.service';
+import {ServerCallerService} from "../../Services/server-caller.service";
 
 @Component({
   selector: 'app-favorite-movies-page',
   templateUrl: './favorite-movies-page.component.html',
   styleUrls: ['./favorite-movies-page.component.css'],
 })
-export class FavoriteMoviesPageComponent {
-  constructor(public utilitiesService: UtilitiesService) {
-    // to use the currentUser object -> this.utilitiesService.getCurrentUser()
-  }
+export class FavoriteMoviesPageComponent implements OnInit{
+  protected searchText: string = '';
+  protected objectsArray: Array<Object> = [];
+  protected readonly Object = Object;
+  protected loadingMoviesMetaData: Boolean = true;
+  constructor(public utilitiesService: UtilitiesService, private serverCaller: ServerCallerService) {}
 
-  searchText: string = '';
-  objectsArray = [
-    {
-      Title: 'Inception',
-      Year: '2010',
-      Rated: 'PG-13',
-      Released: '16 Jul 2010',
-      Runtime: '148 min',
-      Genre: 'Action, Adventure, Sci-Fi',
-      imdbRating: '8.8',
-      Poster:
-        'https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg',
-    },
-    {
-      Title: 'The Dark Knight',
-      Year: '2008',
-      Rated: 'PG-13',
-      Released: '18 Jul 2008',
-      Runtime: '152 min',
-      Genre: 'Action, Crime, Drama',
-      imdbRating: '9.0',
-      Poster:
-        'https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg',
-    },
-    {
-      Title: 'Green Book',
-      Year: '2018',
-      Rated: 'PG-13',
-      Released: '16 Nov 2018',
-      Runtime: '130 min',
-      Genre: 'Biography, Comedy, Drama',
-      imdbRating: '8.2',
-      Poster:
-        'https://m.media-amazon.com/images/M/MV5BYzIzYmJlYTYtNGNiYy00N2EwLTk4ZjItMGYyZTJiOTVkM2RlXkEyXkFqcGdeQXVyODY1NDk1NjE@._V1_SX300.jpg',
-    },
-    {
-      Title: 'The Shawshank Redemption',
-      Year: '1994',
-      Rated: 'R',
-      Released: '14 Oct 1994',
-      Runtime: '142 min',
-      Genre: 'Drama',
-      imdbRating: '9.3',
-      Poster:
-        'https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_SX300.jpg',
-    },
-    {
-      Title: 'Oppenheimer',
-      Year: '2023',
-      Rated: 'R',
-      Released: '21 Jul 2023',
-      Runtime: '180 min',
-      Genre: 'Biography, Drama, History',
-      imdbRating: '8.6',
-      Poster:
-        'https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_SX300.jpg',
-    },
-    {
-      Title: 'Interstellar',
-      Year: '2014',
-      Rated: 'PG-13',
-      Released: '07 Nov 2014',
-      Runtime: '169 min',
-      Genre: 'Adventure, Drama, Sci-Fi',
-      imdbRating: '8.7',
-      Poster:
-        'https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg',
-    },
-  ];
+  async ngOnInit(): Promise<void> {
+    this.loadingMoviesMetaData = true;
+    let tempObj = this.utilitiesService.getCurrentUser();
+    this.objectsArray = [];
+    if(tempObj)
+      Object.values(tempObj)[Object.keys(tempObj).indexOf("favourites")].map(async (imdbId: String) => {
+        let movieObj = await this.serverCaller.fetchMovie(imdbId);
+        if(movieObj)
+          this.objectsArray.push(movieObj);
+      })
+    console.log(this.objectsArray);
+    this.loadingMoviesMetaData = false;
+  }
   containsSearchText(name: string): boolean {
     return name.toLowerCase().includes(this.searchText.toLowerCase());
   }
@@ -91,5 +38,10 @@ export class FavoriteMoviesPageComponent {
   }
   noMatchesFound(): boolean {
     return this.objectsArray.every((movie) => !this.isMatching(movie));
+  }
+
+  async processAndAddMovie(event: Event, movie: Object, toFromFavs: boolean){
+    await this.utilitiesService.addMovieTo(event, movie, toFromFavs);
+    await this.ngOnInit();
   }
 }

@@ -48,16 +48,16 @@
     </div>
     <ng-template #content>
         <div class="container">
-          <div *ngFor="let movie of moviesDisplayed_Metadata" class="movie watched" (click)="openMovie(movie)">
+          <div *ngFor="let movie of moviesDisplayed_Metadata" class="movie" (click)="this.utilitiesService.openMovie(movie)">
             <figure class="head">
               <div class="image-container">
                 <img [src]='Object.values(movie)[(Object.keys(movie)).indexOf("Poster")]' alt="Poster Not Available" loading="lazy" />
               </div>
               <div class="overlay">
-                <button (click)="addMovieToFavs($event)" title="Add To Favorites">
+                <button (click)="this.utilitiesService.addMovieTo($event, movie, true)" title="Add To Favorites">
                   <mat-icon>favorite</mat-icon>
                 </button>
-                <button (click)="addMovieToWatched($event)" title="Add To Watched">
+                <button (click)="this.utilitiesService.addMovieTo($event, movie, false)" title="Add To Watched">
                   <mat-icon>bookmark</mat-icon>
                 </button>
               </div>

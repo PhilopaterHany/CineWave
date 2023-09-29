@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import { MovieDataService } from "../../Services/movie-data.service";
 import { UtilitiesService } from 'src/app/Services/utilities.service';
-import { HttpClient } from '@angular/common/http';
 import { ServerCallerService } from 'src/app/Services/server-caller.service';
 import { User } from 'src/app/Interfaces/user';
 
@@ -12,7 +11,6 @@ import { User } from 'src/app/Interfaces/user';
   styleUrls: ['./main-page.component.css'],
 })
 export class MainPageComponent implements OnInit {
-  protected moviesDisplayed_IDs: Array<String> | undefined;
   protected moviesDisplayed_Metadata: Array<Object> | null = [];
   protected default_moviesDisplayed_IDs: Array<String> | undefined;
   protected loadingMoviesMetaData: Boolean = false;
@@ -54,26 +52,6 @@ export class MainPageComponent implements OnInit {
       this.loadingMoviesMetaData = false;
       this.isSearching = false;
     }
-  }
-
-  addMovieToFavs(event: Event) {
-    event.stopPropagation();
-    const favBtn = event.target as HTMLElement;
-    const movieDiv = favBtn?.parentElement?.parentElement?.parentElement?.parentElement;
-    movieDiv?.classList.toggle('fav');
-  }
-
-  addMovieToWatched(event: Event) {
-    event.stopPropagation();
-    const watchedBtn = event.target as HTMLElement;
-    const movieDiv = watchedBtn?.parentElement?.parentElement?.parentElement?.parentElement;
-    movieDiv?.classList.toggle('watched');
-  }
-
-  openMovie(movieObj: Object) {
-    console.log(movieObj);
-    this.movieDataService.setMovieMetaData(movieObj);
-    this.router.navigate(['/movie']);
   }
 
   async initDefaultMovies() {
