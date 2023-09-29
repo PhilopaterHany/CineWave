@@ -6,8 +6,7 @@
   --oxford-blue-alpha: hsla(218, 39%, 14%, 0.5);
   --blue-black: hsl(222, 25%, 10%);
   --yellow: hsl(45, 100%, 54%);
-  --live-indicator: hsl(0, 79%, 63%);
-  --live-indicator-alpha: hsla(0, 79%, 63%, 0.5);
+  --red: hsl(0, 93%, 43%);
   --off-white: hsl(0, 0%, 88%);
   --white: hsl(0, 0%, 100%);
   --duration: 0.25s;
@@ -107,20 +106,30 @@ input::placeholder {
   position: relative;
   overflow: hidden;
 }
+.movies .container .movie .head .image-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 150%;
+}
+.movies .container .movie .head .image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-transition: var(--duration) ease-in-out;
+  -moz-transition: var(--duration) ease-in-out;
+  -ms-transition: var(--duration) ease-in-out;
+  -o-transition: var(--duration) ease-in-out;
+  transition: var(--duration) ease-in-out;
+}
 .movies .container .movie:hover .head img {
   -webkit-transform: scale(1.05) rotate(1deg);
   -moz-transform: scale(1.05) rotate(1deg);
   -ms-transform: scale(1.05) rotate(1deg);
   -o-transform: scale(1.05) rotate(1deg);
   transform: scale(1.05) rotate(1deg);
-}
-.movies .container .movie .head img {
-  max-width: 100%;
-  -webkit-transition: var(--duration) ease-in-out;
-  -moz-transition: var(--duration) ease-in-out;
-  -ms-transition: var(--duration) ease-in-out;
-  -o-transition: var(--duration) ease-in-out;
-  transition: var(--duration) ease-in-out;
 }
 .movies .container .movie .head .overlay {
   position: absolute;
@@ -154,14 +163,14 @@ input::placeholder {
   -o-border-radius: 5px;
   border-radius: 5px;
 }
-.movies .container .movie .head .overlay #watched {
+.movies .container .movie .head .overlay button:last-of-type {
   right: 10px;
   left: unset;
 }
-.movies .container .movie.fav .head .overlay #favorite mat-icon {
-  color: #b00020;
+.movies .container .movie.fav .head .overlay button:first-of-type mat-icon {
+  color: var(--red);
 }
-.movies .container .movie.watched .head .overlay #watched mat-icon {
+.movies .container .movie.watched .head .overlay button:last-of-type mat-icon {
   color: var(--yellow);
 }
 .movies .container .movie .body {
@@ -174,7 +183,7 @@ input::placeholder {
   align-items: flex-end;
 }
 .movies .container .movie .body .title {
-  min-height: 50px;
+  min-height: 85px;
   font-weight: bold;
   font-size: 16px;
 }
@@ -220,12 +229,56 @@ input::placeholder {
   color: var(--yellow);
 }
 .error-msg {
-    color: #b00020;
+    color: var(--red);
     font-weight: bold;
     font-size: 30px;
     grid-column: 1/-1;
     text-align: center;
+    margin-top: 10px;
 }
+
+.spinner-holder {
+  display: block !important;
+}
+.loading-spinner {
+  margin-inline: auto;
+  flex-direction: column;
+  display: inline-block;
+  gap: 15px;
+}
+.loading-spinner,
+.loading-spinner span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loading-spinner span::before {
+  content: "";
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border: 7px solid var(--azure);
+  border-left-color: transparent;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.loading-spinner p {
+  font-size: 22px;
+  margin-block: 10px;
+  text-align: center;
+}
+
 @media (max-width: 767px) {
   .container {
     padding-inline: 15px;

@@ -2,36 +2,54 @@
 <section>
     <div class="container">
         <mat-tab-group>
-            <mat-tab label="Login">
-                <form (ngSubmit)="login()">
+            <mat-tab label="Sign In">
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
                     <div>
-                        <mat-icon>person</mat-icon>
-                        <input type="text" placeholder="Enter Username">
+                        <mat-icon>mail</mat-icon>
+                        <input type="email" placeholder="Enter Email" formControlName="email">
+                        <div *ngIf="this.loginForm.get('email')?.invalid && loginClicked" class="input-error">
+                            Invalid Input
+                        </div>
                     </div>
                     <div>
                         <mat-icon>lock</mat-icon>
-                        <input type="password" placeholder="Enter Password">
+                        <input type="password" placeholder="Enter Password" formControlName="password">
+                        <div *ngIf="this.loginForm.get('password')?.invalid && loginClicked" class="input-error">
+                            Invalid Input
+                        </div>
                     </div>
-                    <button type="submit">Login</button>
+                    <button type="submit">Sign In</button>
                 </form>
             </mat-tab>
             <mat-tab label="Sign Up">
-                <form (ngSubmit)="signup()">
+                <form [formGroup]="signupForm" (ngSubmit)="signup()">
                     <div>
                         <mat-icon>mail</mat-icon>
-                        <input type="email" placeholder="Enter your e-mail address">
+                        <input type="email" placeholder="Enter your e-mail address" formControlName="email">
+                        <div *ngIf="this.signupForm.get('email')?.invalid && signUpClicked" class="input-error">
+                            Invalid Input
+                        </div>
                     </div>
                     <div>
                         <mat-icon>person</mat-icon>
-                        <input type="text" placeholder="Enter Username">
+                        <input type="text" placeholder="Enter Username" formControlName="username">
+                        <div *ngIf="this.signupForm.get('username')?.invalid && signUpClicked" class="input-error">
+                            Invalid Input
+                        </div>
                     </div>
                     <div>
                         <mat-icon>lock</mat-icon>
-                        <input type="password" placeholder="Enter your password">
+                        <input type="password" placeholder="Enter your password" formControlName="password">
+                        <div *ngIf="this.signupForm.get('password')?.invalid && signUpClicked" class="input-error">
+                            Invalid Input
+                        </div>
                     </div>
                     <div>
                         <mat-icon>lock_person</mat-icon>
-                        <input type="password" placeholder="Re-enter your password">
+                        <input type="password" placeholder="Re-enter your password" formControlName="re_password">
+                        <div *ngIf="this.signupForm.get('re_password')?.invalid && signUpClicked" class="input-error">
+                            Invalid Input
+                        </div>
                     </div>
                     <button type="submit">Sign Up</button>
                 </form>

@@ -1,59 +1,64 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
-import {MovieDataService} from "../../Services/movie-data.service";
+import { MovieDataService } from "../../Services/movie-data.service";
 import { UtilitiesService } from 'src/app/Services/utilities.service';
+import { ServerCallerService } from 'src/app/Services/server-caller.service';
+import { User } from 'src/app/Interfaces/user';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css'],
 })
-export class MainPageComponent {
-  currentYear: any = new Date().getFullYear();
-  constructor(private router: Router, private movieDataService: MovieDataService, private utilitiesService: UtilitiesService) {
+export class MainPageComponent implements OnInit {
+  protected moviesDisplayed_Metadata: Array<Object> | null = [];
+  protected default_moviesDisplayed_IDs: Array<String> | undefined;
+  protected loadingMoviesMetaData: Boolean = false;
+  protected readonly Object = Object;
+
+  async ngOnInit(): Promise<void> {
+    this.loadingMoviesMetaData = true;
+    await this.initDefaultMovies();
+    this.loadingMoviesMetaData = false;
+    console.log(this.utilitiesService.getCurrentUser());
   }
 
-  openMovie() {
-    this.movieDataService.setMovieMetaData({
-      "Metascore": "74",
-      "BoxOffice": "$292,587,330",
-      "Website": "N/A",
-      "imdbRating": "8.8",
-      "imdbVotes": "2,462,841",
-      "Ratings": [
-        {
-          "Value": "8.8/10",
-          "Source": "Internet Movie Database"
-        },
-        {
-          "Value": "87%",
-          "Source": "Rotten Tomatoes"
-        },
-        {
-          "Value": "74/100",
-          "Source": "Metacritic"
-        }
-      ],
-      "Runtime": "148 min",
-      "Language": "English, Japanese, French",
-      "Rated": "PG-13",
-      "Production": "N/A",
-      "Released": "16 Jul 2010",
-      "imdbID": "tt1375666",
-      "Plot": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.",
-      "Director": "Christopher Nolan",
-      "Title": "Inception",
-      "Actors": "Leonardo DiCaprio, Joseph Gordon-Levitt, Elliot Page",
-      "Response": "True",
-      "Type": "movie",
-      "Awards": "Won 4 Oscars. 159 wins & 220 nominations total",
-      "DVD": "20 Jun 2013",
-      "Year": "2010",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
-      "Country": "United States, United Kingdom",
-      "Genre": "Action, Adventure, Sci-Fi",
-      "Writer": "Christopher Nolan"
-    });
-    this.router.navigate(['/movie']);
+  constructor(
+    private router: Router,
+    private movieDataService: MovieDataService,
+    public utilitiesService: UtilitiesService,
+    private serverCaller: ServerCallerService
+  ) {
+    this.default_moviesDisplayed_IDs = [
+      'tt5071412',
+      'tt0816692',
+      'tt0468569',
+      'tt0111161',
+      'tt3032476',
+      'tt15398776',
+      'tt0903747',
+      'tt0944947',
+    ];
+  }
+
+  async search() {
+    this.loadingMoviesMetaData = true;
+    // this.isSearching = true;
+    let title = (document.getElementById('search-input') as HTMLInputElement).value;
+    if (title == '') return;
+    this.moviesDisplayed_Metadata = await this.serverCaller.searchMovie(title);
+    if (this.moviesDisplayed_Metadata)
+      this.loadingMoviesMetaData = false;
+  }
+
+  async initDefaultMovies() {
+    if (this.default_moviesDisplayed_IDs) {
+      const promises = this.default_moviesDisplayed_IDs.map(async (imdbID) => {
+        let movieData = await this.serverCaller.fetchMovie(imdbID);
+        if (movieData != null) this.moviesDisplayed_Metadata?.push(movieData);
+      });
+
+      await Promise.all(promises);
+    }
   }
 }

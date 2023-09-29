@@ -1,5 +1,7 @@
 package com.cinewave.core;
 
+import org.json.JSONObject;
+import org.json.JSONString;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -11,9 +13,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import com.cinewave.components.*;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
-@ComponentScan(basePackages = {"com.cinewave.components", "com.cinewave.core"})
+@ComponentScan(basePackages = {"com.cinewave.components", "com.cinewave.core", "com.cinewave.movieapi"})
 @SpringBootApplication
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/server/")
@@ -40,52 +46,86 @@ public class UserController {
 				return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 			}
 		} else {
-			System.out.println("User Creation Failed, Id is already taken.");
+			System.out.println("User Creation Failed, email is already taken.");
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
 
 	@PostMapping(value = {"deleteUser"})
-	public ResponseEntity<String> deleteUser(@RequestBody User user) {
+	public ResponseEntity<Map<String, String>> deleteUser(@RequestBody User user) {
+		Map<String, String> tempMap = new HashMap<>();
 		if(!validateNewUserEmail(user.getEmail())) {
 			userRepository.deleteById(user.getEmail());
-			System.out.println("User Has Been Deleted Successfully.");
-			return new ResponseEntity<>("User deleted Successfully.", HttpStatus.OK);
+			System.out.println("User has been deleted successfully.");
+			tempMap.put("Deletion Response", "User account has been deleted successfully.");
+			return new ResponseEntity<>(tempMap, HttpStatus.OK);
 		} else {
 			System.out.println("User wasn't found, and so it was not deleted.");
-			return new ResponseEntity<>("User was not found, and so it was not deleted.", HttpStatus.BAD_REQUEST);
+			tempMap.put("Deletion Response", "User account wasn't found, and so it was not deleted.");
+			return new ResponseEntity<>(tempMap, HttpStatus.BAD_REQUEST);
 		}
 	}
 
 
 	@PutMapping(value = {"addMovie/{addToFav}/{movieIMDB}"})
-	public ResponseEntity<String> addMovie(@PathVariable boolean addToFav, @PathVariable String movieIMDB, @RequestBody User user) {
+	public ResponseEntity<User> addMovie(@PathVariable boolean addToFav, @PathVariable String movieIMDB, @RequestBody User user) {
 		Optional<User> tempUser = userRepository.findById(user.getEmail());
 		if(tempUser.isEmpty()){
 			System.out.println("User does not exist on the system database.");
-			return new ResponseEntity<>("User does not exist.", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 		user = tempUser.get();
 		if(addToFav) {
 			if(user.addFavourites(movieIMDB)) {	// if the movie is already there, it will return false.
 				userRepository.save(user);
 				System.out.println("Movie has been added to favourites list successfully.");
-				return new ResponseEntity<>("Movie is added To Favourites", HttpStatus.OK);
+				return new ResponseEntity<>(user, HttpStatus.OK);
 			}
 			else {
 				System.out.println("Movie was already found in the favourites list.");
-				return new ResponseEntity<>("Movie is already present.", HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
 			}
 		}
 		else {
 			if(user.addWatched(movieIMDB)) {
 				userRepository.save(user);
 				System.out.println("Movie has been added to watched list successfully.");
-				return new ResponseEntity<>("Movie is added To Watched", HttpStatus.OK);
+				return new ResponseEntity<>(user, HttpStatus.OK);
 			}
 			else {
 				System.out.println("Movie was already found in the watched list.");
-				return new ResponseEntity<>("Movie is already present.", HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
+			}
+		}
+	}
+
+	@PutMapping(value = {"removeMovie/{removeFromFav}/{movieIMDB}"})
+	public ResponseEntity<User> removeMovie(@PathVariable boolean removeFromFav, @PathVariable String movieIMDB, @RequestBody User user){
+		Optional<User> tempUser = userRepository.findById(user.getEmail());
+		if(tempUser.isEmpty()){
+			System.out.println("User does not exist on the system database.");
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+		user = tempUser.get();
+		if(removeFromFav) {
+			if(user.removeFavourites(movieIMDB)) {	// if the movie is already there, it will return false.
+				userRepository.save(user);
+				System.out.println("Movie has been removed from favourites list successfully.");
+				return new ResponseEntity<>(user, HttpStatus.OK);
+			}
+			else {
+				System.out.println("Movie was not found in the favourites list.");
+				return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
+			}
+		} else {
+			if(user.removeWatched(movieIMDB)) {
+				userRepository.save(user);
+				System.out.println("Movie has been removed from watched list successfully.");
+				return new ResponseEntity<>(user, HttpStatus.OK);
+			}
+			else {
+				System.out.println("Movie was not found in the watched list.");
+				return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
 			}
 		}
 	}

@@ -14,7 +14,7 @@ form div mat-icon {
     position: absolute;
     color: var(--yellow);
     top: 13px;
-    left: 5px;
+    left: 8px;
     font-size: 20px;
 }
 form div input {
@@ -24,9 +24,18 @@ form div input {
     border-bottom: 2px solid var(--azure);
     background-color: var(--oxford-blue-alpha);
 }
+form div input.error {
+    border-color: #b00020;
+}
 form div input::-ms-reveal {
     -webkit-filter: invert(100%);
     filter: invert(100%);
+}
+form div .input-error {
+    margin-top: 10px;
+    color: var(--red);
+    font-size: 17px;
+    font-weight: bold;
 }
 form button {
     width: 25%;

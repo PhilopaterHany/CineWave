@@ -89,6 +89,7 @@
     padding: 10px;
     color: #000;
     background-color: var(--yellow);
+    user-select: none;
 }
 .main-details .info .awards-holder span:not(.movie-awards)::after {
     content: "";
@@ -132,7 +133,7 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 60px;
+    width: 50px;
     padding-block: 15px;
     background-color: var(--oxford-blue);
     -webkit-border-radius: 5px;
@@ -141,10 +142,10 @@
     -o-border-radius: 5px;
     border-radius: 5px;
 }
-main.fav button.favorite mat-icon {
-    color: #b00020 !important;
+main button.favorite mat-icon {
+    color: var(--red) !important;
 }
-main.watched button.watched mat-icon {
+main button.watched mat-icon {
     color: var(--yellow) !important;
 }
 @media (max-width: 1200px) {

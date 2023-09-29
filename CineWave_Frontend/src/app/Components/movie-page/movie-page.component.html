@@ -11,13 +11,13 @@
                         <h1>{{ movieMetadata.Title }}</h1>
                         <ul>
                             <li>{{ movieMetadata.Year }}</li>
-                            <li>{{ movieMetadata.Rated }}</li>
+                            <li>{{ movieMetadata.Rated === "N/A" ? "Not Rated" : movieMetadata.Rated }}</li>
                             <li>{{ movieMetadata.FormattedRuntime }}</li>
                         </ul>
                     </div>
                     <div class="btns">
-                        <button class="favorite" title="Favorite"><mat-icon>favorite</mat-icon></button>
-                        <button class="watched" title="Watched"><mat-icon>bookmark</mat-icon></button>
+                        <button [ngClass]="{'favorite': this.utilitiesService.isInFavOrWatched(movieMetadata, true)}" title="Favorite" (click)="this.utilitiesService.addMovieTo_($event, movieMetadata, true)"><mat-icon>favorite</mat-icon></button>
+                        <button [ngClass]="{'watched': this.utilitiesService.isInFavOrWatched(movieMetadata, false)}" title="Watched" (click)="this.utilitiesService.addMovieTo_($event, movieMetadata, false)"><mat-icon>bookmark</mat-icon></button>
                     </div>
                 </div>
                 <div class="rating-box">
@@ -51,11 +51,11 @@
                 <span class="span-title">Released:&nbsp;</span>
                 <span>{{ movieMetadata.Released }}</span>
             </p>
-            <p>
+            <p *ngIf="movieMetadata.Director !== 'N/A'">
                 <span class="span-title">Director(s):&nbsp;</span>
                 <span>{{ movieMetadata.Director }}</span>
             </p>
-            <p>
+            <p *ngIf="movieMetadata.Writer !== 'N/A'">
                 <span class="span-title">Writer(s):&nbsp;</span>
                 <span>{{ movieMetadata.Writer }}</span>
             </p>
@@ -71,9 +71,13 @@
                 <span class="span-title">Language(s):&nbsp;</span>
                 <span>{{ movieMetadata.Language }}</span>
             </p>
-            <p>
+            <p *ngIf="movieMetadata.hasOwnProperty('BoxOffice')">
                 <span class="span-title">Box Office:&nbsp;</span>
-                <span>{{ movieMetadata.BoxOffice }}</span>
+                <span>{{ movieMetadata.BoxOffice === "N/A" ? "Unavailable" : movieMetadata.BoxOffice }}</span>
+            </p>
+            <p *ngIf="!movieMetadata.hasOwnProperty('BoxOffice')">
+                <span class="span-title">Season(s):&nbsp;</span>
+                <span>{{ movieMetadata.totalSeasons }}</span>
             </p>
         </div>
     </section>

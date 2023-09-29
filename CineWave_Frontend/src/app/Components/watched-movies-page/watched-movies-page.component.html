@@ -4,47 +4,61 @@
         <mat-icon>search</mat-icon>
         <input type="text" [(ngModel)]="searchText" placeholder="Search in your watched movies">
     </div>
-    <div class="container">
-        <div *ngFor="let obj of objectsArray" [ngStyle]="{'display': isHidden(obj) ? 'none' : 'block'}">
-            <div class="movie watched" *ngIf="containsSearchText(obj.Title)">
-                <figure class="head">
-                    <img src="{{ obj.Poster }}" alt="{{ obj.Title }}">
-                    <div class="overlay">
-                        <button id="favorite">
-                            <mat-icon>favorite</mat-icon>
-                        </button>
-                        <button id="watched">
-                            <mat-icon>bookmark</mat-icon>
-                        </button>
-                    </div>
-                </figure>
-                <div class="body">
-                    <h3 class="title">{{ obj.Title }}</h3>
-                    <div class="props">
-                        <p class="genres">
-                            <mat-icon>theaters</mat-icon>
-                            <span>{{ formatGenres(obj.Genre) }}</span>
-                        </p>
-                        <p class="year">
-                            <mat-icon>calendar_month</mat-icon>
-                            <span>{{ obj.Year }}</span>
-                        </p>
-                    </div>
-                    <div class="meta">
-                        <span class="quality">{{ obj.Rated }}</span>
-                        <p class="duration">
-                            <mat-icon>schedule</mat-icon>
-                            <span>{{ obj.Runtime }}</span>
-                        </p>
-                        <p class="rating">
-                            <mat-icon>star</mat-icon>
-                            <span>{{ obj.imdbRating }}</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <p class="error-msg" *ngIf="noMatchesFound()">Sorry, no movies found match the written string.</p>
+  <div class="container spinner-holder" *ngIf="this.loadingMoviesMetaData; else content">
+    <div class="loading-spinner">
+      <span></span>
+      <p>Loading...</p>
     </div>
+  </div>
+    <ng-template #content>
+      <div class="container">
+          <div *ngFor="let obj of objectsArray" [ngStyle]="{'display': isHidden(obj) ? 'none' : 'block'}" (click)="this.utilitiesService.openMovie(obj)">
+              <div [ngClass]="{
+                 'movie': true,
+                 'fav': this.utilitiesService.isInFavOrWatched(obj, true),
+                 'watched': this.utilitiesService.isInFavOrWatched(obj, false)
+                 }" *ngIf="containsSearchText((Object.values(obj)[(Object.keys(obj)).indexOf('Title')]))">
+                  <figure class="head">
+                      <div class="image-container">
+                          <img src="{{ (Object.values(obj)[(Object.keys(obj)).indexOf('Poster')]) }}" alt="{{ (Object.values(obj)[(Object.keys(obj)).indexOf('Title')]) }}">
+                      </div>
+                      <div class="overlay">
+                          <button (click)="processAndAddMovie($event, obj, true)" id="favorite" title="Add To Favorites">
+                            <mat-icon>favorite</mat-icon>
+                          </button>
+                          <button (click)="processAndAddMovie($event, obj, false)" id="watched" title="Add To Watched">
+                            <mat-icon>bookmark</mat-icon>
+                          </button>
+                      </div>
+                  </figure>
+                  <div class="body">
+                      <h3 class="title">{{ (Object.values(obj)[(Object.keys(obj)).indexOf('Title')]) }}</h3>
+                      <div class="props">
+                          <p class="genres">
+                              <mat-icon>theaters</mat-icon>
+                              <span>{{ utilitiesService.formatGenres((Object.values(obj)[(Object.keys(obj)).indexOf('Genre')])) }}</span>
+                          </p>
+                          <p class="year">
+                              <mat-icon>calendar_month</mat-icon>
+                              <span>{{ (Object.values(obj)[(Object.keys(obj)).indexOf('Year')]) }}</span>
+                          </p>
+                      </div>
+                      <div class="meta">
+                          <span class="quality">{{ (Object.values(obj)[(Object.keys(obj)).indexOf('Rated')]) === "N/A" ? "Not Rated" : (Object.values(obj)[(Object.keys(obj)).indexOf('Rated')]) }}</span>
+                          <p class="duration">
+                              <mat-icon>schedule</mat-icon>
+                              <span>{{ (Object.values(obj)[(Object.keys(obj)).indexOf('Runtime')]) }}</span>
+                          </p>
+                          <p class="rating">
+                              <mat-icon>star</mat-icon>
+                              <span>{{ (Object.values(obj)[(Object.keys(obj)).indexOf('imdbRating')]) }}</span>
+                          </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <p class="error-msg" *ngIf="noMatchesFound()">Sorry, no movies found.</p>
+      </div>
+    </ng-template>
 </section>
 <app-footer></app-footer>

@@ -33,7 +33,7 @@ header .container .burger-menu span {
   display: block;
   height: 2px;
   width: 100%;
-  background-color: #fff;
+  background-color: var(--white);
   transition: var(--duration) ease-in-out;
   -webkit-transition: var(--duration) ease-in-out;
   -moz-transition: var(--duration) ease-in-out;
@@ -118,6 +118,80 @@ header .container .signin mat-icon {
   color: var(--light-azure);
   font-size: 22px;
 }
+header .container .user {
+  position: relative;
+  cursor: pointer;
+}
+header .container .user ul {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+  position: absolute;
+  top: 35px;
+  right: 0;
+  width: 220px;
+  height: 150px;
+  z-index: 3;
+  background-color: var(--oxford-blue);
+}
+header .container .user ul.show {
+  display: flex;
+}
+header .container .user ul::before {
+  content: "";
+  position: absolute;
+  top: -19px;
+  right: 5px;
+  border: 10px solid;
+  border-color: transparent transparent var(--oxford-blue) transparent;
+}
+header .container .user ul li,
+header .container .user ul li a {
+  width: 100%;
+}
+header .container .user ul li a {
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  -webkit-transition: var(--duration) ease-in-out;
+  -moz-transition: var(--duration) ease-in-out;
+  -ms-transition: var(--duration) ease-in-out;
+  -o-transition: var(--duration) ease-in-out;
+  transition: var(--duration) ease-in-out;
+}
+header .container .user ul li a:hover {
+  color: var(--red);
+}
+header .container .user ul li a mat-icon {
+  font-size: 18px;
+  position: relative;
+  top: 11px;
+  color: var(--red);
+}
+header .container .user p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+header .container .user p mat-icon {
+  color: var(--yellow);
+  -webkit-transition: var(--duration) ease-in-out;
+  -moz-transition: var(--duration) ease-in-out;
+  -ms-transition: var(--duration) ease-in-out;
+  -o-transition: var(--duration) ease-in-out;
+  transition: var(--duration) ease-in-out;
+}
+header .container .user ul.show + p mat-icon {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
 @media (max-width: 1199px) {
   header {
     width: 100%;
@@ -125,7 +199,6 @@ header .container .signin mat-icon {
     top: 0;
     left: 0;
     z-index: 2;
-    overflow: hidden;
   }
   header.active {
     top: 250px;

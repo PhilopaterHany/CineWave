@@ -1,4 +1,4 @@
-package com.cinewave.core;
+package com.cinewave.movieapi;
 
 import java.io.BufferedReader;
 import java.io.IOException;

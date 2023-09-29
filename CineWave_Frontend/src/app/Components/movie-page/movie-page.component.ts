@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieDataService } from '../../Services/movie-data.service';
+import {UtilitiesService} from "../../Services/utilities.service";
 
 @Component({
   selector: 'app-movie-page',
@@ -14,7 +15,8 @@ export class MoviePageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private movieDataService: MovieDataService
+    private movieDataService: MovieDataService,
+    public utilitiesService: UtilitiesService
   ) {}
 
   ngOnInit() {
@@ -35,7 +37,17 @@ export class MoviePageComponent implements OnInit {
       const runtimeMinutes = parseInt(this.movieMetadata.Runtime);
       const hours = Math.floor(runtimeMinutes / 60);
       const minutes = runtimeMinutes % 60;
-      this.movieMetadata.FormattedRuntime = `${hours}h ${minutes}min`;
+      if (isNaN(runtimeMinutes)) {
+        this.movieMetadata.FormattedRuntime = 'Unknown';
+      } else {
+        if (hours === 0 && minutes !== 0) {
+          this.movieMetadata.FormattedRuntime = `${minutes}min`;
+        } else if (hours !== 0 && minutes === 0) {
+          this.movieMetadata.FormattedRuntime = `${hours}h`;
+        } else {
+          this.movieMetadata.FormattedRuntime = `${hours}h ${minutes}min`;
+        }
+      }
     }
 
     if (this.movieMetadata && this.movieMetadata.imdbVotes) {
@@ -52,5 +64,13 @@ export class MoviePageComponent implements OnInit {
     if (this.movieMetadata && this.movieMetadata.Genre) {
       this.genreList = this.movieMetadata.Genre.split(', ');
     }
+  }
+
+  addMovieToFavs() {
+    document.querySelector("main")?.classList.toggle("fav");
+  }
+
+  addMovieToWatched() {
+    document.querySelector("main")?.classList.toggle("watched");
   }
 }
