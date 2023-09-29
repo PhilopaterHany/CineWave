@@ -11,19 +11,22 @@ export class FavoriteMoviesPageComponent implements OnInit{
   protected searchText: string = '';
   protected objectsArray: Array<Object> = [];
   protected readonly Object = Object;
-  protected loadingMoviesMetaData: Boolean = true;
+  protected loadingMoviesMetaData: Boolean = false;
   constructor(public utilitiesService: UtilitiesService, private serverCaller: ServerCallerService) {}
 
   async ngOnInit(): Promise<void> {
     this.loadingMoviesMetaData = true;
+    console.log(this.loadingMoviesMetaData);
     let tempObj = this.utilitiesService.getCurrentUser();
     this.objectsArray = [];
-    if(tempObj)
-      Object.values(tempObj)[Object.keys(tempObj).indexOf("favourites")].map(async (imdbId: String) => {
+    if(tempObj) {
+      const promises = Object.values(tempObj)[Object.keys(tempObj).indexOf("favourites")].map(async (imdbId: String) => {
         let movieObj = await this.serverCaller.fetchMovie(imdbId);
-        if(movieObj)
+        if (movieObj)
           this.objectsArray.push(movieObj);
-      })
+      });
+      await Promise.all(promises);
+    }
     console.log(this.objectsArray);
     this.loadingMoviesMetaData = false;
   }

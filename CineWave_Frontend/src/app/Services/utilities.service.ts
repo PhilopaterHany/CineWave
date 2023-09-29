@@ -64,8 +64,47 @@ export class UtilitiesService {
       this.setCurrentUser(response);
   }
 
+  async addMovieTo_(event: Event, movie: Object, toFromFavs: boolean) {
+    event.stopPropagation();
+    if(!this.getCurrentUser()){
+      // TODO
+      // user is not logged in, display an error msg here using Swal and remove
+      // the console.log()
+      console.log("Sign in first ..") // remove this
+      return;
+    }
+
+    const favBtn = event.target as HTMLElement;
+    // TODO
+    // eluser law das 3la el mat icon 8er law das 3la elbutton nfso,
+    // law das 3la elbutton elmfrood: favBtn
+    // law das 3la el mat icon elmfrood: favBtn?.parentElement
+    const movieDiv = favBtn?.parentElement;
+    const buttonName = (toFromFavs) ? 'favorite' : 'watched';
+
+    let response;
+
+    if(movieDiv?.classList.toggle(buttonName))
+      response = await this.serverCaller.addMovie(<User>this.getCurrentUser(), Number(toFromFavs), Object.values(movie)[Object.keys(movie).indexOf("imdbID")]);
+    else
+      response = await this.serverCaller.removeMovie(<User>this.getCurrentUser(), Number(toFromFavs), Object.values(movie)[Object.keys(movie).indexOf("imdbID")]);
+
+    if (response)
+      this.setCurrentUser(response);
+  }
+
   openMovie(movieObj: Object) {
     this.movieDataService.setMovieMetaData(movieObj);
     this.router.navigate(['/movie']);
+  }
+
+  isInFavOrWatched(movieObj: Object, inFavs: Boolean){
+    const tempUser = this.getCurrentUser();
+    if(tempUser) {
+      const movies: Array<String> = Object.values(tempUser)[Object.keys(tempUser).indexOf(inFavs ? "favourites" : "watched")];
+      if(movies.includes(Object.values(movieObj)[Object.keys(movieObj).indexOf("imdbID")]))
+        return true;
+    }
+    return false;
   }
 }

@@ -1,9 +1,9 @@
 <app-header></app-header>
 <section class="movies">
-    <div class="container">
-        <mat-icon>search</mat-icon>
-        <input type="text" [(ngModel)]="searchText" placeholder="Search in your favorite movies">
-    </div>
+  <div class="container">
+      <mat-icon>search</mat-icon>
+      <input type="text" [(ngModel)]="searchText" placeholder="Search in your favorite movies">
+  </div>
   <div class="container spinner-holder" *ngIf="this.loadingMoviesMetaData; else content">
     <div class="loading-spinner">
       <span></span>
@@ -12,8 +12,12 @@
   </div>
   <ng-template #content>
     <div class="container">
-        <div *ngFor="let obj of objectsArray" [ngStyle]="{'display': isHidden(obj) ? 'none' : 'block'}">
-            <div class="movie fav" *ngIf="containsSearchText((Object.values(obj)[(Object.keys(obj)).indexOf('Title')]))">
+        <div *ngFor="let obj of objectsArray" [ngStyle]="{'display': isHidden(obj) ? 'none' : 'block'}" (click)="this.utilitiesService.openMovie(obj)">
+            <div [ngClass]="{
+               'movie': true,
+               'fav': this.utilitiesService.isInFavOrWatched(obj, true),
+               'watched': this.utilitiesService.isInFavOrWatched(obj, false)
+               }" *ngIf="containsSearchText((Object.values(obj)[(Object.keys(obj)).indexOf('Title')]))">
                 <figure class="head">
                     <div class="image-container">
                         <img src="{{ Object.values(obj)[(Object.keys(obj)).indexOf('Poster')] }}" alt="{{ Object.values(obj)[(Object.keys(obj)).indexOf('Title')] }}">

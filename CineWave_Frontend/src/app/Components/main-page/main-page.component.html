@@ -48,7 +48,12 @@
     </div>
     <ng-template #content>
         <div class="container">
-          <div *ngFor="let movie of moviesDisplayed_Metadata" class="movie" (click)="this.utilitiesService.openMovie(movie)">
+          <div *ngFor="let movie of moviesDisplayed_Metadata"
+               [ngClass]="{
+               'movie': true,
+               'fav': this.utilitiesService.isInFavOrWatched(movie, true),
+               'watched': this.utilitiesService.isInFavOrWatched(movie, false)
+               }" (click)="this.utilitiesService.openMovie(movie)">
             <figure class="head">
               <div class="image-container">
                 <img [src]='Object.values(movie)[(Object.keys(movie)).indexOf("Poster")]' alt="Poster Not Available" loading="lazy" />

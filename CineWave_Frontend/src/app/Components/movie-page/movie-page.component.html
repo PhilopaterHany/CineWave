@@ -16,8 +16,8 @@
                         </ul>
                     </div>
                     <div class="btns">
-                        <button class="favorite" title="Favorite" (click)="addMovieToFavs()"><mat-icon>favorite</mat-icon></button>
-                        <button class="watched" title="Watched" (click)="addMovieToWatched()"><mat-icon>bookmark</mat-icon></button>
+                        <button [ngClass]="{'favorite': this.utilitiesService.isInFavOrWatched(movieMetadata, true)}" title="Favorite" (click)="this.utilitiesService.addMovieTo_($event, movieMetadata, true)"><mat-icon>favorite</mat-icon></button>
+                        <button [ngClass]="{'watched': this.utilitiesService.isInFavOrWatched(movieMetadata, false)}" title="Watched" (click)="this.utilitiesService.addMovieTo_($event, movieMetadata, false)"><mat-icon>bookmark</mat-icon></button>
                     </div>
                 </div>
                 <div class="rating-box">

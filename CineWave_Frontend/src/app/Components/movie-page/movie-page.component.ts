@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieDataService } from '../../Services/movie-data.service';
+import {UtilitiesService} from "../../Services/utilities.service";
 
 @Component({
   selector: 'app-movie-page',
@@ -14,7 +15,8 @@ export class MoviePageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private movieDataService: MovieDataService
+    private movieDataService: MovieDataService,
+    public utilitiesService: UtilitiesService
   ) {}
 
   ngOnInit() {
@@ -67,7 +69,7 @@ export class MoviePageComponent implements OnInit {
   addMovieToFavs() {
     document.querySelector("main")?.classList.toggle("fav");
   }
-  
+
   addMovieToWatched() {
     document.querySelector("main")?.classList.toggle("watched");
   }

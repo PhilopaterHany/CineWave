@@ -17,12 +17,14 @@ export class WatchedMoviesPageComponent {
     let tempObj = this.utilitiesService.getCurrentUser();
     this.objectsArray = [];
     this.loadingMoviesMetaData = true;
-    if(tempObj)
-      Object.values(tempObj)[Object.keys(tempObj).indexOf("watched")].map(async (imdbId: String) => {
+    if(tempObj) {
+      const promises = Object.values(tempObj)[Object.keys(tempObj).indexOf("watched")].map(async (imdbId: String) => {
         let movieObj = await this.serverCaller.fetchMovie(imdbId);
-        if(movieObj)
+        if (movieObj)
           this.objectsArray.push(movieObj);
-      })
+      });
+      await Promise.all(promises);
+    }
     console.log(this.objectsArray);
     this.loadingMoviesMetaData = false;
   }

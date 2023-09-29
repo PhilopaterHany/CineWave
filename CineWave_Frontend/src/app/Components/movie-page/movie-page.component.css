@@ -142,10 +142,10 @@
     -o-border-radius: 5px;
     border-radius: 5px;
 }
-main.fav button.favorite mat-icon {
+main button.favorite mat-icon {
     color: var(--red) !important;
 }
-main.watched button.watched mat-icon {
+main button.watched mat-icon {
     color: var(--yellow) !important;
 }
 @media (max-width: 1200px) {

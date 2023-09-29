@@ -46,6 +46,9 @@ export class HeaderComponent {
     navToWatched(){
       this.router.navigate(['/watched']);
     }
+    navToHome(){
+      this.router.navigate(['/']);
+    }
 
     logOut() {
       this.utilitiesService.setCurrentUser(undefined);
