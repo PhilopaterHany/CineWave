@@ -2,27 +2,24 @@
 <main>
   <section class="banner">
     <div class="container">
-      <img
-        src="https://codewithsadee.github.io/cineflix/assets/images/John-Wick-3.jpg"
-        alt="Banner"
-      />
+      <img src="../../../assets/images/banner.jpg" alt="bannerData?.Title" />
       <div class="banner-content">
         <div class="info">
           <p>
             <mat-icon>theaters</mat-icon>
-            <span id="banner-genre">Action/Thriller</span>
+            <span id="banner-genre">{{ utilitiesService.formatGenres(bannerData?.Genre) }}</span>
           </p>
           <p>
             <mat-icon>calendar_month</mat-icon>
-            <span id="banner-year">2019</span>
+            <span id="banner-year">{{ bannerData?.Year }}</span>
           </p>
           <p>
             <mat-icon>schedule</mat-icon>
-            <span id="banner-duration">2h 11m</span>
+            <span id="banner-duration">{{ bannerData?.Runtime }}</span>
           </p>
-          <p class="rated">R</p>
+          <p class="rated">{{ bannerData?.Rated }}</p>
         </div>
-        <h2 class="title">John Wick: Chapter 3 - Parabellum</h2>
+        <h2 class="title">{{ bannerData?.Title }}</h2>
       </div>
     </div>
   </section>
@@ -48,12 +45,7 @@
     </div>
     <ng-template #content>
         <div class="container">
-          <div *ngFor="let movie of moviesDisplayed_Metadata"
-               [ngClass]="{
-               'movie': true,
-               'fav': this.utilitiesService.isInFavOrWatched(movie, true),
-               'watched': this.utilitiesService.isInFavOrWatched(movie, false)
-               }" (click)="this.utilitiesService.openMovie(movie)" title="movieDiv">
+          <div *ngFor="let movie of moviesDisplayed_Metadata" [ngClass]="{'movie': true, 'fav': this.utilitiesService.isInFavOrWatched(movie, true), 'watched': this.utilitiesService.isInFavOrWatched(movie, false)}" (click)="this.utilitiesService.openMovie(movie)" title="movieDiv">
             <figure class="head">
               <div class="image-container">
                 <img [src]='Object.values(movie)[(Object.keys(movie)).indexOf("Poster")]' alt="Poster Not Available" loading="lazy" />

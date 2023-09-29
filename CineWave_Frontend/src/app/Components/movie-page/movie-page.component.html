@@ -51,6 +51,10 @@
                 <span class="span-title">Released:&nbsp;</span>
                 <span>{{ movieMetadata.Released }}</span>
             </p>
+            <p *ngIf="!movieMetadata.hasOwnProperty('BoxOffice')">
+                <span class="span-title">Season(s):&nbsp;</span>
+                <span>{{ movieMetadata.totalSeasons }}</span>
+            </p>
             <p *ngIf="movieMetadata.Director !== 'N/A'">
                 <span class="span-title">Director(s):&nbsp;</span>
                 <span>{{ movieMetadata.Director }}</span>
@@ -74,10 +78,6 @@
             <p *ngIf="movieMetadata.hasOwnProperty('BoxOffice')">
                 <span class="span-title">Box Office:&nbsp;</span>
                 <span>{{ movieMetadata.BoxOffice === "N/A" ? "Unavailable" : movieMetadata.BoxOffice }}</span>
-            </p>
-            <p *ngIf="!movieMetadata.hasOwnProperty('BoxOffice')">
-                <span class="span-title">Season(s):&nbsp;</span>
-                <span>{{ movieMetadata.totalSeasons }}</span>
             </p>
         </div>
     </section>

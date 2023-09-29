@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {User} from "../../Interfaces/user";
-import {ServerCallerService} from "../../Services/server-caller.service";
-import {Router} from "@angular/router";
-import {UtilitiesService} from "../../Services/utilities.service";
+import { User } from "../../Interfaces/user";
+import { ServerCallerService } from "../../Services/server-caller.service";
+import { Router } from "@angular/router";
+import { UtilitiesService } from "../../Services/utilities.service";
 
 @Component({
   selector: 'app-registration-page',
@@ -44,7 +44,7 @@ export class RegistrationPageComponent {
     this.loginClicked = true;
 
     if (this.validateLoginData()) {
-      // the this.loginForm.value contain the form values, which are email and password
+      // this.loginForm.value contain the form values, which are email and password
       let user: User | null = await this.serverCaller.signIn(<User> this.loginForm.value);
 
       if (user) {
@@ -61,7 +61,7 @@ export class RegistrationPageComponent {
     this.signUpClicked = true;
 
     if (this.validateSignUpData()) {
-      // the this.signupForm.value contain the form values, which are email, username and password
+      // this.signupForm.value contain the form values, which are email, username and password
       let newUser: User | null = await this.serverCaller.signUp(<User>this.signupForm.value);
 
       if (newUser) {

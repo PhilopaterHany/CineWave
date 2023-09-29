@@ -12,7 +12,9 @@ export class WatchedMoviesPageComponent {
   protected objectsArray: Array<Object> = [];
   protected readonly Object = Object;
   protected loadingMoviesMetaData: Boolean = true;
+
   constructor(public utilitiesService: UtilitiesService, private serverCaller: ServerCallerService) {}
+
   async ngOnInit(): Promise<void> {
     let tempObj = this.utilitiesService.getCurrentUser();
     this.objectsArray = [];
@@ -20,12 +22,10 @@ export class WatchedMoviesPageComponent {
     if(tempObj) {
       const promises = Object.values(tempObj)[Object.keys(tempObj).indexOf("watched")].map(async (imdbId: String) => {
         let movieObj = await this.serverCaller.fetchMovie(imdbId);
-        if (movieObj)
-          this.objectsArray.push(movieObj);
+        if (movieObj) this.objectsArray.push(movieObj);
       });
       await Promise.all(promises);
     }
-    console.log(this.objectsArray);
     this.loadingMoviesMetaData = false;
   }
   containsSearchText(name: string): boolean {

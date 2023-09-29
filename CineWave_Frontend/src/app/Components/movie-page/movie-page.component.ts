@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieDataService } from '../../Services/movie-data.service';
-import {UtilitiesService} from "../../Services/utilities.service";
+import { UtilitiesService } from "../../Services/utilities.service";
 
 @Component({
   selector: 'app-movie-page',

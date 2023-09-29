@@ -12,22 +12,20 @@ export class FavoriteMoviesPageComponent implements OnInit{
   protected objectsArray: Array<Object> = [];
   protected readonly Object = Object;
   protected loadingMoviesMetaData: Boolean = false;
+
   constructor(public utilitiesService: UtilitiesService, private serverCaller: ServerCallerService) {}
 
   async ngOnInit(): Promise<void> {
     this.loadingMoviesMetaData = true;
-    console.log(this.loadingMoviesMetaData);
     let tempObj = this.utilitiesService.getCurrentUser();
     this.objectsArray = [];
-    if(tempObj) {
+    if (tempObj) {
       const promises = Object.values(tempObj)[Object.keys(tempObj).indexOf("favourites")].map(async (imdbId: String) => {
         let movieObj = await this.serverCaller.fetchMovie(imdbId);
-        if (movieObj)
-          this.objectsArray.push(movieObj);
+        if (movieObj) this.objectsArray.push(movieObj);
       });
       await Promise.all(promises);
     }
-    console.log(this.objectsArray);
     this.loadingMoviesMetaData = false;
   }
   containsSearchText(name: string): boolean {
@@ -42,7 +40,6 @@ export class FavoriteMoviesPageComponent implements OnInit{
   noMatchesFound(): boolean {
     return this.objectsArray.every((movie) => !this.isMatching(movie));
   }
-
   async processAndAddMovie(event: Event, movie: Object, toFromFavs: boolean){
     await this.utilitiesService.addMovieTo(event, movie, toFromFavs);
     await this.ngOnInit();

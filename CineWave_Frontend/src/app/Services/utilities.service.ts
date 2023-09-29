@@ -43,13 +43,19 @@ export class UtilitiesService {
 
   async addMovieTo(event: Event, movie: Object, toFromFavs: boolean) {
     event.stopPropagation();
-    if(!this.getCurrentUser()){
+    if (!this.getCurrentUser()) {
       Swal.fire({
-        title: 'You must login',
-        text: "You must login to do this action!",
+        title: 'You Must Sign in',
+        text: 'You must sign in to do this action!',
         icon: 'warning',
-        confirmButtonText: 'Ok',
-      }).then(async (result) => {});
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#009688',
+        cancelButtonText: 'OK',
+        confirmButtonText: 'Go to sign in page',
+      }).then((result) => {
+        if (result.isConfirmed) this.router.navigateByUrl('/registration');
+      });
       return;
     }
 
@@ -61,7 +67,7 @@ export class UtilitiesService {
     const buttonName = (toFromFavs) ? 'fav' : 'watched';
 
     let response;
-    if(movieDiv?.classList.toggle(buttonName))
+    if (movieDiv?.classList.toggle(buttonName))
       response = await this.serverCaller.addMovie(<User>this.getCurrentUser(), Number(toFromFavs), Object.values(movie)[Object.keys(movie).indexOf("imdbID")]);
     else
       response = await this.serverCaller.removeMovie(<User>this.getCurrentUser(), Number(toFromFavs), Object.values(movie)[Object.keys(movie).indexOf("imdbID")]);
@@ -74,11 +80,17 @@ export class UtilitiesService {
     event.stopPropagation();
     if(!this.getCurrentUser()){
       Swal.fire({
-        title: 'You must login',
-        text: "You must login to do this action!",
+        title: 'You Must Sign in',
+        text: 'You must sign in to do this action!',
         icon: 'warning',
-        confirmButtonText: 'Ok',
-      }).then(async (result) => {});
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#009688',
+        cancelButtonText: 'OK',
+        confirmButtonText: 'Go to sign in page',
+      }).then((result) => {
+        if (result.isConfirmed) this.router.navigateByUrl('/registration');
+      });
       return;
     }
 
@@ -87,7 +99,7 @@ export class UtilitiesService {
     const buttonName = (toFromFavs) ? 'favorite' : 'watched';
 
     let response;
-    if(movieDiv?.classList.toggle(buttonName))
+    if (movieDiv?.classList.toggle(buttonName))
       response = await this.serverCaller.addMovie(<User>this.getCurrentUser(), Number(toFromFavs), Object.values(movie)[Object.keys(movie).indexOf("imdbID")]);
     else
       response = await this.serverCaller.removeMovie(<User>this.getCurrentUser(), Number(toFromFavs), Object.values(movie)[Object.keys(movie).indexOf("imdbID")]);
@@ -103,10 +115,9 @@ export class UtilitiesService {
 
   isInFavOrWatched(movieObj: Object, inFavs: Boolean){
     const tempUser = this.getCurrentUser();
-    if(tempUser) {
+    if (tempUser) {
       const movies: Array<String> = Object.values(tempUser)[Object.keys(tempUser).indexOf(inFavs ? "favourites" : "watched")];
-      if(movies.includes(Object.values(movieObj)[Object.keys(movieObj).indexOf("imdbID")]))
-        return true;
+      if (movies.includes(Object.values(movieObj)[Object.keys(movieObj).indexOf("imdbID")])) return true;
     }
     return false;
   }

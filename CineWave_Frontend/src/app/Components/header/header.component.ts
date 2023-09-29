@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { UtilitiesService } from "../../Services/utilities.service";
 import { Router } from "@angular/router";
+import { User } from "../../Interfaces/user";
+import { ServerCallerService } from "../../Services/server-caller.service";
 import Swal from 'sweetalert2';
-import {User} from "../../Interfaces/user";
-import {ServerCallerService} from "../../Services/server-caller.service";
 
 @Component({
   selector: 'app-header',
@@ -12,6 +12,7 @@ import {ServerCallerService} from "../../Services/server-caller.service";
 })
 export class HeaderComponent {
     protected username: String | undefined;
+    
     constructor(private router: Router,
                 public utilitiesService: UtilitiesService,
                 private serverCaller: ServerCallerService) {
@@ -33,9 +34,7 @@ export class HeaderComponent {
     }
 
     userActions() {
-      const userActionsList = document.querySelector(
-        'header .container .user ul'
-      ) as HTMLElement;
+      const userActionsList = document.querySelector('header .container .user ul') as HTMLElement;
       userActionsList.classList.toggle('show');
     }
 
@@ -52,7 +51,6 @@ export class HeaderComponent {
 
     logOut() {
       this.utilitiesService.setCurrentUser(undefined);
-      console.log("Logging Out...");
       this.router.navigate(['/']);
     }
 
