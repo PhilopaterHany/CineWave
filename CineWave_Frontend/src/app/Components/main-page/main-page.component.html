@@ -53,7 +53,7 @@
                'movie': true,
                'fav': this.utilitiesService.isInFavOrWatched(movie, true),
                'watched': this.utilitiesService.isInFavOrWatched(movie, false)
-               }" (click)="this.utilitiesService.openMovie(movie)">
+               }" (click)="this.utilitiesService.openMovie(movie)" title="movieDiv">
             <figure class="head">
               <div class="image-container">
                 <img [src]='Object.values(movie)[(Object.keys(movie)).indexOf("Poster")]' alt="Poster Not Available" loading="lazy" />

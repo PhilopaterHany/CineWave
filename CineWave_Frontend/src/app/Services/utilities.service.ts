@@ -3,6 +3,7 @@ import {User} from "../Interfaces/user";
 import {ServerCallerService} from "./server-caller.service";
 import {Router} from "@angular/router";
 import {MovieDataService} from "./movie-data.service";
+import Swal from "sweetalert2";
 
 @Injectable({
   providedIn: 'root',
@@ -43,18 +44,23 @@ export class UtilitiesService {
   async addMovieTo(event: Event, movie: Object, toFromFavs: boolean) {
     event.stopPropagation();
     if(!this.getCurrentUser()){
-      // TODO
-      // user is not logged in, display an error msg here using Swal and remove
-      // the console.log()
-      console.log("Sign in first ..") // remove this
+      Swal.fire({
+        title: 'You must login',
+        text: "You must login to do this action!",
+        icon: 'warning',
+        confirmButtonText: 'Ok',
+      }).then(async (result) => {});
       return;
     }
 
     const favBtn = event.target as HTMLElement;
-    const movieDiv = favBtn?.parentElement?.parentElement?.parentElement?.parentElement;
+    let movieDiv = favBtn?.parentElement?.parentElement?.parentElement;
+    if(movieDiv && movieDiv.title != 'movieDiv')
+      movieDiv = movieDiv?.parentElement;
+    console.log(movieDiv?.title);
     const buttonName = (toFromFavs) ? 'fav' : 'watched';
-    let response;
 
+    let response;
     if(movieDiv?.classList.toggle(buttonName))
       response = await this.serverCaller.addMovie(<User>this.getCurrentUser(), Number(toFromFavs), Object.values(movie)[Object.keys(movie).indexOf("imdbID")]);
     else
@@ -67,23 +73,20 @@ export class UtilitiesService {
   async addMovieTo_(event: Event, movie: Object, toFromFavs: boolean) {
     event.stopPropagation();
     if(!this.getCurrentUser()){
-      // TODO
-      // user is not logged in, display an error msg here using Swal and remove
-      // the console.log()
-      console.log("Sign in first ..") // remove this
+      Swal.fire({
+        title: 'You must login',
+        text: "You must login to do this action!",
+        icon: 'warning',
+        confirmButtonText: 'Ok',
+      }).then(async (result) => {});
       return;
     }
 
     const favBtn = event.target as HTMLElement;
-    // TODO
-    // eluser law das 3la el mat icon 8er law das 3la elbutton nfso,
-    // law das 3la elbutton elmfrood: favBtn
-    // law das 3la el mat icon elmfrood: favBtn?.parentElement
-    const movieDiv = favBtn?.parentElement;
+    const movieDiv = (favBtn.title == '') ? favBtn?.parentElement : favBtn;
     const buttonName = (toFromFavs) ? 'favorite' : 'watched';
 
     let response;
-
     if(movieDiv?.classList.toggle(buttonName))
       response = await this.serverCaller.addMovie(<User>this.getCurrentUser(), Number(toFromFavs), Object.values(movie)[Object.keys(movie).indexOf("imdbID")]);
     else
