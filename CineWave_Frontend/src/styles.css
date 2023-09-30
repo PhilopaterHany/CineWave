@@ -10,7 +10,6 @@
   --off-white: hsl(0, 0%, 88%);
   --white: hsl(0, 0%, 100%);
   --duration: 0.25s;
-  --space: 120px;
 }
 ::selection {
   color: #fff;
@@ -75,11 +74,11 @@ img {
   height: 100%;
 }
 input {
-    color: var(--white);
-    caret-color: var(--yellow);
+  color: var(--white);
+  caret-color: var(--yellow);
 }
 input::placeholder {
-    color: var(--white);
+  color: var(--white);
 }
 .container {
   position: relative;
@@ -167,10 +166,10 @@ input::placeholder {
   right: 10px;
   left: unset;
 }
-.movies .container .movie.fav .head .overlay button:first-of-type mat-icon {
+.movies .container .movie.fav .head .overlay button:first-of-type {
   color: var(--red);
 }
-.movies .container .movie.watched .head .overlay button:last-of-type mat-icon {
+.movies .container .movie.watched .head .overlay button:last-of-type {
   color: var(--yellow);
 }
 .movies .container .movie .body {
@@ -183,7 +182,7 @@ input::placeholder {
   align-items: flex-end;
 }
 .movies .container .movie .body .title {
-  min-height: 85px;
+  min-height: 50px;
   font-weight: bold;
   font-size: 16px;
 }
@@ -229,12 +228,13 @@ input::placeholder {
   color: var(--yellow);
 }
 .error-msg {
-    color: var(--red);
-    font-weight: bold;
-    font-size: 30px;
-    grid-column: 1/-1;
-    text-align: center;
-    margin-top: 10px;
+  margin-top: 5px !important;
+  line-height: 1.1;
+  grid-column: 1/-1;
+  text-align: center;
+  color: var(--red);
+  font-size: 30px;
+  font-weight: bold;
 }
 .spinner-holder {
   display: block !important;
@@ -294,6 +294,9 @@ body > div > div > div.swal2-icon.swal2-success.swal2-icon-show > div.swal2-succ
   main .movies .container {
     gap: 50px;
   }
+  .error-msg {
+    font-size: 24px;
+  }
 }
 @media (min-width: 768px) {
   .container {
@@ -308,25 +311,5 @@ body > div > div > div.swal2-icon.swal2-success.swal2-icon-show > div.swal2-succ
 @media (min-width: 1200px) {
   .container {
     width: 1150px;
-  }
-}
-@media (max-width: 1200px) {
-  :root {
-    --space: 80px;
-  }
-}
-@media (max-width: 1024px) {
-  :root {
-    --space: 60px;
-  }
-}
-@media (max-width: 768px) {
-  :root {
-    --space: 40px;
-  }
-}
-@media (max-width: 575px) {
-  :root {
-    --space: 20px;
   }
 }

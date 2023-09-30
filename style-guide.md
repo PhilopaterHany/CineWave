@@ -1,11 +1,16 @@
-# CineWave
+<h1 align="center">
+    CineWave
+    <br />
+    <br />
+    Riding The Sine Waves Of Cinematic Brilliance
+</h1>
 
 ## Layout
 
 The designs were created to the following widths:
 
--   Mobile: 410px
--   Desktop: 1440px
+- Mobile: 410px
+- Desktop: 1440px
 
 ## Colors
 
@@ -25,12 +30,12 @@ The designs were created to the following widths:
 
 ## Typography
 
-### Font
+### Fonts
 
--   Family: [Nanum Gothic](https://fonts.google.com/specimen/Nanum+Gothic)
--   Weights: 400, 700, 900
+- Family: [Nanum Gothic](https://fonts.google.com/specimen/Nanum+Gothic)
+- Weight(s): 400, 700, 900
 
 ---
 
--   Family: [Dancing Script](https://fonts.google.com/specimen/Dancing+Script)
--   Weights: 700
+- Family: [Dancing Script](https://fonts.google.com/specimen/Dancing+Script)
+- Weight(s): 700

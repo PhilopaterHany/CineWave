@@ -2,13 +2,17 @@
 
 footer {
   margin-top: 60px;
+  padding-bottom: 10px;
 }
 footer .container {
   display: flex;
   justify-content: space-between;
 }
+footer .text p {
+  margin: 0 !important;
+}
 footer .text p:nth-child(2) {
-  margin-block: 10px;
+  margin-block: 8px !important;
 }
 footer .text p span {
   color: var(--azure);
@@ -34,5 +38,10 @@ footer .logo img {
   footer .logo img {
     margin: auto;
     width: 60%;
+  }
+}
+@media (max-width: 410px) {
+  footer .logo img {
+    width: 100%;
   }
 }

@@ -9,50 +9,53 @@
 
 ## Table of contents
 
--   [Overview](#overview)
-    -   [The challenge](#the-challenge)
-    -   [Links](#links)
--   [Our process](#our-process)
-    -   [Built with](#built-with)
-    -   [What we learned](#what-we-learned)
-    -   [Useful resources](#useful-resources)
-    -   [How To Use](#how-to-use)
--   [Authors](#authors)
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Links](#links)
+- [Our Approach](#our-approach)
+  - [Technologies Used](#technologies-used)
+  - [What We Learned](#what-we-learned)
+  - [Useful Resources](#useful-resources)
+  - [How To Use](#how-to-use)
+- [Meet The Team](#meet-the-team)
 
 ## Overview
 
-CineWave is a web application built using Angular and Java Spring Boot. It allows users to register, log in, search for movies or series, and manage their watched and favorite lists. The application integrates with the OMDB API for movie and series data and uses MongoDB for user database management.
-PS: Some movies might not display correctly as expected, due to lack of data from the API. This will be fixed later and they will be filtered out.
+CineWave is a sophisticated web application developed using Angular and Java Spring Boot, designed to provide users with an immersive cinematic experience. It offers features such as user registration, login, movie and series search, as well as the ability to manage watched and favorite lists. CineWave seamlessly integrates with the OMDB API for movie and series data retrieval and employs MongoDB for robust user database management.
+
+Please note that certain movies may not display as expected due to data shortage from the API, but stay assured that we are actively working to enhance this feature.
 
 ### The challenge
 
-Users should be able to:
+CineWave is designed to empower users to:
 
--   Register and log in to their accounts.
--   Delete their accounts completely.
--   Search for movies or series and view detailed information.
--   Add movies or series to their watched list.
--   Add movies or series to their favorites list.
--   View their watched or favorites pages and search for movies there.
+- Register and securely log in to their accounts.
+- Delete their accounts permanently and hassle-free.
+- Effortlessly search for any movie or show, access detailed information, and explore a vast cinematic library.
+- Curate and maintain personalized watched and favorites lists.
+- Add movies or series to their favorites list.
+- Access and explore their watched and favorites pages with ease.
+- Search
 
 ### Links
 
--   Live Site URL: [Github Pages](https://philopaterhany.github.io/CineWave/)
--   LinkedIn Post Containing the Demo Video: [Post]()
+- LinkedIn Post with Demo Video: [View Post]()
 
-## Our process
+## Our Approach
 
-### Built with
+### Technologies Used
 
--   Semantic HTML5 Markup
--   CSS Custom Properties
--   AngularJS
--   TypeScript
--   Java Spring Boot
--   MongoDB
--   Postman API (for testing)
--   Sweetalert2 (for pop-ups)
--   OMDB API (for movie and series data)
+CineWave is meticulously crafted using the following technologies:
+
+- Semantic HTML5 Markup
+- CSS Custom Properties
+- AngularJS
+- TypeScript
+- Java Spring Boot
+- MongoDB
+- Postman API (for testing)
+- Sweetalert2 (for pop-ups)
+- OMDB API (for movie and series data)
 
 ### What We learned
 
@@ -115,7 +118,7 @@ Users should be able to:
 
 ```java
 public String searchMovieByImdbID(String imdbID) {
-    if(!cache.containsKey(imdbID))
+    if (!cache.containsKey(imdbID))
         cache.put(imdbID, movieActualService.searchMovieByImdbID(imdbID));
     String ans = cache.get(imdbID);
     checkAndClearCache();
@@ -123,31 +126,43 @@ public String searchMovieByImdbID(String imdbID) {
 }
 ```
 
-### Useful resources
+### Useful Resources
 
--   [AngularJS Docs](https://angular.io/docs)
--   [Sweetalert2](https://sweetalert2.github.io/)
--   [Java Spring Boot Documentation](https://spring.io/projects/spring-boot)
--   [MongoDB Documentation](https://www.mongodb.com/docs/)
--   [OMDB API Documentation](https://www.omdbapi.com/)
--   [Material Icons](https://developers.google.com/fonts/docs/material_icons)
+- [AngularJS Docs](https://angular.io/docs)
+- [Sweetalert2](https://sweetalert2.github.io/)
+- [Java Spring Boot Documentation](https://spring.io/projects/spring-boot)
+- [MongoDB Documentation](https://www.mongodb.com/docs/)
+- [OMDB API Documentation](https://www.omdbapi.com/)
+- [Material Icons](https://developers.google.com/fonts/docs/material_icons)
 
 ### How To Use
 
-To use CineWave, follow these steps:
--   Download the repository as a zip folder.
--   Install the required front-end dependencies by running the following terminal command `npm install`.
--   Put your OMDB API key in a file `APIKEY.txt` in the following path `CineWave\CineWave_Backend\src\main\java\com\cinewave\movieapi`.
--   Connect to the user database in `CineWave\CineWave_Backend\src\main\resources\application.properties`.
--   Open Project Structure and import JARs file from `CineWave\CineWave_Backend\JARs\json-20230618.jar`.
--   Run the back-end server on your device by running `CineWave\CineWave_Backend\src\main\java\com\cinewave\core\UserController.java`.
--   Run the front-end server on your device by running this terminal command `ng serve` at this path `CineWave\CineWave_Frontend`.
--   Open your browser and go to `localhost:4200/`.
--   Enjoy the cinematic experience!
+To enjoy CineWave's cinematic offerings, follow these simple steps:
 
-## Authors
+- Download the repository as a zip folder.
+- Install the necessary front-end dependencies by running `npm install` in your terminal.
+- Write your OMDB API key in a file `APIKEY.txt` in the following path `CineWave\CineWave_Backend\src\main\java\com\cinewave\movieapi`.
+- Establish a connection to the user database in `CineWave\CineWave_Backend\src\main\resources\application.properties`.
+- In Project Structure, import JAR files from `CineWave\CineWave_Backend\JARs\json-20230618.jar`.
+- Launch the back-end server on your device by running `CineWave\CineWave_Backend\src\main\java\com\cinewave\core\UserController.java`.
+- Launch the front-end server by executing `ng serve`  from the `CineWave\CineWave_Frontend` directory in your terminal.
+- Open your web browser and navigate to `localhost:4200/`.
+- Immerse yourself in the cinematic world of CineWave!
 
-CineWave was created by:
--   Github Account: [George Samy](https://github.com/GeorgeBeshay)
--   Github Account: [Mariam Aziz](https://github.com/MariamAziz0)
--   Github Account: [Philopater Hany](https://github.com/PhilopaterHany)
+## Meet The Team
+
+CineWave is the creation of a dedicated team of developers:
+
+- Github Account: [George Samy](https://github.com/GeorgeBeshay)
+- Github Account: [Mariam Aziz](https://github.com/MariamAziz0)
+- Github Account: [Philopater Hany](https://github.com/PhilopaterHany)
+
+---
+
+CineWave is more than just a web application; it's a gateway to a world of cinematic wonder. We're thrilled to bring you this immersive experience, where you can discover your favorite movies and shows like never before. As we continue to evolve and enhance CineWave, we invite you to join us on this cinematic journey.
+
+Thank you for choosing CineWave, and here's to a future filled with even more cinematic brilliance! 🍿🎥🎉
+
+Lights, camera, action! 🎥
+
+For inquiries or collaboration opportunities, feel free to reach out to any team member.

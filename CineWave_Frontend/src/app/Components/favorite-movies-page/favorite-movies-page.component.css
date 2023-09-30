@@ -20,3 +20,8 @@
         margin-top: 100px;
     }
 }
+@media (max-width: 767px) {
+    .movies .container:first-of-type mat-icon {
+        left: 20px;
+    }
+}

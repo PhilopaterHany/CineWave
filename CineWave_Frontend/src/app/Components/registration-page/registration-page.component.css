@@ -13,7 +13,7 @@ form div {
 form div mat-icon {
     position: absolute;
     color: var(--yellow);
-    top: 13px;
+    top: 12px;
     left: 8px;
     font-size: 20px;
 }
@@ -72,6 +72,9 @@ form button:hover {
 @media (max-width: 767px) {
     form > *,
     form button {
-        width: 100%;
+        width: 100% !important;
+    }
+    form input {
+        font-size: 14px;
     }
 }

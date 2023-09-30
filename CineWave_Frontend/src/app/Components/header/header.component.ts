@@ -38,14 +38,15 @@ export class HeaderComponent {
       userActionsList.classList.toggle('show');
     }
 
-    navToFavorites(){
+    navToFavorites() {
       this.router.navigate(['/favorites']);
     }
 
-    navToWatched(){
+    navToWatched() {
       this.router.navigate(['/watched']);
     }
-    navToHome(){
+
+    navToHome() {
       this.router.navigate(['/']);
     }
 

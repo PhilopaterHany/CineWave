@@ -98,6 +98,8 @@ main .search-bar form button {
   align-items: center;
   flex-grow: 1;
   padding: 10px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
   background-color: var(--azure);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;

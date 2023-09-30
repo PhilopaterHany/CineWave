@@ -31,6 +31,7 @@ export class UtilitiesService {
   }
 
   formatGenres(genres: string): string {
+    if (!genres) return '';
     const genreArray = genres.split(', ');
     if (genreArray.length === 1) {
       return genreArray[0];

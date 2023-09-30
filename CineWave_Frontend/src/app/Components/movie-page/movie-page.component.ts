@@ -29,9 +29,7 @@ export class MoviePageComponent implements OnInit {
       }
     }
 
-    if (!sessionStorage.getItem('movie-data')) {
-      sessionStorage.setItem('movie-data', JSON.stringify(this.movieMetadata));
-    }
+    sessionStorage.setItem('movie-data', JSON.stringify(this.movieMetadata));
 
     if (this.movieMetadata && this.movieMetadata.Runtime) {
       const runtimeMinutes = parseInt(this.movieMetadata.Runtime);

@@ -5,6 +5,11 @@
     align-items: center;
     gap: 30px;
 }
+.main-details .image,
+.main-details .image img {
+    width: 300px;
+    height: 450px;
+}
 .main-details .info {
     display: flex;
     flex-direction: column;
@@ -21,6 +26,7 @@
     font-size: 40px;
     font-weight: 500;
     margin-bottom: 10px;
+    line-height: 1.1;
 }
 .main-details .info .title div ul {
     display: flex;
@@ -141,11 +147,16 @@
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     border-radius: 5px;
+    -webkit-transition: var(--duration) ease-in-out;
+    -moz-transition: var(--duration) ease-in-out;
+    -ms-transition: var(--duration) ease-in-out;
+    -o-transition: var(--duration) ease-in-out;
+    transition: var(--duration) ease-in-out;
 }
-main button.favorite mat-icon {
+main button.favorite {
     color: var(--red) !important;
 }
-main button.watched mat-icon {
+main button.watched {
     color: var(--yellow) !important;
 }
 @media (max-width: 1200px) {
@@ -172,6 +183,10 @@ main button.watched mat-icon {
     }
 }
 @media (max-width: 480px) {
+    .main-details .image img {
+        margin-inline: auto;
+        width: 280px;
+    }
     .main-details .info .title {
         flex-direction: column;
         gap: 15px;
@@ -188,9 +203,10 @@ main button.watched mat-icon {
         padding: 10px;
     }
     .main-details .info .movie-genre span {
-        margin: 10px 0 !important;
         display: block;
-        width: fit-content;
+        width: 155px;
+        margin: 10px 0 !important;
+        text-align: center;
     }
     .main-details .info .movie-plot {
         font-size: 16px;
