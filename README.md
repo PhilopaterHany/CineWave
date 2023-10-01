@@ -35,11 +35,10 @@ CineWave is designed to empower users to:
 - Curate and maintain personalized watched and favorites lists.
 - Add movies or series to their favorites list.
 - Access and explore their watched and favorites pages with ease.
-- Search
 
 ### Links
 
-- LinkedIn Post with Demo Video: [View Post]()
+- LinkedIn Post with Demo Video: [View Post](https://www.linkedin.com/posts/gswb_cinewave-entertainment-webapplication-activity-7114214402517549056-ckMV?utm_source=share&utm_medium=member_ios)
 
 ## Our Approach
 
